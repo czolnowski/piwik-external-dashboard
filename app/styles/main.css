@@ -9898,15 +9898,16 @@ header .range {
   font-size: 20px;
   line-height: 1;
   padding-top: 35px;
+  display: inline;
 }
 
-/* line 99, ../../app/styles/_layout.scss */
+/* line 100, ../../app/styles/_layout.scss */
 
 header span {
   color: #56baec;
 }
 
-/* line 102, ../../app/styles/_layout.scss */
+/* line 103, ../../app/styles/_layout.scss */
 
 header .add-widget {
   font-size: 20px;
@@ -9915,7 +9916,7 @@ header .add-widget {
   cursor: pointer;
 }
 
-/* line 108, ../../app/styles/_layout.scss */
+/* line 109, ../../app/styles/_layout.scss */
 
 header .add-widget span {
   float: right;

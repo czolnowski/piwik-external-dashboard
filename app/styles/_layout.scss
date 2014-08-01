@@ -95,6 +95,7 @@ header {
 		line-height: 1;
 		padding-top: 35px;
 		    @extend %ob; 
+		    display: inline;
 	}
 	span {
 		color: $p-main-color;
