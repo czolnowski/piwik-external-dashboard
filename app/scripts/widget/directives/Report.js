@@ -6,9 +6,11 @@
         return {
             restrict: 'C',
             scope: {
-                api: '@'
+                module: '@',
+                action: '@'
             },
-            template: '<div><h4 class="w-name">{{ api }}</h4><div class="w-content">lorem ipsum dolor sit amet</div></div>'
+            template: '<div><p class="w-name">{{ api }}</p><div class="w-content">lorem ipsum dolor sit amet</div></div>',
+            controller: 'ReportCtrl'
         };
     });
 })(angular);
