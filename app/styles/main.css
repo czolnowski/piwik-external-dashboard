@@ -9884,6 +9884,7 @@ header span {
 
 .table-data tbody tr:hover td {
   background: #e3e4e8;
+  cursor: pointer;
 }
 
 /* line 65, ../../app/styles/main.scss */

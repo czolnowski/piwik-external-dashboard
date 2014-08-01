@@ -19,6 +19,7 @@
             &:hover {
                 td {
                     background: $td-hover-background;
+                    cursor: pointer;
                 }
             }
         }
