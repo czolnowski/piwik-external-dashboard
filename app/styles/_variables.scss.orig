@@ -1,6 +1,5 @@
-//
-// Variables
-// --------------------------------------------------
+<<<<<<< HEAD
+
 $p-main-color: #D43028;
 $bg-color: #f0f2f5;
 $w-head-f-color: #fff;
@@ -8,6 +7,11 @@ $w-head-f-color: #fff;
 $widget-bg: #fff;
 
 $brand-primary: #d4291f;
+=======
+//
+// Variables
+// --------------------------------------------------
+
 $body-background: #f0f2f5;
 $brand-primary: #d4291f;
 
@@ -647,3 +651,4 @@ $container-md:                 $container-desktop !default;
 $container-large-desktop:      ((1140px + $grid-gutter-width)) !default;
 $container-lg:                 $container-large-desktop !default;
 
+>>>>>>> f1778b97458840cb2344f928df92c31a0527d58c

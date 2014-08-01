@@ -1,5 +1,11 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
+<<<<<<< HEAD
+@import 'sass-bootstrap/lib/bootstrap';
+@import 'variables';
+@import 'layout';
+@import 'forms';
+=======
 // Custom variables
 @import "variables";
 // Bootstrap
@@ -61,7 +67,13 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 body {
     background: $body-background;
 }
+>>>>>>> f1778b97458840cb2344f928df92c31a0527d58c
 
+
+.container {
+    width: 100%;
+    max-width:100% !important;
+}
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
