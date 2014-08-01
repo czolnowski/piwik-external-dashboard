@@ -99,5 +99,20 @@ header {
 	span {
 		color: $p-main-color;
 	}
+	.add-widget {
+		font-size: 20px;
+		line-height: 1;
+		padding-top: 13px;
+		    @extend %ob; 
+		cursor: pointer;
+		span	{
+			float:right;
+			background: $p-main-color;
+			color: #fff;
+			border-radius: 999px;
+			width: auto !important;
+			padding: 10px 10px 10px 11px;
+		}
+	}
 }
  

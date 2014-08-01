@@ -9700,6 +9700,7 @@ body {
 /* line 49, ../../app/styles/_fonts.scss */
 
 header .range,
+header .add-widget,
 .table-data thead tr th {
   font-family: 'open_sansbold';
 }
@@ -9894,6 +9895,26 @@ header .range {
 
 header span {
   color: #d43028;
+}
+
+/* line 102, ../../app/styles/_layout.scss */
+
+header .add-widget {
+  font-size: 20px;
+  line-height: 1;
+  padding-top: 13px;
+  cursor: pointer;
+}
+
+/* line 108, ../../app/styles/_layout.scss */
+
+header .add-widget span {
+  float: right;
+  background: #d43028;
+  color: #fff;
+  border-radius: 999px;
+  width: auto !important;
+  padding: 10px 10px 10px 11px;
 }
 
 /* line 1, ../../app/styles/_table.scss */
