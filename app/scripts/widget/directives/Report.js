@@ -10,7 +10,8 @@
                 action: '@'
             },
             templateUrl: 'views/widget/report.html',
-            controller: 'ReportCtrl'
+            controller: 'ReportCtrl',
+            controllerAs: 'report'
         };
     });
 })(angular);
