@@ -3,7 +3,7 @@ $thead-border: #e3e4e8;
 
 .table-data {
     thead {
-        @extend %ob; 
+        @extend %ob;  
         th {
             border-bottom: 2px solid $thead-border;
         }
