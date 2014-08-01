@@ -21,7 +21,7 @@
         {
             $rootScope.$on("$routeChangeStart", function (event, next) {
                 if (ng.isDefined(next.auth) && next.auth === true && !Authenticate.isAuthenticated()) {
-                    $location.path("/login");
+                    $location.path("/dashboard");
                     event.preventDefault();
                 }
             });
