@@ -9771,6 +9771,20 @@ header .logo {
   max-width: 150px;
 }
 
+/* line 49, ../../app/styles/_layout.scss */
+
+header .range {
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 75px;
+}
+
+/* line 54, ../../app/styles/_layout.scss */
+
+header span {
+  color: #d43028;
+}
+
 /* line 63, ../../app/styles/main.scss */
 
 body {
