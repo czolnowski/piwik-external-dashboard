@@ -9876,9 +9876,10 @@ html {
 .widget .w-content.mx-lg {
   max-height: 600px;
   overflow: auto;
+  position: relative;
 }
 
-/* line 82, ../../app/styles/_layout.scss */
+/* line 83, ../../app/styles/_layout.scss */
 
 .widget .w-footer {
   background: #f6f8fa;
@@ -9886,13 +9887,13 @@ html {
   border-radius: 0 0 5px 5px;
 }
 
-/* line 90, ../../app/styles/_layout.scss */
+/* line 91, ../../app/styles/_layout.scss */
 
 header .logo {
   max-width: 150px;
 }
 
-/* line 93, ../../app/styles/_layout.scss */
+/* line 94, ../../app/styles/_layout.scss */
 
 header .range {
   font-size: 20px;
@@ -9901,13 +9902,13 @@ header .range {
   display: inline;
 }
 
-/* line 100, ../../app/styles/_layout.scss */
+/* line 101, ../../app/styles/_layout.scss */
 
 header span {
   color: #56baec;
 }
 
-/* line 103, ../../app/styles/_layout.scss */
+/* line 104, ../../app/styles/_layout.scss */
 
 header .add-widget {
   font-size: 20px;
@@ -9916,7 +9917,7 @@ header .add-widget {
   cursor: pointer;
 }
 
-/* line 109, ../../app/styles/_layout.scss */
+/* line 110, ../../app/styles/_layout.scss */
 
 header .add-widget span {
   float: right;
