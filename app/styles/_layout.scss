@@ -5,6 +5,11 @@ body, html {
 	color: lighten(#000, 40%);
 }
 
+.glyphicon {
+	padding:10px;
+	display:inline-block;
+	margin-right:10px;
+}
 .widget {
 	background-color: $widget-bg;
 	border-radius: 5px;
@@ -13,12 +18,16 @@ body, html {
 	&.callout {
 		background-color: $p-main-color;
 		color: #fff;
+		.w-name {
+			border-bottom: none;
+		}
 	}
 	.w-name {
 		background-color:$p-main-color;
 		padding: 20px;
 		color: $w-head-f-color;
 		border-radius: 5px 5px 0 0;
+		text-transform: uppercase;
 		border-bottom: 3px solid darken($p-main-color, 10%);
 		font-weight: bold;
 		position:relative;
@@ -28,19 +37,27 @@ body, html {
 			opacity: 0.9;
 		}
 		div.setts {
-			 @include transition(all, 0.2s, ease-in-out);
-			opacity:0;
 			position:absolute;
 			content: "";
 			right:10px;
-			top: 25px;
-			width: 30px;
+			top: 15px;
+			width: 90px;
 			height:30px;
-			font-size: 10px;
+			font-size: 15px;
+			span {
+				@include transition(all, 0.2s, ease-in-out);
+				opacity:0;
+				cursor:pointer;
+			}
+			.glyphicon-star {
+				opacity: 0.8;
+			}
 		}
 		&:hover {
 			.setts {
-				opacity: 0.8;
+				span {
+					opacity: 0.8;
+				}
 			}
 		}
 	}
