@@ -21,9 +21,9 @@
         that = this;
         request.then(function (response) {
             var index;
-            for (index in response) {
-                if (response.hasOwnProperty(index)) {
-                    that[index] = response[index];
+            for (index in response.data) {
+                if (response.data.hasOwnProperty(index)) {
+                    that[index] = response.data[index];
                 }
             }
         });
