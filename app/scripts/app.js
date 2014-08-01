@@ -8,7 +8,7 @@ angular.module('piwikExternalDashboardApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/login.html',
+        templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
       .otherwise({

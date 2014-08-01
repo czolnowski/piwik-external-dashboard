@@ -12,7 +12,7 @@ $body-background: #f0f2f5;
 $brand-primary: #d4291f;
 
 $form-background: #fff;
-$form-border: #e3e3e7; 
+$form-border: #e3e3e7;  
 
 // Global values
 // --------------------------------------------------
@@ -636,14 +636,14 @@ $component-offset-horizontal: 180px !default;
 // --------------------------------------------------
 
 // Small screen / tablet
-$container-tablet:             ((720px + $grid-gutter-width)) !default;
-$container-sm:                 $container-tablet !default;
+$container-tablet:             (100%) !default;
+$container-sm:                 100% !default;
 
 // Medium screen / desktop
-$container-desktop:            ((940px + $grid-gutter-width)) !default;
-$container-md:                 $container-desktop !default;
+$container-desktop:            (100%) !default;
+$container-md:                 100% !default;
 
 // Large screen / wide desktop
-$container-large-desktop:      ((1140px + $grid-gutter-width)) !default;
-$container-lg:                 $container-large-desktop !default;
+$container-large-desktop:      ((100%)) !default;
+$container-lg:                 100% !default;
 
