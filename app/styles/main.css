@@ -9746,6 +9746,8 @@ header .range,
 
 .btn {
   border: 0;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
 }
 
 /* line 1, ../../app/styles/_layout.scss */
