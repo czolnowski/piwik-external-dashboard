@@ -9699,6 +9699,7 @@ body {
 
 /* line 49, ../../app/styles/_fonts.scss */
 
+header .range,
 .table-data thead tr th {
   font-family: 'open_sansbold';
 }
@@ -9822,7 +9823,14 @@ html {
   padding: 20px;
 }
 
-/* line 55, ../../app/styles/_layout.scss */
+/* line 53, ../../app/styles/_layout.scss */
+
+.widget .w-content.mx-lg {
+  max-height: 600px;
+  overflow: auto;
+}
+
+/* line 59, ../../app/styles/_layout.scss */
 
 .widget .w-footer {
   background: #f6f8fa;
@@ -9830,21 +9838,21 @@ html {
   border-radius: 0 0 5px 5px;
 }
 
-/* line 63, ../../app/styles/_layout.scss */
+/* line 67, ../../app/styles/_layout.scss */
 
 header .logo {
   max-width: 150px;
 }
 
-/* line 66, ../../app/styles/_layout.scss */
+/* line 70, ../../app/styles/_layout.scss */
 
 header .range {
-  font-size: 30px;
-  font-weight: bold;
-  line-height: 75px;
+  font-size: 20px;
+  line-height: 1;
+  padding-top: 35px;
 }
 
-/* line 71, ../../app/styles/_layout.scss */
+/* line 76, ../../app/styles/_layout.scss */
 
 header span {
   color: #d43028;
