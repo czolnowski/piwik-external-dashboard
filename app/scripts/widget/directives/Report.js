@@ -9,7 +9,7 @@
                 module: '@',
                 action: '@'
             },
-            template: '<div><p class="w-name">{{ api }}</p><div class="w-content">lorem ipsum dolor sit amet</div></div>',
+            templateUrl: 'views/widget/report.html',
             controller: 'ReportCtrl'
         };
     });
