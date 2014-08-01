@@ -17,7 +17,7 @@
             {
                 host: host,
                 userLogin: login,
-                md5Password: md5.createHash(password)
+                md5Password: this.md5.createHash(password)
             }
         );
     };

@@ -6029,9 +6029,9 @@ output {
 }
 
 .form-control:focus {
-  border-color: #66afe9;
+  border-color: #e8c5c3;
   outline: 0;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(232, 197, 195, 0.6);
 }
 
 @media -sass-debug-info {
@@ -19846,9 +19846,14 @@ td.visible-print {
 }
 
 .form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+  max-width: 360px;
+  padding: 30px;
+  margin: 100px auto;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background-clip: padding-box;
+  background-color: #fff;
+  box-shadow: 0 3px 0 #e3e3e7;
 }
 
 @media -sass-debug-info {
@@ -19857,7 +19862,37 @@ td.visible-print {
   }
 
   line {
-    font-family: \000037;
+    font-family: \000039;
+  }
+}
+
+.form-signin .form-signin-heading {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/\/home\/kweglinski\/Copy\/www\/piwik-external-dashboard\/app\/styles\/_forms\.scss;
+  }
+
+  line {
+    font-family: \0000313;
+  }
+}
+
+.form-signin .logo {
+  margin: 0 auto 20px;
+  display: block;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/\/home\/kweglinski\/Copy\/www\/piwik-external-dashboard\/app\/styles\/_forms\.scss;
+  }
+
+  line {
+    font-family: \0000319;
   }
 }
 
@@ -19867,6 +19902,7 @@ td.visible-print {
   border-radius: 5px;
   background-clip: padding-box;
   background-color: white;
+  height: 40px;
 }
 
 @media -sass-debug-info {
