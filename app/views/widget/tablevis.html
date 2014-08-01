@@ -1,5 +1,8 @@
 <div>
     <table>
-        <tr ng-repeat="report in report.report.reportData"><td>{{ report.label }}</td></tr>
+        <tr ng-repeat="reportRow in report.report.reportData">
+            <td>{{ reportRow.label }}</td>
+            <td>{{ reportRow.nb_visits }}</td>
+        </tr>
     </table>
 </div>
