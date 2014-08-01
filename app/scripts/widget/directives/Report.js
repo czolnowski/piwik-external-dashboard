@@ -5,6 +5,7 @@
 
         return {
             restrict: 'C',
+            transclude: true,
             scope: {
                 module: '@',
                 action: '@'
