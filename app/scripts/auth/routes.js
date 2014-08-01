@@ -5,7 +5,8 @@
         $routeProvider
             .when('/login', {
                 templateUrl: 'views/login/index.html',
-                controller: 'LoginCtrl'
+                controller: 'LoginCtrl',
+                controllerAs: 'login'
             });
     });
 })(angular);

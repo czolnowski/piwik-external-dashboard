@@ -1,11 +1,12 @@
 (function (ng) {
-    var Authenticate = function (token, user, http, cookieStore)
+    var Authenticate = function (token, user, http, cookieStore, $location)
     {
         this.token = token;
         this.user = user;
 
         this.http = http;
         this.cookieStore = cookieStore;
+        this.$location = $location;
     };
 
     Authenticate.prototype.login = function (host, login, password)
@@ -17,14 +18,11 @@
             function (response) {
                 if (ng.isDefined(response.token_auth)) {
                     that.token.setTokenAuth(response.token_auth);
-
-                    that.getUserInformation();
-
+                    that.token.setHost(host);
                     that.cookieStore.put('token', that.token);
-
                     that.getUserInformation(login);
 
-                    console.log('redirect')
+                    that.$location.path('/');
                 } else {
                     console.log('something goes wrong')
                 }
@@ -34,6 +32,17 @@
         return request;
     };
 
+    Authenticate.prototype.asAnonymous = function (host)
+    {
+        this.token.setTokenAuth('anonymous');
+        this.token.setHost(host);
+        this.getUserInformation('anonymous');
+
+        this.cookieStore.put('token', this.token);
+
+        this.$location.path('/');
+    };
+
     Authenticate.prototype.isAuthenticated = function ()
     {
         return this.token.isValid();
@@ -41,7 +50,7 @@
 
     Authenticate.prototype.goToLogin = function ()
     {
-        console.log('go to login')
+        this.$location.path('/login');
     };
 
     Authenticate.prototype.getUserInformation = function (login)
@@ -52,7 +61,7 @@
     };
 
     ng.module('piwikExtDash.auth').service("Authenticate", [
-        "Token", "User", "$http", "$cookieStore",
+        "Token", "User", "$http", "$cookieStore", "$location",
         Authenticate
     ]);
 })(angular);

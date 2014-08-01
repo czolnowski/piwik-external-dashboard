@@ -9,7 +9,7 @@
 
         'piwikExtDash.auth',
         'piwikExtDash.dashboard',
-        'piwikExtDash.users',
+        'piwikExtDash.users'
     ]);
 
     app.config(function ($locationProvider) {
@@ -17,15 +17,23 @@
     });
 
     app.run([
-        "$rootScope", "Authenticate", "$location",
-        function ($rootScope, Authenticate, $location)
+        "$rootScope", "Authenticate",
+        function ($rootScope, Authenticate)
         {
             $rootScope.$on("$routeChangeStart", function (event, next) {
                 if (ng.isDefined(next.auth) && next.auth === true && !Authenticate.isAuthenticated()) {
-                    $location.path("/login");
+                    Authenticate.goToLogin();
                     event.preventDefault();
                 }
             });
+        }
+    ]);
+
+    app.config([
+        "$httpProvider",
+        function ($httpProvider)
+        {
+            $httpProvider.interceptors.push('TokenInterceptor');
         }
     ]);
 })(window.angular);
