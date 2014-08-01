@@ -9659,6 +9659,50 @@ td.visible-print {
   }
 }
 
+@font-face {
+  font-family: 'open_sansregular';
+  src: url("../fonts/opensans-regular-webfont.eot");
+  src: url("../fonts/opensans-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/opensans-regular-webfont.woff") format("woff"), url("../fonts/opensans-regular-webfont.ttf") format("truetype"), url("../fonts/opensans-regular-webfont.svg#open_sansregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'open_sanslight';
+  src: url("../fonts/opensans-light-webfont.eot");
+  src: url("../fonts/opensans-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/opensans-light-webfont.woff") format("woff"), url("../fonts/opensans-light-webfont.ttf") format("truetype"), url("../fonts/opensans-light-webfont.svg#open_sanslight") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'open_sansbold';
+  src: url("../fonts/opensans-bold-webfont.eot");
+  src: url("../fonts/opensans-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/opensans-bold-webfont.woff") format("woff"), url("../fonts/opensans-bold-webfont.ttf") format("truetype"), url("../fonts/opensans-bold-webfont.svg#open_sansbold") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'open_sanssemibold';
+  src: url("../fonts/opensans-semibold-webfont.eot");
+  src: url("../fonts/opensans-semibold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/opensans-semibold-webfont.woff") format("woff"), url("../fonts/opensans-semibold-webfont.ttf") format("truetype"), url("../fonts/opensans-semibold-webfont.svg#open_sanssemibold") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 45, ../../app/styles/_fonts.scss */
+
+body {
+  font-family: 'open_sansregular';
+}
+
+/* line 49, ../../app/styles/_fonts.scss */
+
+.table-data thead tr th {
+  font-family: 'open_sansbold';
+}
+
 /* line 1, ../../app/styles/_forms.scss */
 
 .form-signin {
@@ -9717,10 +9761,11 @@ html {
 .widget {
   background-color: white;
   border-radius: 5px;
-  border-bottom: 3px solid #94a2b8;
+  box-shadow: 0 3px 0 #e3e3e7;
+  margin-bottom: 30px;
 }
 
-/* line 11, ../../app/styles/_layout.scss */
+/* line 12, ../../app/styles/_layout.scss */
 
 .widget .w-name {
   background-color: #d43028;
@@ -9732,14 +9777,14 @@ html {
   position: relative;
 }
 
-/* line 19, ../../app/styles/_layout.scss */
+/* line 20, ../../app/styles/_layout.scss */
 
 .widget .w-name p {
   padding: 0;
   margin: 0;
 }
 
-/* line 23, ../../app/styles/_layout.scss */
+/* line 24, ../../app/styles/_layout.scss */
 
 .widget .w-name div.setts {
   transition: all, 0.2s, ease-in-out;
@@ -9753,25 +9798,45 @@ html {
   font-size: 10px;
 }
 
-/* line 35, ../../app/styles/_layout.scss */
+/* line 36, ../../app/styles/_layout.scss */
 
 .widget .w-name:hover .setts {
   opacity: 0.8;
 }
 
-/* line 40, ../../app/styles/_layout.scss */
+/* line 43, ../../app/styles/_layout.scss */
+
+.widget.color .w-content {
+  background-color: #f0a09c;
+}
+
+/* line 46, ../../app/styles/_layout.scss */
+
+.widget.color .w-footer {
+  background-color: #ed8b85;
+}
+
+/* line 51, ../../app/styles/_layout.scss */
 
 .widget .w-content {
   padding: 20px;
 }
 
-/* line 46, ../../app/styles/_layout.scss */
+/* line 55, ../../app/styles/_layout.scss */
+
+.widget .w-footer {
+  background: #f6f8fa;
+  padding: 5px 20px;
+  border-radius: 0 0 5px 5px;
+}
+
+/* line 63, ../../app/styles/_layout.scss */
 
 header .logo {
   max-width: 150px;
 }
 
-/* line 49, ../../app/styles/_layout.scss */
+/* line 66, ../../app/styles/_layout.scss */
 
 header .range {
   font-size: 30px;
@@ -9779,19 +9844,45 @@ header .range {
   line-height: 75px;
 }
 
-/* line 54, ../../app/styles/_layout.scss */
+/* line 71, ../../app/styles/_layout.scss */
 
 header span {
   color: #d43028;
 }
 
-/* line 63, ../../app/styles/main.scss */
+/* line 5, ../../app/styles/_table.scss */
+
+.table-data {
+  width: 100%;
+}
+
+/* line 9, ../../app/styles/_table.scss */
+
+.table-data thead tr th {
+  border-bottom: 2px solid #e3e4e8;
+  color: #a4a9ae;
+  padding: 9px 5px;
+}
+
+/* line 20, ../../app/styles/_table.scss */
+
+.table-data tbody tr td {
+  padding: 9px 5px;
+}
+
+/* line 24, ../../app/styles/_table.scss */
+
+.table-data tbody tr:hover td {
+  background: #e3e4e8;
+}
+
+/* line 65, ../../app/styles/main.scss */
 
 body {
   background: #f0f2f5;
 }
 
-/* line 67, ../../app/styles/main.scss */
+/* line 70, ../../app/styles/main.scss */
 
 .browsehappy {
   margin: 0.2em 0;
@@ -9800,18 +9891,9 @@ body {
   padding: 0.2em 0;
 }
 
-/* Space out content a bit */
-
-/* line 75, ../../app/styles/main.scss */
-
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
-/* line 83, ../../app/styles/main.scss */
+/* line 81, ../../app/styles/main.scss */
 
 .header,
 .marketing,
@@ -9822,7 +9904,7 @@ body {
 
 /* Custom page header */
 
-/* line 89, ../../app/styles/main.scss */
+/* line 87, ../../app/styles/main.scss */
 
 .header {
   border-bottom: 1px solid #e5e5e5;
@@ -9830,7 +9912,7 @@ body {
 
 /* Make the masthead heading the same height as the navigation */
 
-/* line 94, ../../app/styles/main.scss */
+/* line 92, ../../app/styles/main.scss */
 
 .header h3 {
   margin-top: 0;
@@ -9841,7 +9923,7 @@ body {
 
 /* Custom page footer */
 
-/* line 102, ../../app/styles/main.scss */
+/* line 100, ../../app/styles/main.scss */
 
 .footer {
   padding-top: 19px;
@@ -9849,7 +9931,7 @@ body {
   border-top: 1px solid #e5e5e5;
 }
 
-/* line 108, ../../app/styles/main.scss */
+/* line 106, ../../app/styles/main.scss */
 
 .container-narrow > hr {
   margin: 30px 0;
@@ -9857,14 +9939,14 @@ body {
 
 /* Main marketing message and sign up button */
 
-/* line 113, ../../app/styles/main.scss */
+/* line 111, ../../app/styles/main.scss */
 
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* line 118, ../../app/styles/main.scss */
+/* line 116, ../../app/styles/main.scss */
 
 .jumbotron .btn {
   font-size: 21px;
@@ -9873,13 +9955,13 @@ body {
 
 /* Supporting marketing content */
 
-/* line 124, ../../app/styles/main.scss */
+/* line 122, ../../app/styles/main.scss */
 
 .marketing {
   margin: 40px 0;
 }
 
-/* line 128, ../../app/styles/main.scss */
+/* line 126, ../../app/styles/main.scss */
 
 .marketing p + h4 {
   margin-top: 28px;
@@ -9890,7 +9972,7 @@ body {
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
 
-  /* line 139, ../../app/styles/main.scss */
+  /* line 137, ../../app/styles/main.scss */
 
   .header,
   .marketing,
@@ -9901,7 +9983,7 @@ body {
 
   /* Space out the masthead */
 
-  /* line 144, ../../app/styles/main.scss */
+  /* line 142, ../../app/styles/main.scss */
 
   .header {
     margin-bottom: 30px;
@@ -9909,7 +9991,7 @@ body {
 
   /* Remove the bottom border on the jumbotron for visual effect */
 
-  /* line 148, ../../app/styles/main.scss */
+  /* line 146, ../../app/styles/main.scss */
 
   .jumbotron {
     border-bottom: 0;

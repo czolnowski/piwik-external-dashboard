@@ -64,11 +64,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 body {
     background: $body-background;
-    @extend %o; 
-
-/* Space out content a bit */
-    padding-top: 20px;
-    padding-bottom: 20px;
+    @extend %o;  
 }
 
 .browsehappy {
