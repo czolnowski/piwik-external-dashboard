@@ -19893,8 +19893,11 @@ td.visible-print {
   }
 }
 
-body {
+body,
+html {
   background-color: #f0f2f5;
+  width: 100%;
+  height: 100%;
 }
 
 @media -sass-debug-info {
@@ -19903,7 +19906,7 @@ body {
   }
 
   line {
-    font-family: \000035;
+    font-family: \000037;
   }
 }
 
@@ -19919,7 +19922,7 @@ body {
   }
 
   line {
-    font-family: \000039;
+    font-family: \0000311;
   }
 }
 
@@ -19930,6 +19933,7 @@ body {
   border-radius: 5px 5px 0 0;
   border-bottom: 3px solid #a92620;
   font-weight: bold;
+  position: relative;
 }
 
 @media -sass-debug-info {
@@ -19938,7 +19942,58 @@ body {
   }
 
   line {
-    font-family: \0000317;
+    font-family: \0000319;
+  }
+}
+
+.widget .w-name p {
+  padding: 0;
+  margin: 0;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/\/home\/kweglinski\/Copy\/www\/piwik-external-dashboard\/app\/styles\/_layout\.scss;
+  }
+
+  line {
+    font-family: \0000323;
+  }
+}
+
+.widget .w-name div.setts {
+  transition: all, 0.2s, ease-in-out;
+  opacity: 0;
+  position: absolute;
+  content: "";
+  right: 10px;
+  top: 25px;
+  width: 30px;
+  height: 30px;
+  font-size: 10px;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/\/home\/kweglinski\/Copy\/www\/piwik-external-dashboard\/app\/styles\/_layout\.scss;
+  }
+
+  line {
+    font-family: \0000335;
+  }
+}
+
+.widget .w-name:hover .setts {
+  opacity: 0.8;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/\/home\/kweglinski\/Copy\/www\/piwik-external-dashboard\/app\/styles\/_layout\.scss;
+  }
+
+  line {
+    font-family: \0000340;
   }
 }
 
@@ -19948,11 +20003,25 @@ body {
 
 @media -sass-debug-info {
   filename {
+    font-family: file\:\/\/\/home\/kweglinski\/Copy\/www\/piwik-external-dashboard\/app\/styles\/_layout\.scss;
+  }
+
+  line {
+    font-family: \0000346;
+  }
+}
+
+header .logo {
+  max-width: 150px;
+}
+
+@media -sass-debug-info {
+  filename {
     font-family: file\:\/\/\/home\/kweglinski\/Copy\/www\/piwik-external-dashboard\/app\/styles\/main\.scss;
   }
 
   line {
-    font-family: \0000362;
+    font-family: \0000363;
   }
 }
 
@@ -19966,7 +20035,7 @@ body {
   }
 
   line {
-    font-family: \0000366;
+    font-family: \0000367;
   }
 }
 
@@ -19985,7 +20054,7 @@ body {
   }
 
   line {
-    font-family: \0000374;
+    font-family: \0000375;
   }
 }
 
@@ -20002,7 +20071,7 @@ body {
   }
 
   line {
-    font-family: \0000382;
+    font-family: \0000383;
   }
 }
 
@@ -20021,7 +20090,7 @@ body {
   }
 
   line {
-    font-family: \0000388;
+    font-family: \0000389;
   }
 }
 
@@ -20037,7 +20106,7 @@ body {
   }
 
   line {
-    font-family: \0000393;
+    font-family: \0000394;
   }
 }
 
@@ -20056,7 +20125,7 @@ body {
   }
 
   line {
-    font-family: \00003101;
+    font-family: \00003102;
   }
 }
 
@@ -20072,7 +20141,7 @@ body {
   }
 
   line {
-    font-family: \00003107;
+    font-family: \00003108;
   }
 }
 
@@ -20088,7 +20157,7 @@ body {
   }
 
   line {
-    font-family: \00003112;
+    font-family: \00003113;
   }
 }
 
@@ -20103,7 +20172,7 @@ body {
   }
 
   line {
-    font-family: \00003117;
+    font-family: \00003118;
   }
 }
 
@@ -20120,7 +20189,7 @@ body {
   }
 
   line {
-    font-family: \00003123;
+    font-family: \00003124;
   }
 }
 
@@ -20134,7 +20203,7 @@ body {
   }
 
   line {
-    font-family: \00003127;
+    font-family: \00003128;
   }
 }
 
@@ -20153,7 +20222,7 @@ body {
     }
 
     line {
-      font-family: \00003138;
+      font-family: \00003139;
     }
 }
 
@@ -20172,7 +20241,7 @@ body {
     }
 
     line {
-      font-family: \00003143;
+      font-family: \00003144;
     }
 }
 
@@ -20188,7 +20257,7 @@ body {
     }
 
     line {
-      font-family: \00003147;
+      font-family: \00003148;
     }
 }
 

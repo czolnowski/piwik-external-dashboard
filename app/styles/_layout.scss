@@ -1,5 +1,7 @@
-body {
+body, html {
 	background-color: $bg-color;
+	width: 100%;
+	height: 100%;
 }
 
 .widget {
@@ -13,8 +15,35 @@ body {
 		border-radius: 5px 5px 0 0;
 		border-bottom: 3px solid darken($p-main-color, 10%);
 		font-weight: bold;
+		position:relative;
+		p {
+			padding: 0;
+			margin:0;
+		}
+		div.setts {
+			 @include transition(all, 0.2s, ease-in-out);
+			opacity:0;
+			position:absolute;
+			content: "";
+			right:10px;
+			top: 25px;
+			width: 30px;
+			height:30px;
+			font-size: 10px;
+		}
+		&:hover {
+			.setts {
+				opacity: 0.8;
+			}
+		}
 	}
 	.w-content {
 		padding: 20px;
+	}
+}
+
+header {
+	.logo {
+		max-width:150px;
 	}
 }
