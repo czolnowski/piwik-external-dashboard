@@ -1,6 +1,5 @@
 (function (ng) {
     'use strict';
-
     var app = ng.module('piwikExtDash', [
         'ngCookies',
         'ngSanitize',
