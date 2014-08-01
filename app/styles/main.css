@@ -9769,6 +9769,13 @@ html {
 
 /* line 13, ../../app/styles/_layout.scss */
 
+.widget.callout {
+  background-color: #d43028;
+  color: #fff;
+}
+
+/* line 17, ../../app/styles/_layout.scss */
+
 .widget .w-name {
   background-color: #d43028;
   padding: 20px;
@@ -9779,7 +9786,7 @@ html {
   position: relative;
 }
 
-/* line 21, ../../app/styles/_layout.scss */
+/* line 25, ../../app/styles/_layout.scss */
 
 .widget .w-name p {
   padding: 0;
@@ -9787,7 +9794,7 @@ html {
   opacity: 0.9;
 }
 
-/* line 26, ../../app/styles/_layout.scss */
+/* line 30, ../../app/styles/_layout.scss */
 
 .widget .w-name div.setts {
   transition: all, 0.2s, ease-in-out;
@@ -9801,38 +9808,38 @@ html {
   font-size: 10px;
 }
 
-/* line 38, ../../app/styles/_layout.scss */
+/* line 42, ../../app/styles/_layout.scss */
 
 .widget .w-name:hover .setts {
   opacity: 0.8;
 }
 
-/* line 45, ../../app/styles/_layout.scss */
+/* line 49, ../../app/styles/_layout.scss */
 
 .widget.color .w-content {
   background-color: #f0a09c;
 }
 
-/* line 48, ../../app/styles/_layout.scss */
+/* line 52, ../../app/styles/_layout.scss */
 
 .widget.color .w-footer {
   background-color: #ed8b85;
 }
 
-/* line 53, ../../app/styles/_layout.scss */
+/* line 57, ../../app/styles/_layout.scss */
 
 .widget .w-content {
   padding: 20px;
 }
 
-/* line 55, ../../app/styles/_layout.scss */
+/* line 59, ../../app/styles/_layout.scss */
 
 .widget .w-content.mx-lg {
   max-height: 600px;
   overflow: auto;
 }
 
-/* line 61, ../../app/styles/_layout.scss */
+/* line 65, ../../app/styles/_layout.scss */
 
 .widget .w-footer {
   background: #f6f8fa;
@@ -9840,13 +9847,13 @@ html {
   border-radius: 0 0 5px 5px;
 }
 
-/* line 69, ../../app/styles/_layout.scss */
+/* line 73, ../../app/styles/_layout.scss */
 
 header .logo {
   max-width: 150px;
 }
 
-/* line 72, ../../app/styles/_layout.scss */
+/* line 76, ../../app/styles/_layout.scss */
 
 header .range {
   font-size: 20px;
@@ -9854,7 +9861,7 @@ header .range {
   padding-top: 35px;
 }
 
-/* line 78, ../../app/styles/_layout.scss */
+/* line 82, ../../app/styles/_layout.scss */
 
 header span {
   color: #d43028;

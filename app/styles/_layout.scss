@@ -10,6 +10,10 @@ body, html {
 	border-radius: 5px;
 	@include box-shadow(0 3px 0 #e3e3e7); 
 	margin-bottom: 30px; 
+	&.callout {
+		background-color: $p-main-color;
+		color: #fff;
+	}
 	.w-name {
 		background-color:$p-main-color;
 		padding: 20px;
