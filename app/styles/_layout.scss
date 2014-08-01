@@ -39,6 +39,10 @@ body, html {
 	}
 	.w-content {
 		padding: 20px;
+		&.mx-lg {
+			max-height: 600px;
+			overflow: auto;
+		}
 	}
 }
 
@@ -47,11 +51,13 @@ header {
 		max-width:150px;
 	}
 	.range {
-		font-size:30px;
-		font-weight: bold;
-		line-height: 75px;
+		font-size: 20px;
+		line-height: 1;
+		padding-top: 35px;
+		    @extend %ob; 
 	}
 	span {
-		color: $rp-main-color;
+		color: $p-main-color;
 	}
 }
+ 
