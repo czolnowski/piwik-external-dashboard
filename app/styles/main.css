@@ -9705,11 +9705,14 @@ td.visible-print {
 
 /* line 1, ../../app/styles/_layout.scss */
 
-body {
+body,
+html {
   background-color: #f0f2f5;
+  width: 100%;
+  height: 100%;
 }
 
-/* line 5, ../../app/styles/_layout.scss */
+/* line 7, ../../app/styles/_layout.scss */
 
 .widget {
   background-color: white;
@@ -9717,7 +9720,7 @@ body {
   border-bottom: 3px solid #94a2b8;
 }
 
-/* line 9, ../../app/styles/_layout.scss */
+/* line 11, ../../app/styles/_layout.scss */
 
 .widget .w-name {
   background-color: #d43028;
@@ -9726,21 +9729,55 @@ body {
   border-radius: 5px 5px 0 0;
   border-bottom: 3px solid #a92620;
   font-weight: bold;
+  position: relative;
 }
 
-/* line 17, ../../app/styles/_layout.scss */
+/* line 19, ../../app/styles/_layout.scss */
+
+.widget .w-name p {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 23, ../../app/styles/_layout.scss */
+
+.widget .w-name div.setts {
+  transition: all, 0.2s, ease-in-out;
+  opacity: 0;
+  position: absolute;
+  content: "";
+  right: 10px;
+  top: 25px;
+  width: 30px;
+  height: 30px;
+  font-size: 10px;
+}
+
+/* line 35, ../../app/styles/_layout.scss */
+
+.widget .w-name:hover .setts {
+  opacity: 0.8;
+}
+
+/* line 40, ../../app/styles/_layout.scss */
 
 .widget .w-content {
   padding: 20px;
 }
 
-/* line 62, ../../app/styles/main.scss */
+/* line 46, ../../app/styles/_layout.scss */
+
+header .logo {
+  max-width: 150px;
+}
+
+/* line 63, ../../app/styles/main.scss */
 
 body {
   background: #f0f2f5;
 }
 
-/* line 66, ../../app/styles/main.scss */
+/* line 67, ../../app/styles/main.scss */
 
 .browsehappy {
   margin: 0.2em 0;
@@ -9751,7 +9788,7 @@ body {
 
 /* Space out content a bit */
 
-/* line 74, ../../app/styles/main.scss */
+/* line 75, ../../app/styles/main.scss */
 
 body {
   padding-top: 20px;
@@ -9760,7 +9797,7 @@ body {
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
-/* line 82, ../../app/styles/main.scss */
+/* line 83, ../../app/styles/main.scss */
 
 .header,
 .marketing,
@@ -9771,7 +9808,7 @@ body {
 
 /* Custom page header */
 
-/* line 88, ../../app/styles/main.scss */
+/* line 89, ../../app/styles/main.scss */
 
 .header {
   border-bottom: 1px solid #e5e5e5;
@@ -9779,7 +9816,7 @@ body {
 
 /* Make the masthead heading the same height as the navigation */
 
-/* line 93, ../../app/styles/main.scss */
+/* line 94, ../../app/styles/main.scss */
 
 .header h3 {
   margin-top: 0;
@@ -9790,7 +9827,7 @@ body {
 
 /* Custom page footer */
 
-/* line 101, ../../app/styles/main.scss */
+/* line 102, ../../app/styles/main.scss */
 
 .footer {
   padding-top: 19px;
@@ -9798,7 +9835,7 @@ body {
   border-top: 1px solid #e5e5e5;
 }
 
-/* line 107, ../../app/styles/main.scss */
+/* line 108, ../../app/styles/main.scss */
 
 .container-narrow > hr {
   margin: 30px 0;
@@ -9806,14 +9843,14 @@ body {
 
 /* Main marketing message and sign up button */
 
-/* line 112, ../../app/styles/main.scss */
+/* line 113, ../../app/styles/main.scss */
 
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* line 117, ../../app/styles/main.scss */
+/* line 118, ../../app/styles/main.scss */
 
 .jumbotron .btn {
   font-size: 21px;
@@ -9822,13 +9859,13 @@ body {
 
 /* Supporting marketing content */
 
-/* line 123, ../../app/styles/main.scss */
+/* line 124, ../../app/styles/main.scss */
 
 .marketing {
   margin: 40px 0;
 }
 
-/* line 127, ../../app/styles/main.scss */
+/* line 128, ../../app/styles/main.scss */
 
 .marketing p + h4 {
   margin-top: 28px;
@@ -9839,7 +9876,7 @@ body {
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
 
-  /* line 138, ../../app/styles/main.scss */
+  /* line 139, ../../app/styles/main.scss */
 
   .header,
   .marketing,
@@ -9850,7 +9887,7 @@ body {
 
   /* Space out the masthead */
 
-  /* line 143, ../../app/styles/main.scss */
+  /* line 144, ../../app/styles/main.scss */
 
   .header {
     margin-bottom: 30px;
@@ -9858,7 +9895,7 @@ body {
 
   /* Remove the bottom border on the jumbotron for visual effect */
 
-  /* line 147, ../../app/styles/main.scss */
+  /* line 148, ../../app/styles/main.scss */
 
   .jumbotron {
     border-bottom: 0;

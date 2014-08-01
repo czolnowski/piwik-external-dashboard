@@ -53,11 +53,12 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import "sass-bootstrap/lib/utilities";
 @import "sass-bootstrap/lib/responsive-utilities";
 
-
+@import "mixins";
 @import "compass/css3";
 @import "forms"; 
 @import "buttons";
 @import "layout";
+
 
 body {
     background: $body-background;
