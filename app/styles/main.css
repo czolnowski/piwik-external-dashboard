@@ -9749,6 +9749,15 @@ header .add-widget,
   border: 0;
   font-family: Arial, sans-serif;
   font-weight: bold;
+  background: #d43028;
+  text-transform: lowercase;
+  color: #fff;
+}
+
+/* line 11, ../../app/styles/_buttons.scss */
+
+.btn:hover {
+  color: #d9d9d9;
 }
 
 /* line 1, ../../app/styles/_layout.scss */
