@@ -1,16 +1,14 @@
-<div>
-    <table class="table-data table-striped">
-        <thead>
-            <tr>
-                <th>{{ report.report.metadata.name }}</th>
-                <th>{{ report.report.columns.nb_visits}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="reportRow in report.report.reportData">
-                <td>{{ reportRow.label }}</td>
-                <td>{{ reportRow.nb_visits }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<table class="table-data table-striped">
+    <thead>
+        <tr>
+            <th>{{ report.report.metadata.name }}</th>
+            <th>{{ report.report.columns.nb_visits}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="reportRow in report.report.reportData | limitTo: 10">
+            <td>{{ reportRow.label }}</td>
+            <td>{{ reportRow.nb_visits }}</td>
+        </tr>
+    </tbody>
+</table>
