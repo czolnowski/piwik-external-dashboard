@@ -46,4 +46,12 @@ header {
 	.logo {
 		max-width:150px;
 	}
+	.range {
+		font-size:30px;
+		font-weight: bold;
+		line-height: 75px;
+	}
+	span {
+		color: $p-main-color;
+	}
 }

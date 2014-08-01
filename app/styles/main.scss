@@ -53,6 +53,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import "sass-bootstrap/lib/utilities";
 @import "sass-bootstrap/lib/responsive-utilities";
 
+@import "fonts";
 @import "mixins";
 @import "compass/css3";
 @import "forms"; 
@@ -63,6 +64,11 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 body {
     background: $body-background;
+    @extend %o;
+
+/* Space out content a bit */
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .browsehappy {
@@ -72,11 +78,6 @@ body {
     padding: 0.2em 0;
 }
 
-/* Space out content a bit */
-body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
