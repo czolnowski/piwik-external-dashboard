@@ -1,4 +1,11 @@
 <?php
+/**
+ * Usage
+ * /api/$apiModule/$apiAction?host=$host[&token_auth=343434...]
+ * Example
+ * /api/UsersManager/getTokenAuth?host=http://demo.piwik.org&login=myUsername&md5Password=3434A34...
+ * /api/API/getReportMetadata?host=http://demo.piwik.org&token_auth=3434A34...&idSite=1&date=2014-01-01&period=day
+ */
 
 function sendError ($message) {
     echo json_encode(array('result' => 'error', 'message' => $message));
@@ -7,7 +14,7 @@ function sendError ($message) {
 
 $url = parse_url($_SERVER['REQUEST_URI']);
 
-if (!preg_match('/\/api\/(.+?)\/(.+?)[\/|$]/', $url['path'], $matches)) {
+if (!preg_match('/api\/(.+?)\/(.+)/', trim($url['path'], '/'), $matches)) {
     sendError('Wrong URL format. Should be /api/$module/$action?...');
 }
 
