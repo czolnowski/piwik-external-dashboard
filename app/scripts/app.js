@@ -8,7 +8,8 @@
 
         'piwikExtDash.auth',
         'piwikExtDash.dashboard',
-        'piwikExtDash.users'
+        'piwikExtDash.users',
+        'piwikExtDash.widget'
     ]);
 
     app.config(function ($locationProvider) {
