@@ -3,20 +3,29 @@
     {
         this.report = null;
     },
-        _$http = null;
 
-    Report.prototype.fetch = function (apiModule, apiAction)
+    _$http = null;
+
+    Report.prototype.fetch = function (idSite, apiModule, apiAction)
     {
         var request = _$http.post(
             '/api/API/getProcessedReport',
             {
                 apiModule: apiModule,
-                apiAction: apiAction
+                apiAction: apiAction,
+                idSite: idSite,
+                period: 'day',
+                date: 'today'
             }
         ),
-            that = this;
+        that = this;
         request.then(function (response) {
-            that.report = response;
+            var index;
+            for (index in response.data) {
+                if (response.data.hasOwnProperty(index)) {
+                    that[index] = response.data[index];
+                }
+            }
         });
     };
 

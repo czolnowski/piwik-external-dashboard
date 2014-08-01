@@ -21,7 +21,7 @@ if (!preg_match('/api\/(.+?)\/(.+)/', trim($url['path'], '/'), $matches)) {
 $module = $matches[1];
 $action = $matches[2];
 
-$urlParams = $_POST + $_GET;
+$urlParams = json_decode(file_get_contents('php://input'), true);
 $urlParams['module'] = 'API';
 $urlParams['method'] = $module . '.' . $action;
 
@@ -31,6 +31,9 @@ if (empty($urlParams['host'])) {
 
 $host = $urlParams['host'];
 unset($urlParams['host']);
+if (0 !== strpos($host, 'http')) {
+    $host = 'http://' . $host;
+}
 
 if (empty($urlParams['token_auth']) || 32 != strlen($urlParams['token_auth'])) {
     $urlParams['token_auth'] = 'anonymous';
