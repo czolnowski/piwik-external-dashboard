@@ -1,25 +1,29 @@
 //
 // Variables
 // --------------------------------------------------
-$p-main-color: #D43028;
+
+//// RED
+// $p-main-color: #D43028;
+/// BLUE 
+$p-main-color: #56BAEC;
+
+
 $bg-color: #f0f2f5;
 $w-head-f-color: #fff;
 $w-footer-background-color: #f6f8fa;
 
 $widget-bg: #fff;
 
-$brand-primary: #d4291f;
+$brand-primary: $p-main-color;
 $body-background: #f0f2f5;
-$brand-primary: #d4291f;
 
 $form-background: #fff;
 $form-border: #e3e3e7;  
 
 
-$thead-text-color: #a4a9ae; 
+$thead-text-color: $p-main-color; 
 $thead-border: #e3e4e8;
 $td-hover-background: $thead-border;
-
 
 // Global values
 // --------------------------------------------------
