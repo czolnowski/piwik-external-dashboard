@@ -1,7 +1,15 @@
 .form-signin {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
+    max-width: 360px;
+    padding: 30px;
+    margin: 100px auto; 
+    @include border-radius(5px);
+    @include background-clip(padding-box);
+    background-color: #fff;
+    @include box-shadow(0 3px 0 #e3e3e7);
+    .form-signin-heading {
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
 }
 
 .form-control {
