@@ -7,7 +7,7 @@ body, html {
 .widget {
 	background-color: $widget-bg;
 	border-radius: 5px;
-	border-bottom: 3px solid darken( $bg-color, 30% );
+	border-bottom: 3px solid darken( $bg-color, 10% );
 	.w-name {
 		background-color:$p-main-color;
 		padding: 20px;
@@ -52,6 +52,6 @@ header {
 		line-height: 75px;
 	}
 	span {
-		color: $p-main-color;
+		color: $rp-main-color;
 	}
 }
