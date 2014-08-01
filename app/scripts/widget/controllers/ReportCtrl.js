@@ -7,7 +7,7 @@
         this.action = $scope.action;
         this.report = new report();
 
-        this.report = this.report.fetch(7, this.module, this.action);
+        this.report.fetch(7, this.module, this.action);
     };
 
     ng.module('piwikExtDash.widget').controller("ReportCtrl", [
