@@ -8,6 +8,7 @@
         'chartjs',
         'ui.bootstrap',
         'angularMoment',
+        'ui.select2',
 
         'piwikExtDash.auth',
         'piwikExtDash.dashboard',

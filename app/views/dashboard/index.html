@@ -1,16 +1,25 @@
 <header class="row">
-	<div class="col-md-11">
+	<div class="col-md-9">
 		<img src="/images/piwik.png" class="logo">
 	
         <div class="range calendarpick">
-              <div ng-controller="DatepickerCtrl">
-            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" format="dd.MM.yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            <div ng-controller="DatepickerCtrl">
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" format="dd.MM.yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
 
-            <i class="glyphicon glyphicon-calendar pick" ng-click="open($event)" ></i>
+                <i class="glyphicon glyphicon-calendar pick" ng-click="open($event)" ></i>
+            </div>
+	    </div>
+	</div>
+    <div class="col-md-2 text-right" style="margin-top: 17px;">
+        <div class="site-selector">
+            <div ng-controller="SiteSelectorCtrl">
+                <select ui-select2 ng-model="ss" data-placeholder="Choose site" ng-required="true">
+                    <option value=""></option>
+                    <option ng-repeat="site in sites" value="{{site.idsite}}">{{site.name}}</option>
+                </select>
+            </div>
         </div>
-
-	</div>
-	</div>
+    </div>
 	<div class="col-md-1 add-widget">
     <div ng-controller="ModalCtrl">
     <script type="text/ng-template" id="myModalContent.html">
