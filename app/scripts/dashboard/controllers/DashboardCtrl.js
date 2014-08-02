@@ -1,15 +1,27 @@
 (function (ng) {
     'use strict';
 
-    var DashboardCtrl = function ($scope)
+    var DashboardCtrl = function ($scope, $routeParams, $window, $location)
     {
-        var reports = localStorage.getItem('reports');
+        var reports;
+        if ($routeParams.dashboard) {
+            reports = $routeParams.dashboard;
+        }
+
+        if (!reports) {
+            reports = localStorage.getItem('reports');
+        }
 
         if (reports) {
             reports = JSON.parse(reports);
         }
 
         $scope.reports = reports || [];
+
+        $scope.exportDashboard = function () {
+            $location.search('dashboard', JSON.stringify($scope.reports));
+            $window.alert($location.absUrl());
+        };
 
         $scope.$on('reportAdded', function (event, report, visualization, size) {
             report = ng.copy(report);
@@ -42,6 +54,9 @@
 
     ng.module('piwikExtDash.dashboard').controller("DashboardCtrl", [
         "$scope",
+        "$routeParams",
+        "$window",
+        "$location",
         DashboardCtrl
     ]);
 })(angular);
