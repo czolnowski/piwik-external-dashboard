@@ -19,6 +19,16 @@
         $scope.reports = reports || [];
 
         $scope.exportDashboard = function () {
+            var neededData = [];
+            ng.forEach($scope.reports, function (report) {
+                neededData.push({
+                    module: report.module,
+                    action: report.action,
+                    category: report.action,
+                    visualization: report.visualization,
+                    size: report.size
+                });
+            });
             $location.search('dashboard', JSON.stringify($scope.reports));
             $window.alert($location.absUrl());
         };
