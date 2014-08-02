@@ -29,7 +29,7 @@
                     size: report.size
                 });
             });
-            $location.search('dashboard', JSON.stringify($scope.reports));
+            $location.search('dashboard', JSON.stringify(neededData));
             $window.alert($location.absUrl());
         };
 
