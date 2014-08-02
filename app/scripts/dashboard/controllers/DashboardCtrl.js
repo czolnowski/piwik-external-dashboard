@@ -3,7 +3,13 @@
 
     var DashboardCtrl = function ($scope)
     {
-        $scope.reports = [];
+        var reports = localStorage.getItem('reports');
+
+        if (reports) {
+            reports = JSON.parse(reports);
+        }
+
+        $scope.reports = reports || [];
 
         $scope.$on('reportAdded', function (event, report, visualization, size) {
             report = ng.copy(report);
@@ -18,6 +24,8 @@
 
             report.size = width;
             $scope.reports.push(report);
+
+            localStorage.setItem("reports", JSON.stringify($scope.reports));
         });
     };
 
