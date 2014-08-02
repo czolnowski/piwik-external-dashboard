@@ -1,5 +1,10 @@
 <div>
-    <p class="w-name">{{ report.report.result.metadata.name }}</p>
+    <div class="w-name">
+        <p>{{ report.report.result.metadata.name }}</p>
+        <div class="setts">
+            <span ng-click="removeReport(currentreport)" class="glyphicon glyphicon-remove"></span>
+        </div>
+    </div>
     <div class="w-content mx-lg"
          ng-hide="report.report.loading || report.report.result.reportData | isEmpty">
         <div ng-transclude=""></div>

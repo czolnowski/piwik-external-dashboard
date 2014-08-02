@@ -8,6 +8,10 @@
             $scope.action,
             $scope.evolution
         );
+
+        $scope.removeReport = function (report) {
+            $scope.$emit('reportRemoved', report);
+        }
     };
 
     ng.module('piwikExtDash.widget').controller("ReportCtrl", [

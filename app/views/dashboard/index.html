@@ -70,7 +70,7 @@
 </header>
 <div class="row">
   <div class="col-md-{{report.size}}" ng-repeat="report in reports track by $index">
-      <div class="report widget"  module="{{ report.module }}" action="{{ report.action }}">
+      <div class="report widget" currentreport="report" module="{{ report.module }}" action="{{ report.action }}">
           <div ng-if="report.visualization == 'evolution'" evolution-vis></div>
           <div ng-if="report.visualization == 'bar'" bar-vis></div>
           <div ng-if="report.visualization == 'pie'" pie-vis></div>

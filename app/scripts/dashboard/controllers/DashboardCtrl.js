@@ -27,6 +27,17 @@
 
             localStorage.setItem("reports", JSON.stringify($scope.reports));
         });
+
+        $scope.$on('reportRemoved', function (event, report) {
+
+            var index = $scope.reports.indexOf(report);
+
+            if (index > -1) {
+                $scope.reports.splice(index, 1);
+            }
+
+            localStorage.setItem("reports", JSON.stringify($scope.reports));
+        });
     };
 
     ng.module('piwikExtDash.dashboard').controller("DashboardCtrl", [
