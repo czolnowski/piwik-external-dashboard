@@ -10,7 +10,7 @@
     _$routeParams = null,
     _moment = null;
 
-    Report.prototype.fetch = function (date)
+    Report.prototype.fetch = function ()
     {
         this.loading = true;
 
@@ -22,7 +22,7 @@
                 apiAction: this.action,
                 idSite: ng.isDefined(_$routeParams.idSite) ? _$routeParams.idSite : '7',
                 period: ng.isDefined(_$routeParams.period) ? _$routeParams.period : 'day',
-                date: this.getDate(date)
+                date: this.getDate()
             }
         ).then(function (response) {
             that.loading = false;
@@ -32,11 +32,9 @@
         });
     };
 
-    Report.prototype.getDate = function (date)
+    Report.prototype.getDate = function ()
     {
-        if (!date) {
-            date = ng.isDefined(_$routeParams.date) ? _$routeParams.date : new Date();
-        }
+        var date = ng.isDefined(_$routeParams.date) ? _$routeParams.date : new Date();
 
         if (this.evolution) {
             date = moment(date).subtract('days', 2).format('YYYY-MM-DD') + ','+ moment(date).format('YYYY-MM-DD');

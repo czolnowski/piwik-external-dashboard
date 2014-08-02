@@ -47,7 +47,7 @@
         ModalCtrl
     ]);
 
-    var DatepickerCtrl = function ($scope, $rootScope, $timeout)
+    var DatepickerCtrl = function ($scope, $route, $location, $timeout)
     {
         $scope.today = function() {
             $scope.dt = new Date();
@@ -90,16 +90,19 @@
           $scope.formats = ['dd.MM.yyyy'];
           $scope.format = $scope.formats[0];
 
-        $scope.$watch('dt',function (newDate) {
+        $scope.$watch('dt',function (newDate, oldDate) {
             $timeout(function () {
-                $rootScope.$broadcast('dateUpdated', newDate);
+                if (newDate != oldDate) {
+                    $location.search('date', moment(newDate).format('YYYY-MM-DD'));
+                }
             },1);
         });
     };
 
     ng.module('piwikExtDash.widget').controller("DatepickerCtrl", [
         "$scope",
-        "$rootScope",
+        "$route",
+        "$location",
         "$timeout",
         DatepickerCtrl
     ]);

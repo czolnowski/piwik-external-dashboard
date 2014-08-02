@@ -10,21 +10,13 @@
             controller: 'TableVisCtrl',
             controllerAs: 'table',
             link: function($scope, elem, attrs, myReportCtrl) {
-                function fetchReport (date) {
 
-                    myReportCtrl.report.fetch(date).then(function (response) {
-                        for (var index in response.data) {
-                            if (response.data.hasOwnProperty(index)) {
-                                $scope[index] = response.data[index];
-                            }
+                myReportCtrl.report.fetch().then(function (response) {
+                    for (var index in response.data) {
+                        if (response.data.hasOwnProperty(index)) {
+                            $scope[index] = response.data[index];
                         }
-                    });
-                }
-
-                fetchReport(null);
-
-                $scope.$on('dateUpdated', function (event, date) {
-                    fetchReport(date);
+                    }
                 });
             }
         };
