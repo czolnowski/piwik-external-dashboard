@@ -1,39 +1,46 @@
 (function (ng) {
-    var Report = function ()
+    var Report = function (module, action, evolution)
     {
-        this.report = null;
+        this.module = module;
+        this.action = action;
+        this.evolution = evolution;
     },
 
-    _$http = null;
+    _$http = null,
+    _$routeParams = null,
+    _moment = null;
 
-    Report.prototype.fetch = function (idSite, apiModule, apiAction)
+    Report.prototype.fetch = function ()
     {
-        var request = _$http.post(
+        return _$http.post(
             '/api/API/getProcessedReport',
             {
-                apiModule: apiModule,
-                apiAction: apiAction,
-                idSite: idSite,
-                period: 'day',
-                date: 'yesterday'
+                apiModule: this.module,
+                apiAction: this.action,
+                idSite: ng.isDefined(_$routeParams.idSite) ? _$routeParams.idSite : '7',
+                period: ng.isDefined(_$routeParams.period) ? _$routeParams.period : 'day',
+                date: this.getDate()
             }
-        ),
-        that = this;
-        request.then(function (response) {
-            var index;
-            for (index in response.data) {
-                if (response.data.hasOwnProperty(index)) {
-                    that[index] = response.data[index];
-                }
-            }
-        });
+        );
+    };
+
+    Report.prototype.getDate = function ()
+    {
+        var date = ng.isDefined(_$routeParams.date) ? _$routeParams.date : 'today';
+        if (this.evolution) {
+            date = moment(date).subtract('days', 2).format('YYYY-MM-DD') + ','+ moment(date).format('YYYY-MM-DD');
+        }
+
+        return date;
     };
 
     ng.module('piwikExtDash.widget').factory('Report', [
-        "$http",
-        function ($http)
+        "$http", "$routeParams", "moment",
+        function ($http, $routeParams, moment)
         {
             _$http = $http;
+            _$routeParams = $routeParams;
+            _moment = moment;
 
             return Report;
         }

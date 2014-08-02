@@ -1,13 +1,13 @@
 (function (ng) {
     'use strict';
 
-    var ReportCtrl = function ($scope, report)
+    var ReportCtrl = function ($scope, Report)
     {
-        this.module = $scope.module;
-        this.action = $scope.action;
-        this.report = new report();
-
-        this.report.fetch(7, this.module, this.action);
+        this.report = new Report(
+            $scope.module,
+            $scope.action,
+            $scope.evolution
+        );
     };
 
     ng.module('piwikExtDash.widget').controller("ReportCtrl", [

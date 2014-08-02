@@ -8,7 +8,8 @@
             transclude: true,
             scope: {
                 module: '@',
-                action: '@'
+                action: '@',
+                evolution: '='
             },
             templateUrl: 'views/widget/report.html',
             controller: 'ReportCtrl',

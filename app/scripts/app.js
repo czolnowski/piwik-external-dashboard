@@ -5,7 +5,10 @@
         'ngSanitize',
         'ngRoute',
         'angular-md5',
+        'chartjs',
         'ui.bootstrap',
+        'angularMoment',
+
         'piwikExtDash.auth',
         'piwikExtDash.dashboard',
         'piwikExtDash.users',
