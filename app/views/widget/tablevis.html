@@ -2,13 +2,13 @@
     <thead>
         <tr>
             <th>{{ metadata.name }}</th>
-            <th>{{ columns.nb_visits}}</th>
+            <th>{{ columns.nb_visits || columns.entry_nb_visits || columns.exit_nb_visits }}</th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="reportRow in reportData | limitTo: 10">
             <td>{{ reportRow.label }}</td>
-            <td>{{ reportRow.nb_visits }}</td>
+            <td>{{ reportRow.nb_visits || reportRow.entry_nb_visits || reportRow.exit_nb_visits }}</td>
         </tr>
     </tbody>
 </table>

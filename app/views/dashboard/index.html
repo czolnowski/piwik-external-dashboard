@@ -19,9 +19,16 @@
         </div>
         <div class="modal-body">
             choose module type:
-            <ul ng-controller="ReportsCtrl">
-                <li ng-repeat="report in allReports">{{ report.name }}</li>
-            </ul>
+            <div ng-controller="ReportsCtrl">
+                <div ng-repeat="categoryReports in allReportsByCategory">
+                    {{ categoryReports.0.category }}
+
+                    <div ng-repeat="report in categoryReports">
+                        <button ng-click="addReport(report)" class="btn btn-sm">{{ report.name }}</button>
+                    </div>
+
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()"><span class="glyphicon glyphicon-ok" ></span> OK</button>
@@ -39,7 +46,12 @@
   <div class="col-md-4">
     <div class="report widget" module="UserCountry" action="getCountry">
         <div tablevis></div>
-    </div>  
+    </div>
+
+
+      <div class="report widget" ng-repeat="report in reports" module="{{ report.module }}" action="{{ report.action }}">
+          <div tablevis></div>
+      </div>
   </div>
 
   <div class="col-md-4">

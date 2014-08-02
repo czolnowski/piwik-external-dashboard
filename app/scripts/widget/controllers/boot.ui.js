@@ -47,10 +47,10 @@
         ModalCtrl
     ]);
 
-    var DatepickerCtrl = function ($scope, $route, $location, $timeout)
+    var DatepickerCtrl = function ($scope, $routeParams, $location, $timeout)
     {
         $scope.today = function() {
-            $scope.dt = new Date();
+            $scope.dt = $routeParams.date ? new Date($routeParams.date) : new Date();
           };
           $scope.today();
 
@@ -101,7 +101,7 @@
 
     ng.module('piwikExtDash.widget').controller("DatepickerCtrl", [
         "$scope",
-        "$route",
+        "$routeParams",
         "$location",
         "$timeout",
         DatepickerCtrl

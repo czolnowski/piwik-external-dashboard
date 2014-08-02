@@ -1,19 +1,36 @@
 (function (ng) {
     'use strict';
 
-    var ReportsCtrl = function ($scope, $routeParams, Reports)
+    var ReportsCtrl = function ($scope, $routeParams, $rootScope, $timeout, Reports)
     {
         var idSite = $routeParams.idSite ? $routeParams.idSite : '?';
 
         this.reports = new Reports(idSite);
         this.reports.fetch().then(function (response) {
-            $scope.allReports = response.data;
+            $scope.allReportsByCategory = {};
+
+            ng.forEach(response.data, function (value, key) {
+                if (!$scope.allReportsByCategory[value.category]) {
+                    $scope.allReportsByCategory[value.category] = [];
+                }
+
+                $scope.allReportsByCategory[value.category].push(value);
+            });
+
         });
+
+        $scope.addReport = function (report) {
+            $timeout(function () {
+                $rootScope.$broadcast('reportAdded', report);
+            }, 1);
+        };
     };
 
     ng.module('piwikExtDash.dashboard').controller("ReportsCtrl", [
         "$scope",
         "$routeParams",
+        "$rootScope",
+        "$timeout",
         "Reports",
         ReportsCtrl
     ]);

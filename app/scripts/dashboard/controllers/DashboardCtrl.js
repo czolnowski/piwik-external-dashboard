@@ -1,11 +1,17 @@
 (function (ng) {
     'use strict';
 
-    var DashboardCtrl = function ()
+    var DashboardCtrl = function ($scope)
     {
+        $scope.reports = [];
+
+        $scope.$on('reportAdded', function (event, report) {
+            $scope.reports.push(report);
+        });
     };
 
     ng.module('piwikExtDash.dashboard').controller("DashboardCtrl", [
+        "$scope",
         DashboardCtrl
     ]);
 })(angular);
