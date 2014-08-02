@@ -15,11 +15,11 @@
             report = ng.copy(report);
             report.visualization = visualization;
 
-            var width = 8;
+            var width = 12;
             if ('small' == size) {
-                width = 3;
+                width = 4;
             } else if ('medium' == size) {
-                width = 6;
+                width = 8;
             }
 
             report.size = width;
