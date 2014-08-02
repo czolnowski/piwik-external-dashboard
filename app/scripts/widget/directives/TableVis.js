@@ -11,10 +11,8 @@
             controllerAs: 'table',
             link: function($scope, elem, attrs, myReportCtrl) {
                 function fetchReport (date) {
-                    $scope.loading = true;
 
                     myReportCtrl.report.fetch(date).then(function (response) {
-                        $scope.loading = false;
                         for (var index in response.data) {
                             if (response.data.hasOwnProperty(index)) {
                                 $scope[index] = response.data[index];

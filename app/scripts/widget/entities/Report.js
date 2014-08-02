@@ -12,6 +12,8 @@
 
     Report.prototype.fetch = function (date)
     {
+        this.loading = true;
+
         var that = this;
         return _$http.post(
             '/api/API/getProcessedReport',
@@ -23,6 +25,7 @@
                 date: this.getDate(date)
             }
         ).then(function (response) {
+            that.loading = false;
             that.result = response.data;
 
             return response;

@@ -1,11 +1,15 @@
 <div>
     <p class="w-name">{{ report.report.result.metadata.name }}</p>
     <div class="w-content mx-lg"
-         ng-hide="report.report.result.reportData | isEmpty">
+         ng-hide="report.report.loading || report.report.result.reportData | isEmpty">
         <div ng-transclude=""></div>
     </div>
 
     <div class="w-content"
-         ng-show="report.report.result.reportData | isEmpty"
+         ng-show="report.report.loading"
+            >Loading data ...</div>
+
+    <div class="w-content"
+         ng-show="!report.report.loading && report.report.result.reportData | isEmpty"
             >No data for this report</div>
 </div>
