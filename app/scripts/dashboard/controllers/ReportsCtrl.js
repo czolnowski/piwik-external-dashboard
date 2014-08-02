@@ -10,6 +10,10 @@
             $scope.allReportsByCategory = {};
 
             ng.forEach(response.data, function (value, key) {
+                if (value && value.action && 'get' === value.action) {
+                    return;
+                }
+
                 if (!$scope.allReportsByCategory[value.category]) {
                     $scope.allReportsByCategory[value.category] = [];
                 }
@@ -19,9 +23,9 @@
 
         });
 
-        $scope.addReport = function (report) {
+        $scope.addReport = function (report, visualization) {
             $timeout(function () {
-                $rootScope.$broadcast('reportAdded', report);
+                $rootScope.$broadcast('reportAdded', report, visualization);
             }, 1);
         };
     };

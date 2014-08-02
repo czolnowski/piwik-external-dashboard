@@ -5,7 +5,7 @@
 
         return {
             require: '^report',
-            restrict: 'A',
+            restrict: 'AC',
             templateUrl: 'views/widget/tablevis.html',
             controller: 'TableVisCtrl',
             controllerAs: 'table',

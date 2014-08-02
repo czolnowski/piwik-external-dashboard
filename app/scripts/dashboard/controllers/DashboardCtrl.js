@@ -5,7 +5,9 @@
     {
         $scope.reports = [];
 
-        $scope.$on('reportAdded', function (event, report) {
+        $scope.$on('reportAdded', function (event, report, visualization) {
+            report = ng.copy(report);
+            report.visualization = visualization;
             $scope.reports.push(report);
         });
     };

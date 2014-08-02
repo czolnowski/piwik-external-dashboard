@@ -24,7 +24,17 @@
                     {{ categoryReports.0.category }}
 
                     <div ng-repeat="report in categoryReports">
-                        <button ng-click="addReport(report)" class="btn btn-sm">{{ report.name }}</button>
+                        <div class="btn-group" dropdown is-open="status.isopen">
+                        <button type="button" class="btn btn-sm dropdown-toggle" ng-disabled="disabled">
+                            {{ report.name }} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a ng-click="addReport(report, 'table')" href="#">Table</a></li>
+                            <li><a ng-click="addReport(report, 'evolution')" href="#">Evolution</a></li>
+                            <li><a ng-click="addReport(report, 'bar')" href="#">Bar</a></li>
+                            <li><a ng-click="addReport(report, 'pie')" href="#">Pie</a></li>
+                        </ul>
+                        </div>
                     </div>
 
                 </div>
@@ -43,8 +53,11 @@
 </header>
 <div class="row">
   <div class="col-md-4">
-      <div class="report widget" ng-repeat="report in reports" module="{{ report.module }}" action="{{ report.action }}">
-          <div tablevis></div>
+      <div class="report widget" ng-repeat="report in reports track by $index" module="{{ report.module }}" action="{{ report.action }}">
+          <div ng-if="report.visualization == 'evolution'" evolution-vis></div>
+          <div ng-if="report.visualization == 'bar'" bar-vis></div>
+          <div ng-if="report.visualization == 'pie'" pie-vis></div>
+          <div ng-if="report.visualization == 'table'" tablevis></div>
       </div>
   </div>
 </div>
