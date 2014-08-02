@@ -68,35 +68,6 @@
                         }
                     }
 
-//                    for (var i = 0; i < myReportCtrl.report.getNumberOfColumnsForBar(); ++i) {
-//                        if (i % skipFor === 0) {
-//                            labels.push('');
-//                        } else {
-//                            labels.push(date.format("YYYY-MM-DD"));
-//                        }
-//
-//                        date = date.add('days', 1);
-//                    }
-//
-//                    if (ng.isDefined(response.data.reportData)) {
-//                        for (var index in response.data.reportData) {
-//                            if (response.data.reportData.hasOwnProperty(index)) {
-//                                for (var columnIndex in response.data.reportData[index]) {
-//                                    if (response.data.reportData[index].hasOwnProperty(columnIndex)) {
-//                                        for (var dataSetIndex in datasets) {
-//                                            if (datasets.hasOwnProperty(dataSetIndex)) {
-//                                                if (datasets[dataSetIndex].label === metrics[columnIndex]
-//                                                    && ng.isNumber(response.data.reportData[index][columnIndex])) {
-//                                                    datasets[dataSetIndex].data.push(response.data.reportData[index][columnIndex]);
-//                                                }
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-
                     for (dataSetIndex in datasets) {
                         if (datasets.hasOwnProperty(dataSetIndex)) {
                             if (datasets[dataSetIndex].data.length < 1) {

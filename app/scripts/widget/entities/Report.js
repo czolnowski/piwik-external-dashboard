@@ -53,6 +53,11 @@
         return 5;
     };
 
+    Report.prototype.getNumberOfColumnsForPie = function ()
+    {
+        return 5;
+    };
+
     ng.module('piwikExtDash.widget').factory('Report', [
         "$http", "$routeParams", "moment",
         function ($http, $routeParams, moment)

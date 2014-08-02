@@ -11,7 +11,9 @@
                     pointColor: "rgba(86,186,236,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(86,186,236,1)"
+                    pointHighlightStroke: "rgba(86,186,236,1)",
+                    color: "#56baec",
+                    highlight: "#56baec"
                 },
                 {
                     // 216BC0
@@ -20,7 +22,9 @@
                     pointColor: "rgba(33,107,192,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(33,107,192,1)"
+                    pointHighlightStroke: "rgba(33,107,192,1)",
+                    color: "#216BC0",
+                    highlight: "#216BC0"
                 },
                 {
                     // 184E8C
@@ -29,7 +33,9 @@
                     pointColor: "rgba(24,78,140,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(24,78,140,1)"
+                    pointHighlightStroke: "rgba(24,78,140,1)",
+                    color: "#184E8C",
+                    highlight: "#184E8C"
                 },
                 {
                     // 15447A
@@ -38,7 +44,9 @@
                     pointColor: "rgba(21,68,122,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(21,68,122,1)"
+                    pointHighlightStroke: "rgba(21,68,122,1)",
+                    color: "#15447A",
+                    highlight: "#15447A"
                 },
                 {
                     // 123A69
@@ -47,7 +55,9 @@
                     pointColor: "rgba(18,58,105,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(18,58,105,1)"
+                    pointHighlightStroke: "rgba(18,58,105,1)",
+                    color: "#123A69",
+                    highlight: "#123A69"
                 },
                 {
                     // 0F3157
@@ -56,7 +66,9 @@
                     pointColor: "rgba(15,49,87,1)",
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(15,49,87,1)"
+                    pointHighlightStroke: "rgba(15,49,87,1)",
+                    color: "#0F3157",
+                    highlight: "#0F3157"
                 }
             ]
         );
