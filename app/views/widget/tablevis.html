@@ -2,13 +2,15 @@
     <thead>
         <tr>
             <th>{{ metadata.name }}</th>
-            <th>{{ columns.nb_visits || columns.entry_nb_visits || columns.exit_nb_visits }}</th>
+            <th ng-repeat="column in metadata.metrics" ng-bind="column"></th>
+            <th ng-repeat="column in metadata.processedMetrics" ng-bind="column"></th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="reportRow in reportData | limitTo: 10">
             <td>{{ reportRow.label }}</td>
-            <td>{{ reportRow.nb_visits || reportRow.entry_nb_visits || reportRow.exit_nb_visits }}</td>
+            <td ng-repeat="(column, label) in metadata.metrics" ng-bind="reportRow[column]"></td>
+            <td ng-repeat="(column, label) in metadata.processedMetrics" ng-bind="reportRow[column]"></td>
         </tr>
     </tbody>
 </table>
