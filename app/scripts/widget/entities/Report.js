@@ -48,6 +48,11 @@
         return 10;
     };
 
+    Report.prototype.getNumberOfColumnsForBar = function ()
+    {
+        return 5;
+    };
+
     ng.module('piwikExtDash.widget').factory('Report', [
         "$http", "$routeParams", "moment",
         function ($http, $routeParams, moment)
