@@ -2,12 +2,33 @@
 	<div class="col-md-11">
 		<img src="/images/piwik.png" class="logo">
 	
-	<div class="range">
-		23.04.2014 <span>/</span> 25.04.2014
+	<div class="range calendarpick">
+		  <div ng-controller="DatepickerCtrl">
+        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" format="dd.MM.yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+
+        <i class="glyphicon glyphicon-calendar pick" ng-click="open($event)" ></i>
+</div>
+
 	</div>
 	</div>
 	<div class="col-md-1 add-widget">
-		<span class="glyphicon glyphicon-plus"></span>
+    <div ng-controller="ModalCtrl">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">add new module</h3>
+        </div>
+        <div class="modal-body">
+            choose module type:
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()"><span class="glyphicon glyphicon-ok" ></span> OK</button>
+            <button class="btn btn-warning" ng-click="cancel()"> <span class="glyphicon glyphicon-remove" ></span> Cancel</button>
+        </div>
+    </script>
+    <span class="glyphicon glyphicon-plus" ng-click="open()"></span>
+    
+</div>
+		
 	</div>
 </header>
 <div class="row">
@@ -107,4 +128,8 @@
     </div>  
   </div>
 </div>
+
+<div ng-show="selected">Selection from a modal: {{ selected }}</div>
+
+
 

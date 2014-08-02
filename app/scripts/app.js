@@ -5,7 +5,7 @@
         'ngSanitize',
         'ngRoute',
         'angular-md5',
-
+        'ui.bootstrap',
         'piwikExtDash.auth',
         'piwikExtDash.dashboard',
         'piwikExtDash.users',

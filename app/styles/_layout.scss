@@ -90,13 +90,27 @@ body, html {
 header {
 	.logo {
 		max-width:150px;
+		float:left;
 	}
 	.range {
-		font-size: 20px;
-		line-height: 1;
-		padding-top: 35px;
+	    display: inline;
+	    position: relative;
+	    top:17px;
+		.form-control {
+			font-size: 20px;
+			line-height: 1;
 		    @extend %ob; 
 		    display: inline;
+		    border:none;
+		    background: none;
+		    width:130px;
+		}
+		.pick {
+			display: inline;
+			top: 4px;
+			left: -10px;
+		}
+		
 	}
 	span {
 		color: $p-main-color;
@@ -117,4 +131,63 @@ header {
 		}
 	}
 }
-  
+.modal-content {
+	background-color: $widget-bg;
+	border-radius: 5px;
+	@include box-shadow(0 0 0 #e3e3e7); 
+	border-bottom: 3px solid #e3e3e7;
+	margin-bottom: 30px; 
+	.modal-header {
+			background-color:$p-main-color;
+			padding: 20px;
+			color: $w-head-f-color;
+			border-radius: 5px 5px 0 0;
+			text-transform: uppercase;
+			border-bottom: 3px solid darken($p-main-color, 10%);
+			font-weight: bold;
+			position:relative;
+			h3 {
+				padding: 0;
+				margin:0;
+				opacity: 0.9;
+				font-size: 14px;
+				 @extend %ob; 
+			}
+	}
+	.modal-footer {
+		background: $w-footer-background-color;
+		padding: 5px 20px; 
+		border-radius: 0 0 5px 5px;
+		border-top: none;
+		text-align: center;
+		.btn {
+			width: 100px;
+			.glyphicon {
+				padding: 2px;
+			}
+		}
+	}
+}
+
+.calendarpick {
+	input:focus{
+	outline:none;
+	border-color: none;
+	box-shadow: none; 
+	}
+	.btn-info {
+		color: $p-main-color;
+	}
+	strong {
+		color: $p-main-color;
+	}
+	.btn {
+		color: lighten(#000, 40%);
+	}
+	.dropdown-menu  {
+		color: $p-main-color;
+		button {
+			background: none;
+		}
+	}
+}

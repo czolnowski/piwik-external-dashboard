@@ -15,7 +15,7 @@
                 apiAction: apiAction,
                 idSite: idSite,
                 period: 'day',
-                date: 'today'
+                date: 'yesterday'
             }
         ),
         that = this;

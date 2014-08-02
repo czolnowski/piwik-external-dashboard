@@ -9699,8 +9699,9 @@ body {
 
 /* line 49, ../../app/styles/_fonts.scss */
 
-header .range,
+header .range .form-control,
 header .add-widget,
+.modal-content .modal-header h3,
 .table-data thead tr th {
   font-family: 'open_sansbold';
 }
@@ -9891,24 +9892,43 @@ html {
 
 header .logo {
   max-width: 150px;
+  float: left;
 }
 
-/* line 94, ../../app/styles/_layout.scss */
+/* line 95, ../../app/styles/_layout.scss */
 
 header .range {
-  font-size: 20px;
-  line-height: 1;
-  padding-top: 35px;
   display: inline;
+  position: relative;
+  top: 17px;
 }
 
-/* line 101, ../../app/styles/_layout.scss */
+/* line 99, ../../app/styles/_layout.scss */
+
+header .range .form-control {
+  font-size: 20px;
+  line-height: 1;
+  display: inline;
+  border: none;
+  background: none;
+  width: 130px;
+}
+
+/* line 108, ../../app/styles/_layout.scss */
+
+header .range .pick {
+  display: inline;
+  top: 4px;
+  left: -10px;
+}
+
+/* line 115, ../../app/styles/_layout.scss */
 
 header span {
   color: #56baec;
 }
 
-/* line 104, ../../app/styles/_layout.scss */
+/* line 118, ../../app/styles/_layout.scss */
 
 header .add-widget {
   font-size: 20px;
@@ -9917,7 +9937,7 @@ header .add-widget {
   cursor: pointer;
 }
 
-/* line 110, ../../app/styles/_layout.scss */
+/* line 124, ../../app/styles/_layout.scss */
 
 header .add-widget span {
   float: right;
@@ -9926,6 +9946,98 @@ header .add-widget span {
   border-radius: 999px;
   width: auto !important;
   padding: 10px 10px 10px 11px;
+}
+
+/* line 134, ../../app/styles/_layout.scss */
+
+.modal-content {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 0 #e3e3e7;
+  border-bottom: 3px solid #e3e3e7;
+  margin-bottom: 30px;
+}
+
+/* line 140, ../../app/styles/_layout.scss */
+
+.modal-content .modal-header {
+  background-color: #56baec;
+  padding: 20px;
+  color: white;
+  border-radius: 5px 5px 0 0;
+  text-transform: uppercase;
+  border-bottom: 3px solid #28a7e7;
+  font-weight: bold;
+  position: relative;
+}
+
+/* line 149, ../../app/styles/_layout.scss */
+
+.modal-content .modal-header h3 {
+  padding: 0;
+  margin: 0;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+/* line 157, ../../app/styles/_layout.scss */
+
+.modal-content .modal-footer {
+  background: #f6f8fa;
+  padding: 5px 20px;
+  border-radius: 0 0 5px 5px;
+  border-top: none;
+  text-align: center;
+}
+
+/* line 163, ../../app/styles/_layout.scss */
+
+.modal-content .modal-footer .btn {
+  width: 100px;
+}
+
+/* line 165, ../../app/styles/_layout.scss */
+
+.modal-content .modal-footer .btn .glyphicon {
+  padding: 2px;
+}
+
+/* line 173, ../../app/styles/_layout.scss */
+
+.calendarpick input:focus {
+  outline: none;
+  border-color: none;
+  box-shadow: none;
+}
+
+/* line 178, ../../app/styles/_layout.scss */
+
+.calendarpick .btn-info {
+  color: #56baec;
+}
+
+/* line 181, ../../app/styles/_layout.scss */
+
+.calendarpick strong {
+  color: #56baec;
+}
+
+/* line 184, ../../app/styles/_layout.scss */
+
+.calendarpick .btn {
+  color: #666666;
+}
+
+/* line 187, ../../app/styles/_layout.scss */
+
+.calendarpick .dropdown-menu {
+  color: #56baec;
+}
+
+/* line 189, ../../app/styles/_layout.scss */
+
+.calendarpick .dropdown-menu button {
+  background: none;
 }
 
 /* line 1, ../../app/styles/_table.scss */
@@ -10075,4 +10187,13 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+/* line 150, ../../app/styles/main.scss */
+
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
 }
