@@ -37,10 +37,15 @@
         var date = ng.isDefined(_$routeParams.date) ? _$routeParams.date : new Date();
 
         if (this.evolution) {
-            date = moment(date).subtract('days', 2).format('YYYY-MM-DD') + ','+ moment(date).format('YYYY-MM-DD');
+            date = moment(date).subtract('days', this.getNumberOfDaysForEvolution() - 1).format('YYYY-MM-DD') + ','+ moment(date).format('YYYY-MM-DD');
         }
 
         return date;
+    };
+
+    Report.prototype.getNumberOfDaysForEvolution = function ()
+    {
+        return 10;
     };
 
     ng.module('piwikExtDash.widget').factory('Report', [

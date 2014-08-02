@@ -14,7 +14,7 @@
     "angular-md5": "~0.1.7",
     "ng-table": "0.3.2",
     "ng-chartjs": "*",
-    "chartjs": "~0.2.0",
+    "chartjs": "git@github.com:nnnick/Chart.js.git",
     "angular-moment": "~0.8.0",
     "perfect-scrollbar": "0.4.11"
   },
