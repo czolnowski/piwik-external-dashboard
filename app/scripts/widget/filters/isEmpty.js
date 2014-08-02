@@ -3,16 +3,16 @@
     'use strict';
     ng.module('piwikExtDash.widget').filter('isEmpty', function () {
 
-        var bar;
         return function (value) {
-            
+
             if (ng.isArray(value)) {
                 return !value || !value.length;
             }
 
             if (ng.isObject(value)) {
-                for (bar in value) {
-                    if (value.hasOwnProperty(bar)) {
+                var index;
+                for (index in value) {
+                    if (value.hasOwnProperty(index)) {
                         return false;
                     }
                 }

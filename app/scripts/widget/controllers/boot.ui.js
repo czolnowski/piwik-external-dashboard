@@ -47,7 +47,7 @@
         ModalCtrl
     ]);
 
-    var DatepickerCtrl = function ($scope, report)
+    var DatepickerCtrl = function ($scope, $rootScope, $timeout)
     {
         $scope.today = function() {
             $scope.dt = new Date();
@@ -64,9 +64,14 @@
           };
 
           $scope.toggleMin = function() {
-            $scope.minDate = $scope.minDate ? null : new Date();
+            $scope.minDate = new Date('2008');
           };
           $scope.toggleMin();
+
+          $scope.toggleMax = function() {
+            $scope.maxDate = new Date();
+          };
+          $scope.toggleMax();
 
           $scope.open = function($event) {
             $event.preventDefault();
@@ -78,17 +83,24 @@
           $scope.dateOptions = {
             formatYear: 'yy',
             startingDay: 1,
-            calendarWeeks: false,
+            calendarWeeks: false
           };
 
           $scope.initDate = new Date('2016-15-20');
           $scope.formats = ['dd.MM.yyyy'];
           $scope.format = $scope.formats[0];
+
+        $scope.$watch('dt',function (newDate) {
+            $timeout(function () {
+                $rootScope.$broadcast('dateUpdated', newDate);
+            },1);
+        });
     };
 
     ng.module('piwikExtDash.widget').controller("DatepickerCtrl", [
         "$scope",
-        "Report",
+        "$rootScope",
+        "$timeout",
         DatepickerCtrl
     ]);
 

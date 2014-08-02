@@ -5,7 +5,10 @@
             <th>{{ columns.nb_visits}}</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody ng-if="loading">
+        <tr><td colspan="2">Loading data...</td></tr>
+    </tbody>
+    <tbody ng-if="!loading">
         <tr ng-repeat="reportRow in reportData | limitTo: 10">
             <td>{{ reportRow.label }}</td>
             <td>{{ reportRow.nb_visits }}</td>

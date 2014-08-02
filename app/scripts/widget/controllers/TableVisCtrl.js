@@ -3,7 +3,6 @@
 
     var TableVisCtrl = function ($scope)
     {
-
     };
 
     ng.module('piwikExtDash.widget').controller("TableVisCtrl", [

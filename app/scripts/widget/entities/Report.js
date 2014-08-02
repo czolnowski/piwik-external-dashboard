@@ -10,7 +10,7 @@
     _$routeParams = null,
     _moment = null;
 
-    Report.prototype.fetch = function ()
+    Report.prototype.fetch = function (date)
     {
         var that = this;
         return _$http.post(
@@ -20,7 +20,7 @@
                 apiAction: this.action,
                 idSite: ng.isDefined(_$routeParams.idSite) ? _$routeParams.idSite : '7',
                 period: ng.isDefined(_$routeParams.period) ? _$routeParams.period : 'day',
-                date: this.getDate()
+                date: this.getDate(date)
             }
         ).then(function (response) {
             that.result = response.data;
@@ -29,9 +29,12 @@
         });
     };
 
-    Report.prototype.getDate = function ()
+    Report.prototype.getDate = function (date)
     {
-        var date = ng.isDefined(_$routeParams.date) ? _$routeParams.date : 'today';
+        if (!date) {
+            date = ng.isDefined(_$routeParams.date) ? _$routeParams.date : new Date();
+        }
+
         if (this.evolution) {
             date = moment(date).subtract('days', 2).format('YYYY-MM-DD') + ','+ moment(date).format('YYYY-MM-DD');
         }

@@ -4,7 +4,7 @@
 	
         <div class="range calendarpick">
               <div ng-controller="DatepickerCtrl">
-            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" format="dd.MM.yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" format="dd.MM.yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
 
             <i class="glyphicon glyphicon-calendar pick" ng-click="open($event)" ></i>
         </div>

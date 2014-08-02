@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.widget').directive('tablevis', function() {
+    ng.module('piwikExtDash.widget').directive('tablevis', [function() {
 
         return {
             require: '^report',
@@ -10,14 +10,25 @@
             controller: 'TableVisCtrl',
             controllerAs: 'table',
             link: function($scope, elem, attrs, myReportCtrl) {
-                myReportCtrl.report.fetch().then(function (response) {
-                    for (var index in response.data) {
-                        if (response.data.hasOwnProperty(index)) {
-                            $scope[index] = response.data[index];
+                function fetchReport (date) {
+                    $scope.loading = true;
+
+                    myReportCtrl.report.fetch(date).then(function (response) {
+                        $scope.loading = false;
+                        for (var index in response.data) {
+                            if (response.data.hasOwnProperty(index)) {
+                                $scope[index] = response.data[index];
+                            }
                         }
-                    }
+                    });
+                }
+
+                fetchReport(null);
+
+                $scope.$on('dateUpdated', function (event, date) {
+                    fetchReport(date);
                 });
             }
         };
-    });
+    }]);
 })(angular);
