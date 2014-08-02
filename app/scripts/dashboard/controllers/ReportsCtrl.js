@@ -23,9 +23,9 @@
 
         });
 
-        $scope.addReport = function (report, visualization) {
+        $scope.addReport = function (report, visualization, size) {
             $timeout(function () {
-                $rootScope.$broadcast('reportAdded', report, visualization);
+                $rootScope.$broadcast('reportAdded', report, visualization, size);
             }, 1);
         };
     };

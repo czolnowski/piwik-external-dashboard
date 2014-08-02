@@ -29,10 +29,18 @@
                             {{ report.name }} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a ng-click="addReport(report, 'table')" href="#">Table</a></li>
-                            <li><a ng-click="addReport(report, 'evolution')" href="#">Evolution</a></li>
-                            <li><a ng-click="addReport(report, 'bar')" href="#">Bar</a></li>
-                            <li><a ng-click="addReport(report, 'pie')" href="#">Pie</a></li>
+                            <li><a ng-click="addReport(report, 'table', 'small')" href="#">Table small</a></li>
+                            <li><a ng-click="addReport(report, 'table', 'medium')" href="#">Table medium</a></li>
+                            <li><a ng-click="addReport(report, 'table', 'large')" href="#">Table large</a></li>
+                            <li><a ng-click="addReport(report, 'evolution', 'small')" href="#">Evolution small</a></li>
+                            <li><a ng-click="addReport(report, 'evolution', 'medium')" href="#">Evolution medium</a></li>
+                            <li><a ng-click="addReport(report, 'evolution', 'large')" href="#">Evolution large</a></li>
+                            <li><a ng-click="addReport(report, 'bar', 'small')" href="#">Bar small</a></li>
+                            <li><a ng-click="addReport(report, 'bar', 'medium')" href="#">Bar medium</a></li>
+                            <li><a ng-click="addReport(report, 'bar', 'large')" href="#">Bar large</a></li>
+                            <li><a ng-click="addReport(report, 'pie', 'small')" href="#">Pie small</a></li>
+                            <li><a ng-click="addReport(report, 'pie', 'medium')" href="#">Pie medium</a></li>
+                            <li><a ng-click="addReport(report, 'pie', 'large')" href="#">Pie large</a></li>
                         </ul>
                         </div>
                     </div>
@@ -52,8 +60,8 @@
 	</div>
 </header>
 <div class="row">
-  <div class="col-md-4">
-      <div class="report widget" ng-repeat="report in reports track by $index" module="{{ report.module }}" action="{{ report.action }}">
+  <div class="col-md-{{report.size}}" ng-repeat="report in reports track by $index">
+      <div class="report widget"  module="{{ report.module }}" action="{{ report.action }}">
           <div ng-if="report.visualization == 'evolution'" evolution-vis></div>
           <div ng-if="report.visualization == 'bar'" bar-vis></div>
           <div ng-if="report.visualization == 'pie'" pie-vis></div>
