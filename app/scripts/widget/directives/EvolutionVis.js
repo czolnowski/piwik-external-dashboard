@@ -27,7 +27,7 @@
                             }
                         );
 
-                        if (ng.isDefined(chartsColors[colorIndex])) {
+                        if (ng.isDefined(chartsColors[colorIndex]) && column !== 'label') {
                             $scope.legend.push(
                                 {
                                     label: response.data.columns[column],
