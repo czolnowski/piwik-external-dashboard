@@ -10,9 +10,6 @@
             $scope.allReportsByCategory = {};
 
             ng.forEach(response.data, function (value, key) {
-                if (value && value.action && 'get' === value.action) {
-                    return;
-                }
 
                 if (!$scope.allReportsByCategory[value.category]) {
                     $scope.allReportsByCategory[value.category] = [];

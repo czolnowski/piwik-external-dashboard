@@ -17,9 +17,9 @@
 
             var width = 12;
             if ('small' == size) {
-                width = 4;
+                width = 3;
             } else if ('medium' == size) {
-                width = 8;
+                width = 6;
             }
 
             report.size = width;

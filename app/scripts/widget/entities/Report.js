@@ -34,7 +34,7 @@
 
     Report.prototype.getDate = function ()
     {
-        var date = ng.isDefined(_$routeParams.date) ? _$routeParams.date : new Date();
+        var date = ng.isDefined(_$routeParams.date) ? _$routeParams.date : moment(new Date()).format('YYYY-MM-DD');
 
         if (this.evolution) {
             date = moment(date).subtract('days', this.getNumberOfDaysForEvolution() - 1).format('YYYY-MM-DD') + ','+ moment(date).format('YYYY-MM-DD');
