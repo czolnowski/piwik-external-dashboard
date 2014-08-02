@@ -4,8 +4,7 @@
     ng.module('piwikExtDash.widget').directive('report', function() {
 
         return {
-            require: '^Dashboard',
-            restrict: 'C',
+            restrict: 'A',
             transclude: true,
             scope: {
                 module: '@',
