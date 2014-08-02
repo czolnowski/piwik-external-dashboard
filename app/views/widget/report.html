@@ -1,10 +1,11 @@
 <div>
-    <p class="w-name">{{ report.report.metadata.name }}</p>
+    <p class="w-name">{{ report.report.result.metadata.name }}</p>
     <div class="w-content mx-lg"
-         ng-show="report.report.reportData.length">
+         ng-show="report.report.result.reportData.length">
         <div ng-transclude=""></div>
     </div>
+
     <div class="w-content"
-         ng-hide="report.report.reportData.length"
+         ng-hide="report.report.result.reportData.length"
             >No data for this report</div>
 </div>

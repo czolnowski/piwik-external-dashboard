@@ -1,12 +1,13 @@
 (function (ng) {
     'use strict';
 
-    var TableVisCtrl = function (ReportCtrl)
+    var TableVisCtrl = function ($scope)
     {
-        this.report = ReportCtrl;
+
     };
 
     ng.module('piwikExtDash.widget').controller("TableVisCtrl", [
+        "$scope",
         TableVisCtrl
     ]);
 })(angular);

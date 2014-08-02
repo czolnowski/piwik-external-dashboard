@@ -12,6 +12,7 @@
 
     Report.prototype.fetch = function ()
     {
+        var that = this;
         return _$http.post(
             '/api/API/getProcessedReport',
             {
@@ -21,7 +22,11 @@
                 period: ng.isDefined(_$routeParams.period) ? _$routeParams.period : 'day',
                 date: this.getDate()
             }
-        );
+        ).then(function (response) {
+            that.result = response.data;
+
+            return response;
+        });
     };
 
     Report.prototype.getDate = function ()

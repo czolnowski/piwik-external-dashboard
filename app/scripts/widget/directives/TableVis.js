@@ -10,7 +10,13 @@
             controller: 'TableVisCtrl',
             controllerAs: 'table',
             link: function($scope, elem, attrs, myReportCtrl) {
-                $scope.report = myReportCtrl;
+                myReportCtrl.report.fetch().then(function (response) {
+                    for (var index in response.data) {
+                        if (response.data.hasOwnProperty(index)) {
+                            $scope[index] = response.data[index];
+                        }
+                    }
+                });
             }
         };
     });

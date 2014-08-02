@@ -1,12 +1,12 @@
 <table class="table-data table-striped">
     <thead>
         <tr>
-            <th>{{ report.report.metadata.name }}</th>
-            <th>{{ report.report.columns.nb_visits}}</th>
+            <th>{{ metadata.name }}</th>
+            <th>{{ columns.nb_visits}}</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="reportRow in report.report.reportData | limitTo: 10">
+        <tr ng-repeat="reportRow in reportData | limitTo: 10">
             <td>{{ reportRow.label }}</td>
             <td>{{ reportRow.nb_visits }}</td>
         </tr>
