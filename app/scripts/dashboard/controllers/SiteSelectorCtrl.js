@@ -2,7 +2,7 @@
     var SiteSelectorCtrl = function ($scope, $http, $routeParams, $timeout, $location)
     {
         $http.post(
-            '/api/SitesManager/getSitesWithViewAccess',
+            '/api/SitesManager/getSitesWithAtLeastViewAccess',
             {}
         ).then(function (response) {
                 $scope.sites = response.data;
