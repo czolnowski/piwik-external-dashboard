@@ -10,11 +10,13 @@
         'angularMoment',
         'ui.select2',
         'firebase',
+        'LocalStorageModule',
 
         'piwikExtDash.auth',
         'piwikExtDash.dashboard',
         'piwikExtDash.users',
-        'piwikExtDash.widget'
+        'piwikExtDash.widget',
+        'piwikExtDash.reports'
     ]);
 
     app.config(function ($locationProvider) {

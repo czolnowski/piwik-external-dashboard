@@ -9,8 +9,7 @@
             scope: {
                 module: '@',
                 action: '@',
-                evolution: '=',
-                currentreport: '='
+                evolution: '='
             },
             templateUrl: 'views/widget/report.html',
             controller: 'ReportCtrl',

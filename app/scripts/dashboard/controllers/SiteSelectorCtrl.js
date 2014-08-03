@@ -19,7 +19,7 @@
         $scope.$watch('ss',function (newSite, oldSite) {
             $timeout(function () {
                 if (newSite != oldSite) {
-                    $location.search('idSite', newSite);
+                    $location.path('/' + newSite);
                 }
             },1);
         });

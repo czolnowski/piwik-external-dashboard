@@ -1,0 +1,84 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add new report to dashboard</h3>
+</div>
+<div class="modal-body">
+    <div class="panel"
+            ng-class="{
+            'panel-success': size !== null,
+            'panel-danger': size === null
+        }">
+        <div class="panel-heading">
+            <h3 class="panel-title">Box size <strong ng-if="size !== null">[{{ size }}]</strong></h3>
+        </div>
+        <div class="panel-body">
+            <div class="btn-toolbar text-center" role="toolbar">
+                <div class="btn-group">
+                    <button type="button" class="btn"
+                            ng-repeat="sizeElement in sizes"
+                            ng-click="changeSize(sizeElement)"
+                            ng-bind="sizeElement"
+                            ng-class="{
+                                'btn-success': size === sizeElement,
+                                'btn-default': size !== sizeElement
+                            }"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel"
+         ng-class="{
+            'panel-success': visualization !== null,
+            'panel-danger': visualization === null
+        }">
+        <div class="panel-heading">
+            <h3 class="panel-title">Visualization type <strong ng-if="visualization !== null">[{{ visualization }}]</strong></h3>
+        </div>
+        <div class="panel-body">
+            <div class="btn-group">
+                <button type="button" class="btn"
+                        ng-repeat="visualizationElement in visualizationTypes"
+                        ng-click="changeVisualization(visualizationElement)"
+                        ng-bind="visualizationElement"
+                        ng-class="{
+                                'btn-success': visualization === visualizationElement,
+                                'btn-default': visualization !== visualizationElement
+                            }"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel"
+         ng-class="{
+            'panel-success': report !== null,
+            'panel-danger': report === null
+        }">
+        <div class="panel-heading">
+            <h3 class="panel-title">Report <strong ng-if="report !== null">[{{ report.name }}]</strong></h3>
+        </div>
+        <div class="panel-body">
+            <div class="btn-group" ng-repeat="(name, reportData) in reports">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    {{ name }} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-repeat="reportElement in reportData">
+                        <a href="#"
+                           ng-bind="reportElement.name"
+                           ng-click="changeReport(reportElement)"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success"
+            ng-click="add()"
+            ng-disabled="size === null || visualization === null || report === null">
+        <span class="glyphicon glyphicon-plus" ></span> Add
+    </button>
+    <button class="btn btn-warning" ng-click="cancel()">
+        <span class="glyphicon glyphicon-remove" ></span> Cancel
+    </button>
+</div>
