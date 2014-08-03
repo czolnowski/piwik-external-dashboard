@@ -1,0 +1,17 @@
+<div ng-if="report">
+    <div class="col-md-9 text-center">
+        <cjs-line dataset="report" options="options" segement-stroke-width="5" autofit="true"></cjs-line>
+    </div>
+    <div class="col-md-3">
+        <h3>Legend:</h3>
+        <ul class="list-unstyled">
+            <li ng-repeat="item in legend">
+                <span ng-bind="item.label"
+                      ng-click="switchDataSet(item)"
+                      ng-style="{color: item.color}"
+                      style="font-weight: bold;"></span>
+            </li>
+        </ul>
+    </div>
+</div>
+

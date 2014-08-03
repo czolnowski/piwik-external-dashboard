@@ -1,0 +1,28 @@
+.table-data {
+    width: 100%;
+    thead {
+        tr {
+            th { 
+                @extend %ob;  
+                border-bottom: 2px solid $thead-border;
+                color: $thead-text-color; 
+                padding: 9px 5px;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                padding: 9px 5px; 
+            }
+            &:hover {
+                td {
+                    background: $td-hover-background;
+                    cursor: pointer;
+                }
+            }
+        }
+        
+    }
+}

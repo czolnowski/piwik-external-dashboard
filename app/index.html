@@ -1,0 +1,105 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Piwik Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
+      <link rel="stylesheet" href="bower_components/select2/select2.css">
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+      <link rel="stylesheet" href="/styles/graph.css">
+  </head>
+  <body ng-app="piwikExtDash"
+          style="
+          padding: 0;
+margin: 0;
+background: #000000 url(/images/backgrounds/01.jpg) no-repeat center top;
+width: 100%;
+display: table;">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="container" ng-view=""></div>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-md5/angular-md5.js"></script>
+    <script src="bower_components/ng-chartjs/src/angular-chartjs.js"></script>
+    <script src="bower_components/chartjs/Chart.min.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script type="text/javascript" src="bower_components/select2/select2.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-select2/src/select2.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/users/module.js"></script>
+    <script src="scripts/users/entities/User.js"></script>
+
+    <script src="scripts/auth/module.js"></script>
+    <script src="scripts/auth/routes.js"></script>
+    <script src="scripts/auth/services/Authenticate.js"></script>
+    <script src="scripts/auth/services/Token.js"></script>
+    <script src="scripts/auth/services/TokenInterceptor.js"></script>
+    <script src="scripts/auth/controllers/LoginCtrl.js"></script>
+
+    <script src="scripts/dashboard/module.js"></script>
+    <script src="scripts/dashboard/routes.js"></script>
+    <script src="scripts/dashboard/controllers/DashboardCtrl.js"></script>
+    <script src="scripts/dashboard/controllers/ReportsCtrl.js"></script>
+    <script src="scripts/dashboard/controllers/SiteSelectorCtrl.js"></script>
+    <script src="scripts/dashboard/entities/Reports.js"></script>
+
+    <script src="scripts/widget/module.js"></script>
+    <script src="scripts/widget/filters/isEmpty.js"></script>
+
+    <script src="scripts/widget/directives/Report.js"></script>
+    <script src="scripts/widget/controllers/ReportCtrl.js"></script>
+    <script src="scripts/widget/controllers/boot.ui.js"></script>
+    <script src="scripts/widget/entities/Report.js"></script>
+
+    <script src="scripts/widget/directives/TableVis.js"></script>
+    <script src="scripts/widget/controllers/TableVisCtrl.js"></script>
+
+    <script src="scripts/widget/directives/EvolutionVis.js"></script>
+    <script src="scripts/widget/controllers/EvolutionVisCtrl.js"></script>
+
+    <script src="scripts/widget/directives/BarVis.js"></script>
+    <script src="scripts/widget/controllers/BarVisCtrl.js"></script>
+
+    <script src="scripts/widget/directives/PieVis.js"></script>
+    <script src="scripts/widget/controllers/PieVisCtrl.js"></script>
+
+    <script src="scripts/app.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

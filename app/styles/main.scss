@@ -1,0 +1,150 @@
+$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+
+// Custom variables
+@import "variables";
+// Bootstrap
+
+// Core variables and mixins
+@import "sass-bootstrap/lib/mixins";
+
+// Reset
+@import "sass-bootstrap/lib/normalize";
+@import "sass-bootstrap/lib/print";
+
+// Core CSS
+@import "sass-bootstrap/lib/scaffolding";
+@import "sass-bootstrap/lib/type";
+@import "sass-bootstrap/lib/code";
+@import "sass-bootstrap/lib/grid";
+@import "sass-bootstrap/lib/tables";
+@import "sass-bootstrap/lib/forms";
+@import "sass-bootstrap/lib/buttons";
+
+// Components
+@import "sass-bootstrap/lib/component-animations";
+@import "sass-bootstrap/lib/glyphicons";
+@import "sass-bootstrap/lib/dropdowns";
+@import "sass-bootstrap/lib/button-groups";
+@import "sass-bootstrap/lib/input-groups";
+@import "sass-bootstrap/lib/navs";
+@import "sass-bootstrap/lib/navbar";
+@import "sass-bootstrap/lib/breadcrumbs";
+@import "sass-bootstrap/lib/pagination";
+@import "sass-bootstrap/lib/pager";
+@import "sass-bootstrap/lib/labels";
+@import "sass-bootstrap/lib/badges";
+@import "sass-bootstrap/lib/jumbotron";
+@import "sass-bootstrap/lib/thumbnails";
+@import "sass-bootstrap/lib/alerts";
+@import "sass-bootstrap/lib/progress-bars";
+@import "sass-bootstrap/lib/media";
+@import "sass-bootstrap/lib/list-group";
+@import "sass-bootstrap/lib/panels";
+@import "sass-bootstrap/lib/wells";
+@import "sass-bootstrap/lib/close";
+
+// Components w/ JavaScript
+@import "sass-bootstrap/lib/modals";
+@import "sass-bootstrap/lib/tooltip";
+@import "sass-bootstrap/lib/popovers";
+@import "sass-bootstrap/lib/carousel";
+
+// Utility classes
+@import "sass-bootstrap/lib/utilities";
+@import "sass-bootstrap/lib/responsive-utilities";
+
+@import "fonts";
+@import "mixins";
+@import "compass/css3";
+@import "forms"; 
+@import "buttons";
+@import "layout";
+@import "table";
+
+
+body {
+    background: $body-background;
+    @extend %o;  
+}
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+    margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5; 
+} 
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+    margin: 40px 0;
+}
+
+.marketing p + h4 {
+    margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) { 
+
+
+    /* Remove the padding we set earlier */
+    .header,
+    .marketing,
+    .footer {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+    /* Remove the bottom border on the jumbotron for visual effect */
+    .jumbotron {
+        border-bottom: 0;
+    }
+}
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

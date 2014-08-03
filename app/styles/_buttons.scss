@@ -1,0 +1,14 @@
+.btn {
+    border: 0;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    background: $p-main-color;
+    text-transform: lowercase;
+    color: #fff;
+    &.btn-sm {
+
+    }
+    &:hover {
+    	color: darken(#fff, 15%);
+    }
+}
