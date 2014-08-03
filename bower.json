@@ -17,7 +17,9 @@
     "chartjs": "git@github.com:nnnick/Chart.js.git",
     "angular-moment": "~0.8.0",
     "perfect-scrollbar": "0.4.11",
-    "angular-ui-select2": "~0.0.5"
+    "angular-ui-select2": "~0.0.5",
+    "firebase": "git@github.com:firebase/firebase-bower.git",
+    "angularfire": "git@github.com:firebase/angularfire.git"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

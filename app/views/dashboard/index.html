@@ -85,6 +85,18 @@ width: auto !important; padding-right: 5px;"></span> Logout</a>
         </ul>
     </div>
 </header>
+
+<div class="row" ng-if="isLoading"
+        style="height: 100px;
+   width: 100px;
+   position: fixed;
+   z-index: 1000;
+   left: 50%;
+   top: 50%;
+   margin: -25px 0 0 -25px;">
+    <img src="/images/loader.gif" />
+</div>
+
 <div class="row">
   <div class="col-md-{{report.size}}" ng-repeat="report in reports track by $index">
       <div report class="widget" currentreport="report" module="{{ report.module }}" action="{{ report.action }}"

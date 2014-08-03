@@ -1,22 +1,30 @@
-(function (ng) {
+(function (ng, Firebase, JSON) {
     'use strict';
 
-    var DashboardCtrl = function ($scope, $routeParams, $window, $location)
+    var DashboardCtrl = function ($scope, $routeParams, $location, $firebase, md5)
     {
-        var reports;
+        var ref = new Firebase('https://piwik-ext-dashboard.firebaseio.com/dashboards'),
+            sync = $firebase(ref);
+
+        $scope.reports = [];
+
+        $scope.isLoading = false;
+
         if ($routeParams.dashboard) {
-            reports = $routeParams.dashboard;
-        }
+            $scope.isLoading = true;
 
-        if (!reports) {
-            reports = localStorage.getItem('reports');
-        }
+            sync.$asObject().$loaded().then(function (response) {
+                $scope.reports = JSON.parse(
+                    response[$routeParams.dashboard]
+                );
 
-        if (reports) {
-            reports = JSON.parse(reports);
+                $scope.isLoading = false;
+            });
+        } else {
+            $scope.reports = JSON.parse(
+                localStorage.getItem('reports')
+            );
         }
-
-        $scope.reports = reports || [];
 
         $scope.exportDashboard = function () {
             var neededData = [];
@@ -29,8 +37,17 @@
                     size: report.size
                 });
             });
-            $location.search('dashboard', JSON.stringify(neededData));
-            $window.alert($location.absUrl());
+
+            var reportsAsString = JSON.stringify(neededData),
+                reportsName = md5.createHash(reportsAsString);
+
+            if (reportsName in sync.$asObject()) {
+                $location.search('dashboard', reportsName);
+            } else {
+                sync.$set(reportsName, reportsAsString).then(function () {
+                    $location.search('dashboard', reportsName);
+                });
+            }
         };
 
         $scope.$on('reportAdded', function (event, report, visualization, size) {
@@ -65,8 +82,9 @@
     ng.module('piwikExtDash.dashboard').controller("DashboardCtrl", [
         "$scope",
         "$routeParams",
-        "$window",
         "$location",
+        "$firebase",
+        "md5",
         DashboardCtrl
     ]);
-})(angular);
+})(angular, window.Firebase, window.JSON);

@@ -9,6 +9,7 @@
         'ui.bootstrap',
         'angularMoment',
         'ui.select2',
+        'firebase',
 
         'piwikExtDash.auth',
         'piwikExtDash.dashboard',
