@@ -21,6 +21,7 @@
             }
         ),
             that = this;
+
         request.then(function (response) {
             that.alias = response[0].alias
         });

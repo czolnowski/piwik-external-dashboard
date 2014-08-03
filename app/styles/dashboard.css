@@ -1,0 +1,13 @@
+#loader {
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    margin: -25px 0 0 -25px;
+}
+
+.login-box {
+    margin-top: 20%;
+}

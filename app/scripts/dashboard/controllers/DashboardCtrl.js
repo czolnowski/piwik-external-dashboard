@@ -15,6 +15,8 @@
         );
         this.reports = [];
         this.isLoading = false;
+        this.reportsModalIsLoading = false;
+        this.exportIsLoading = false;
 
         this.initialize();
     },
@@ -67,11 +69,18 @@
             }),
             that = this;
 
+        this.reportsModalIsLoading = true;
+
         modalInstance.result.then(
             function (result) {
                 that.reports.push(ng.copy(result));
 
                 that.persist();
+                that.reportsModalIsLoading = false;
+            },
+            function ()
+            {
+                that.reportsModalIsLoading = false;
             }
         );
     };
@@ -88,13 +97,18 @@
 
     DashboardCtrl.prototype.exportDashboard = function () {
         var reportsAsString = ng.toJson(this.serializeReports()),
-            reportsName = md5.createHash(reportsAsString);
+            reportsName = md5.createHash(reportsAsString),
+            that = this;
+
+        this.exportIsLoading = true;
 
         if (reportsName in this.sync.$asObject()) {
             $location.search('dashboard', reportsName);
+            this.exportIsLoading = false;
         } else {
             this.sync.$set(reportsName, reportsAsString).then(function () {
                 $location.search('dashboard', reportsName);
+                that.exportIsLoading = false;
             });
         }
     };

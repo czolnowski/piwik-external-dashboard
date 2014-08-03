@@ -19,6 +19,7 @@
                 if (ng.isDefined(response.data.value)) {
                     that.token.setTokenAuth(response.data.value);
                     that.token.setHost(host);
+                    that.token.setLogin(login);
                     that.cookieStore.put('token', that.token);
                     that.getUserInformation(login);
 
@@ -36,6 +37,7 @@
     {
         this.token.setTokenAuth('anonymous');
         this.token.setHost(host);
+        this.token.setLogin('anonymous');
         this.getUserInformation('anonymous');
 
         this.cookieStore.put('token', this.token);

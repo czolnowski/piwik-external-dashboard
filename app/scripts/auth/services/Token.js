@@ -6,6 +6,7 @@
         this.$http = $http;
         this.md5 = md5;
 
+        this.login = null;
         this.token_auth = null;
         this.host = null
     };
@@ -32,6 +33,16 @@
         return this.token_auth;
     };
 
+    Token.prototype.setLogin = function (login)
+    {
+        this.login = login;
+    };
+
+    Token.prototype.getLogin = function ()
+    {
+        return this.login;
+    };
+
     Token.prototype.setHost = function (host)
     {
         this.host = host;
@@ -51,6 +62,7 @@
     Token.prototype.createFromTokenInstance = function (token)
     {
         this.token_auth = token.token_auth;
+        this.login = token.login;
         this.host = token.host;
     };
 

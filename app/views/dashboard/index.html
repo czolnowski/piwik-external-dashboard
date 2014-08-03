@@ -1,67 +1,81 @@
-<header class="row">
-	<div class="col-md-8">
-		<img src="/images/piwik.png" class="logo">
-	
-        <div class="range calendarpick">
-            <div ng-controller="DatepickerCtrl">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" format="dd.MM.yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+<nav class="navbar navbar-default"
+     role="navigation"
+     id="top-navbar"
+     ng-controller="DashboardNavBarCtrl as navBar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ped-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Piwik external dashboard</a>
+        </div>
 
-                <i class="glyphicon glyphicon-calendar pick" ng-click="open($event)" ></i>
-            </div>
-	    </div>
-	</div>
-    <div class="col-md-4">
-        <ul class="list-inline">
-
-            <li class="add-widget">
-                    <span class="glyphicon glyphicon-plus" ng-click="dashboard.openReportsModal()"></span>
-            </li>
-            <li>
-                <div class="site-selector">
-                    <div ng-controller="SiteSelectorCtrl">
-                        <select ui-select2 ng-model="ss" data-placeholder="Choose site" ng-required="true">
-                            <option value=""></option>
-                            <option ng-repeat="site in sites" value="{{site.idsite}}">{{site.name}}</option>
-                        </select>
-                    </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="ped-navbar-collapse">
+            <form class="navbar-form navbar-left" role="search" ng-controller="DatepickerCtrl">
+                <div class="form-group">
+                    <input type="text"
+                           class="form-control col-md-4"
+                           datepicker-popup="{{format}}"
+                           ng-model="dt"
+                           is-open="opened"
+                           min-date="minDate"
+                           max-date="maxDate"
+                           format="dd.MM.yyyy"
+                           datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)"
+                           ng-required="true"
+                           close-text="Close" />
                 </div>
-            </li>
+                <button type="button"
+                        class="btn btn-default"
+                        ng-click="open($event)"><i class="glyphicon glyphicon-calendar pick"></i></button>
+            </form>
 
-            <li>
-                <div class="site-selector">
-                    <button ng-click="dashboard.exportDashboard()" class="btn">Export</button>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href=""
+                       ng-click="dashboard.openReportsModal()"
+                       ng-disabled="dashboard.reportsModalIsLoading"><i class="glyphicon glyphicon-plus"></i> Add widget</a>
+                </li>
+                <li>
+                    <a href=""
+                       ng-click="dashboard.exportDashboard()"
+                       ng-disabled="dashboard.exportIsLoading"><i class="glyphicon glyphicon-export"></i> Export dashboard</a>
+                </li>
+                <li class="dropdown" ng-init="user = navBar.getUser()">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">{{ user.alias }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/login" ng-click="navBar.logout()"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-right" role="search" ng-controller="SiteSelectorCtrl" ng-show="sites">
+                <div class="form-group">
+                    <select ng-model="site" class="form-control"
+                            ng-options="site.name for site in sites">
+                    </select>
                 </div>
-            </li>
+            </form>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 
-            <li>
-                <a href="/login" class="btn"><span class="glyphicon glyphicon-log-out"
-                        style="background: #56baec;
-color: #fff;
-border-radius: 999px;
-width: auto !important; padding-right: 5px;"></span> Logout</a>
-            </li>
-        </ul>
-    </div>
-</header>
-
-<div class="row" ng-if="isLoading"
-        style="height: 100px;
-   width: 100px;
-   position: fixed;
-   z-index: 1000;
-   left: 50%;
-   top: 50%;
-   margin: -25px 0 0 -25px;">
-    <img src="/images/loader.gif" />
+<div class="row" ng-if="isLoading" id="loader">
+    <img src="images/loader.gif" />
 </div>
 
 <div class="row">
     <div class="col-md-{{report.size}}" ng-repeat="report in dashboard.reports">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <a href="#"
+                <button type="button"
                    ng-click="dashboard.remove(report)"
-                   class="glyphicon glyphicon-remove pull-right"></a>
+                   class="pull-right btn"><i class="glyphicon glyphicon-remove"></i></button>
                 <h3 ng-bind="report.report.name"></h3>
             </div>
             <div class="panel-body"

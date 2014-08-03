@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Piwik Dashboard</title>
+    <base href="/" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -17,7 +18,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
     <!-- endbuild -->
   </head>
   <body ng-app="piwikExtDash"
@@ -77,6 +78,7 @@ display: table;">
     <script src="scripts/dashboard/routes.js"></script>
     <script src="scripts/dashboard/controllers/DashboardCtrl.js"></script>
     <script src="scripts/dashboard/controllers/SiteSelectorCtrl.js"></script>
+    <script src="scripts/dashboard/controllers/DashboardNavBarCtrl.js"></script>
     <script src="scripts/dashboard/entities/Reports.js"></script>
 
     <script src="scripts/widget/module.js"></script>
