@@ -16,8 +16,8 @@
 
         request.then(
             function (response) {
-                if (ng.isDefined(response.token_auth)) {
-                    that.token.setTokenAuth(response.token_auth);
+                if (ng.isDefined(response.data.value)) {
+                    that.token.setTokenAuth(response.data.value);
                     that.token.setHost(host);
                     that.cookieStore.put('token', that.token);
                     that.getUserInformation(login);
