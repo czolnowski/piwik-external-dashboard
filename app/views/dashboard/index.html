@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default"
+<nav class="navbar navbar-default navbar-fixed-top"
      role="navigation"
      id="top-navbar"
      ng-controller="DashboardNavBarCtrl as navBar">
@@ -70,12 +70,80 @@
 </div>
 
 <div class="row">
-    <div class="col-md-{{report.size}}" ng-repeat="report in dashboard.reports">
+    <div class="col-md-{{report.size}} widget" ng-repeat="report in dashboard.reports">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <button type="button"
-                   ng-click="dashboard.remove(report)"
-                   class="pull-right btn"><i class="glyphicon glyphicon-remove"></i></button>
+            <div class="panel-heading"
+                 ng-controller="ReportWidgetConfigCtrl as config"
+                 ng-init="config.report = report;
+                          config.dashboard = dashboard">
+                <div ng-show="report.size > 9">
+                    <button type="button"
+                       ng-click="dashboard.remove(report)"
+                       class="pull-right btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
+
+                    <button type="button"
+                            ng-click="report.visualization = 'evolution'"
+                            class="pull-right btn btn-default">evolution</button>
+
+                    <button type="button"
+                            ng-click="report.visualization = 'pie'"
+                            class="pull-right btn btn-default">pie</button>
+
+                    <button type="button"
+                            ng-click="report.visualization = 'bar'"
+                            class="pull-right btn btn-default">bar</button>
+
+                    <button type="button"
+                            ng-click="report.visualization = 'table'"
+                            class="pull-right btn btn-default">table</button>
+
+                    <button type="button"
+                            class="pull-right btn">
+                        Change size:
+                        <slider ng-model="size"
+                                min="1"
+                                step="1"
+                                max="12"
+                                value="{{ report.size }}"></slider>
+                    </button>
+
+                </div>
+
+                <div class="btn-group pull-right" ng-hide="report.size > 9">
+                    <button type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i> <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href=""
+                                ng-click="dashboard.remove(report)"><i class="glyphicon glyphicon-remove"></i> Remove</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li ng-show="report.visualization !== 'evolution'">
+                            <a href="" ng-click="report.visualization = 'evolution'">Transform into evolution</a>
+                        </li>
+                        <li ng-show="report.visualization !== 'pie'">
+                            <a href="" ng-click="report.visualization = 'pie'">Transform into pie</a>
+                        </li>
+                        <li ng-show="report.visualization !== 'bar'">
+                            <a href="" ng-click="report.visualization = 'bar'">Transform into bar</a>
+                        </li>
+                        <li ng-show="report.visualization !== 'table'">
+                            <a href="" ng-click="report.visualization = 'table'">Transform into table</a>
+                        </li>
+                        <li class="divider"></li>
+
+                        <li>
+                            <a href="">
+                                <slider ng-model="size"
+                                        min="1"
+                                        step="1"
+                                        max="12"
+                                        value="{{ report.size }}"></slider>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <h3 ng-bind="report.report.name"></h3>
             </div>
             <div class="panel-body"
@@ -91,6 +159,3 @@
         </div>
     </div>
 </div>
-
-<div ng-show="selected">Selection from a modal: {{ selected }}</div>
-

@@ -11,3 +11,7 @@
 .login-box {
     margin-top: 20%;
 }
+
+.widget .btn {
+    margin-left: 5px;
+}

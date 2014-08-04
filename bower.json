@@ -20,7 +20,8 @@
     "angular-ui-select2": "~0.0.5",
     "firebase": "git@github.com:firebase/firebase-bower.git",
     "angularfire": "git@github.com:firebase/angularfire.git",
-    "angular-local-storage": "git@github.com:grevory/angular-local-storage.git#~0.0.5"
+    "angular-local-storage": "git@github.com:grevory/angular-local-storage.git#~0.0.5",
+    "angular-bootstrap-slider": "git@github.com:seiyria/angular-bootstrap-slider.git#~0.0.5"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

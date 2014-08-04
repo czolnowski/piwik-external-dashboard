@@ -11,6 +11,7 @@
         'ui.select2',
         'firebase',
         'LocalStorageModule',
+        'ui.bootstrap-slider',
 
         'piwikExtDash.auth',
         'piwikExtDash.dashboard',

@@ -15,10 +15,12 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/select2/select2.css">
+    <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/sticky-footer-navbar.css">
     <!-- endbuild -->
   </head>
   <body ng-app="piwikExtDash"
@@ -34,6 +36,12 @@ display: table;">
 
     <!-- Add your site or application content here -->
     <div class="container" ng-view=""></div>
+
+    <div class="footer">
+        <div class="container">
+            <p class="text-muted text-center"><a href="https://piwik.pro">Piwik PRO</a></p>
+        </div>
+    </div>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -60,6 +68,8 @@ display: table;">
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/angular-local-storage/angular-local-storage.js"></script>
+    <script src="bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+    <script src="bower_components/angular-bootstrap-slider/slider.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -87,6 +97,7 @@ display: table;">
     <script src="scripts/widget/directives/Report.js"></script>
     <script src="scripts/widget/controllers/ReportCtrl.js"></script>
     <script src="scripts/widget/controllers/boot.ui.js"></script>
+    <script src="scripts/widget/controllers/ReportWidgetConfigCtrl.js"></script>
 
     <script src="scripts/widget/directives/TableVis.js"></script>
     <script src="scripts/widget/controllers/TableVisCtrl.js"></script>
