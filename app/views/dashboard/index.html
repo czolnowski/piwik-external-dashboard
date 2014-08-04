@@ -83,19 +83,35 @@
 
                     <button type="button"
                             ng-click="report.visualization = 'evolution'"
-                            class="pull-right btn btn-default">evolution</button>
+                            ng-class="{
+                                'btn-default': report.visualization !== 'evolution',
+                                'btn-success': report.visualization === 'evolution'
+                            }"
+                            class="pull-right btn">evolution</button>
 
                     <button type="button"
                             ng-click="report.visualization = 'pie'"
-                            class="pull-right btn btn-default">pie</button>
+                            ng-class="{
+                                'btn-default': report.visualization !== 'pie',
+                                'btn-success': report.visualization === 'pie'
+                            }"
+                            class="pull-right btn">pie</button>
 
                     <button type="button"
                             ng-click="report.visualization = 'bar'"
-                            class="pull-right btn btn-default">bar</button>
+                            ng-class="{
+                                'btn-default': report.visualization !== 'bar',
+                                'btn-success': report.visualization === 'bar'
+                            }"
+                            class="pull-right btn">bar</button>
 
                     <button type="button"
                             ng-click="report.visualization = 'table'"
-                            class="pull-right btn btn-default">table</button>
+                            ng-class="{
+                                'btn-default': report.visualization !== 'table',
+                                'btn-success': report.visualization === 'table'
+                            }"
+                            class="pull-right btn">table</button>
 
                     <button type="button"
                             class="pull-right btn">
