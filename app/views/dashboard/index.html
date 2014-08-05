@@ -15,24 +15,38 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="ped-navbar-collapse">
-            <form class="navbar-form navbar-left" role="search" ng-controller="DatepickerCtrl">
+            <form class="navbar-form navbar-left" role="search" ng-controller="DatePickerCtrl as datePicker">
                 <div class="form-group">
-                    <input type="text"
+                    <input type="daterange"
                            class="form-control col-md-4"
-                           datepicker-popup="{{format}}"
-                           ng-model="dt"
-                           is-open="opened"
-                           min-date="minDate"
-                           max-date="maxDate"
-                           format="dd.MM.yyyy"
-                           datepicker-options="dateOptions"
-                           date-disabled="disabled(date, mode)"
-                           ng-required="true"
-                           close-text="Close" />
+                           ng-model="dates"
+                           ng-show="datePicker.period === 'day'"
+                           singleDatePicker="true" />
+
+                    <input type="daterange"
+                           class="form-control col-md-4"
+                           ng-model="dates"
+                           ng-show="datePicker.period === 'range'"
+                           singleDatePicker="false"
+                           ranges="datePicker.ranges" />
                 </div>
-                <button type="button"
-                        class="btn btn-default"
-                        ng-click="open($event)"><i class="glyphicon glyphicon-calendar pick"></i></button>
+
+                <div class="btn-group">
+                    <button type="button"
+                            class="btn"
+                            ng-click="datePicker.period = 'day'"
+                            ng-class="{
+                                'btn-default': datePicker.period !== 'day',
+                                'btn-success': datePicker.period === 'day'
+                            }">day</button>
+                    <button type="button"
+                            class="btn"
+                            ng-click="datePicker.period = 'range'"
+                            ng-class="{
+                                'btn-default': datePicker.period !== 'range',
+                                'btn-success': datePicker.period === 'range'
+                            }">range</button>
+                </div>
             </form>
 
             <ul class="nav navbar-nav navbar-right">

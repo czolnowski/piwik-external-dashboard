@@ -10,20 +10,20 @@
 
             this.result = [];
         },
-        _$http = null,
-        _$routeParams = null,
-        _moment = null;
+        $http = null,
+        $routeParams = null,
+        moment = null;
 
     Report.prototype.fetch = function ()
     {
         var that = this,
-            request = _$http.post(
+            request = $http.post(
                 '/api/API/getProcessedReport',
                 {
                     apiModule: this.module,
                     apiAction: this.action,
-                    idSite: _$routeParams.idSite,
-                    period: ng.isDefined(_$routeParams.period) ? _$routeParams.period : 'day',
+                    idSite: $routeParams.idSite,
+                    period: this.getPeriod(),
                     date: this.getDate()
                 }
             );
@@ -42,13 +42,24 @@
 
     Report.prototype.getDate = function ()
     {
-        var date = ng.isDefined(_$routeParams.date) ? _$routeParams.date : moment(new Date()).format('YYYY-MM-DD');
+        var date = ng.isDefined($routeParams.date) ? $routeParams.date : moment().format('YYYY-MM-DD');
 
         if (this.evolution) {
-            date = moment(date).subtract('days', this.getNumberOfDaysForEvolution() - 1).format('YYYY-MM-DD') + ','+ moment(date).format('YYYY-MM-DD');
+            if (date.indexOf(',') === -1) {
+                date = moment(date).subtract('days', this.getNumberOfDaysForEvolution() - 1).format('YYYY-MM-DD') + ','+ moment(date).format('YYYY-MM-DD');
+            }
         }
 
         return date;
+    };
+
+    Report.prototype.getPeriod = function ()
+    {
+        if (!ng.isDefined($routeParams.date) || this.evolution) {
+            return 'day';
+        }
+
+        return $routeParams.date.indexOf(',') === -1 ? 'day' : 'range';
     };
 
     Report.prototype.getNumberOfDaysForEvolution = function ()
@@ -68,10 +79,10 @@
 
     Report.fetchMetaData = function ()
     {
-        return _$http.post(
+        return $http.post(
             '/api/API/getReportMetadata',
             {
-                idSite: _$routeParams.idSite
+                idSite: $routeParams.idSite
             }
         );
     };
@@ -96,11 +107,11 @@
         "Report",
         [
             "$http", "$routeParams", "moment",
-            function ($http, $routeParams, moment)
+            function (_$http, _$routeParams, _moment)
             {
-                _$http = $http;
-                _$routeParams = $routeParams;
-                _moment = moment;
+                $http = _$http;
+                $routeParams = _$routeParams;
+                moment = _moment;
 
                 return Report;
             }

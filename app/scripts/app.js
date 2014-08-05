@@ -12,6 +12,7 @@
         'firebase',
         'LocalStorageModule',
         'ui.bootstrap-slider',
+        'ngBootstrap',
 
         'piwikExtDash.auth',
         'piwikExtDash.dashboard',

@@ -42,17 +42,22 @@
                         ++colorIndex;
                     }
 
-                    var date = moment(myReportCtrl.report.getDate().split(',')[0]),
-                        skipFor = Math.ceil(myReportCtrl.report.getNumberOfDaysForEvolution() / 5);
+                    var dateSplit = myReportCtrl.report.getDate().split(','),
+                        dateFrom = moment(dateSplit[0]),
+                        dateTo = moment(dateSplit[1]);
 
-                    for (var i = 0; i < myReportCtrl.report.getNumberOfDaysForEvolution(); ++i) {
-                        if (i % skipFor === 0) {
-                            labels.push('');
-                        } else {
-                            labels.push(date.format("YYYY-MM-DD"));
+                    moment().range(dateFrom, dateTo).by('days', function(moment) {
+                        labels.push(moment.format("YYYY-MM-DD"));
+                    });
+
+                    var numberOfTicks = 12;
+                    if (labels.length > numberOfTicks) {
+                        var skip = (labels.length - (labels.length % numberOfTicks)) / numberOfTicks;
+                        for (var i = 0; i < labels.length; ++i) {
+                            if (i % skip !== 0) {
+                                labels[i] = '';
+                            }
                         }
-
-                        date = date.add('days', 1);
                     }
 
                     if (ng.isDefined(response.data.reportData)) {
