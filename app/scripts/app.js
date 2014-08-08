@@ -18,7 +18,8 @@
         'piwikExtDash.dashboard',
         'piwikExtDash.users',
         'piwikExtDash.widget',
-        'piwikExtDash.reports'
+        'piwikExtDash.reports',
+        'piwikExtDash.evolution'
     ]);
 
     app.config(function ($locationProvider) {
