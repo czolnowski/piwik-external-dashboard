@@ -8,6 +8,7 @@
             {
                 return {
                     restrict: 'AC',
+                    transclude: true,
                     scope: {
                         report: '=',
                         dashboard: '='

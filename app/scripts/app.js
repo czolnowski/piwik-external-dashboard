@@ -1,5 +1,6 @@
 (function (ng) {
     'use strict';
+
     var app = ng.module('piwikExtDash', [
         'ngCookies',
         'ngSanitize',
@@ -13,13 +14,14 @@
         'LocalStorageModule',
         'ui.bootstrap-slider',
         'ngBootstrap',
+        'angular-morrisjs',
 
         'piwikExtDash.auth',
         'piwikExtDash.dashboard',
         'piwikExtDash.users',
         'piwikExtDash.widget',
         'piwikExtDash.reports',
-        'piwikExtDash.evolution'
+        'piwikExtDash.morris'
     ]);
 
     app.config(function ($locationProvider) {
