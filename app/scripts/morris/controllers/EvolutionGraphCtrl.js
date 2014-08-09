@@ -4,7 +4,7 @@
     var EvolutionGraphCtrl = function ()
     {};
 
-    ng.module('piwikExtDash.evolution').controller(
+    ng.module('piwikExtDash.morris').controller(
         'EvolutionGraphCtrl',
         [
             EvolutionGraphCtrl

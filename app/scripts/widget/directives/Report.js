@@ -7,7 +7,7 @@
             restrict: 'A',
             transclude: true,
             scope: {
-                module: '@',
+                dule: '@',
                 action: '@',
                 evolution: '='
             },

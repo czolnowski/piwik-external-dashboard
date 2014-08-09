@@ -85,6 +85,8 @@
 
 <div class="row">
     <div class="col-md-{{report.size}} widget" ng-repeat="report in dashboard.reports">
-        <div widget report="report"></div>
+        <div single-widget
+             report="report"
+             dashboard="dashboard"></div>
     </div>
 </div>

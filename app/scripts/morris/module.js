@@ -1,5 +1,5 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.evolution', []);
+    ng.module('piwikExtDash.morris', []);
 })(angular);

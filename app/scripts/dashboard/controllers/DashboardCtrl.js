@@ -1,7 +1,9 @@
 (function (ng, Firebase) {
     'use strict';
 
-    var DashboardCtrl = function ($scope, _$routeParams, _$location, _$firebase, _md5, _$modal, _localStorageService)
+    var DashboardCtrl = function ($scope, _$routeParams, _$location,
+                                  _$firebase, _md5, _$modal, _localStorageService,
+                                  _Report)
     {
         $firebase = _$firebase;
         localStorageService = _localStorageService;
@@ -9,6 +11,7 @@
         md5 = _md5;
         $modal = _$modal;
         $routeParams = _$routeParams;
+        Report = _Report;
 
         this.sync = $firebase(
             new Firebase('https://piwik-ext-dashboard.firebaseio.com/dashboards')
@@ -25,7 +28,8 @@
         $firebase,
         $modal,
         md5,
-        $routeParams;
+        $routeParams,
+        Report;
 
     DashboardCtrl.prototype.initialize = function ()
     {
@@ -35,14 +39,14 @@
             this.isLoading = true;
 
             this.sync.$asObject().$loaded().then(function (response) {
-                that.reports = ng.fromJson(
+                that.reports = Report.unserialize(
                     response[$routeParams.dashboard]
                 );
 
                 that.isLoading = false;
             });
         } else {
-            var reports = ng.fromJson(
+            var reports = Report.unserialize(
                 localStorageService.get('reports')
             );
 
@@ -96,7 +100,7 @@
     };
 
     DashboardCtrl.prototype.exportDashboard = function () {
-        var reportsAsString = ng.toJson(this.serializeReports()),
+        var reportsAsString = Report.serialize(this.reports),
             reportsName = md5.createHash(reportsAsString),
             that = this;
 
@@ -115,7 +119,7 @@
 
     DashboardCtrl.prototype.persist = function ()
     {
-        var reportsAsString = ng.toJson(this.reports);
+        var reportsAsString = Report.serialize(this.reports);
 
         if (localStorageService.isSupported) {
             localStorageService.add("reports", reportsAsString);
@@ -126,31 +130,6 @@
         $location.search('dashboard', null);
     };
 
-    DashboardCtrl.prototype.serializeReports = function ()
-    {
-        var serialized = [];
-
-        ng.forEach(
-            this.reports,
-            function (report) {
-                serialized.push(
-                    {
-                        report: {
-                            action: report.report.action,
-                            module: report.report.module,
-                            category: report.report.category,
-                            name: report.report.name
-                        },
-                        visualization: report.visualization,
-                        size: report.size
-                    }
-                );
-            }
-        );
-
-        return serialized;
-    };
-
     ng.module('piwikExtDash.dashboard').controller("DashboardCtrl", [
         "$scope",
         "$routeParams",
@@ -159,6 +138,7 @@
         "md5",
         "$modal",
         "localStorageService",
+        "Report",
         DashboardCtrl
     ]);
 })(angular, window.Firebase);

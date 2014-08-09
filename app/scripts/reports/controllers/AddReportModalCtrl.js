@@ -1,9 +1,11 @@
 (function (ng) {
-    var AddReportModalCtrl = function ($scope, $modalInstance, reports, Report)
+    var AddReportModalCtrl = function (_$scope, $modalInstance, reports, Report)
     {
-        this.initializeSizes($scope);
-        this.initializeVisualizations($scope);
-        this.initializeReports($scope, reports, Report);
+        $scope = _$scope;
+
+        this.initializeSizes();
+        this.initializeVisualizations();
+        this.initializeReports(reports, Report);
 
         $scope.add = function ()
         {
@@ -20,9 +22,10 @@
         {
             $modalInstance.dismiss('cancel');
         };
-    };
+    },
+        $scope;
 
-    AddReportModalCtrl.prototype.initializeSizes = function ($scope)
+    AddReportModalCtrl.prototype.initializeSizes = function ()
     {
         $scope.size = null;
         $scope.sizes = [];
@@ -38,7 +41,7 @@
         };
     };
 
-    AddReportModalCtrl.prototype.initializeVisualizations = function ($scope)
+    AddReportModalCtrl.prototype.initializeVisualizations = function ()
     {
         $scope.visualization = null;
         $scope.visualizationTypes = ['table', 'evolution', 'bar', 'pie'];
@@ -50,7 +53,7 @@
         }
     };
 
-    AddReportModalCtrl.prototype.initializeReports = function ($scope, reports, Report)
+    AddReportModalCtrl.prototype.initializeReports = function (reports, Report)
     {
         $scope.report = null;
         $scope.reports = Report.groupMetaDataByColumn(
@@ -60,13 +63,14 @@
         $scope.changeReport = function (report)
         {
             if (ng.isDefined($scope.reports[report.category])) {
-                for (var index in $scope.reports[report.category]) {
-                    if ($scope.reports[report.category].hasOwnProperty(index)) {
-                        if ($scope.reports[report.category][index] === report) {
-                            $scope.report = report;
+                ng.forEach(
+                    $scope.reports[report.category],
+                    function (current) {
+                        if (report === current) {
+                            $scope.report = Report.createFromMetaData(current);
                         }
                     }
-                }
+                );
             }
         };
     };

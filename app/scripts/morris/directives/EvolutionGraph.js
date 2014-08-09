@@ -1,17 +1,17 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.evolution').directive(
+    ng.module('piwikExtDash.morris').directive(
         'evolutionGraph',
         [
             function ()
             {
                 return {
-                    require: '^report',
+                    require: '^singleWidget',
                     restrict: 'AE',
-                    templateUrl: 'views/evolution/graph.html',
-                    controller: 'EvolutionGraphCtrl',
-                    controllerAs: 'evolution',
+                    templateUrl: 'views/morris/evolution.html',
+//                    controller: 'EvolutionGraphCtrl',
+//                    controllerAs: 'evolution',
                     link: function($scope, elem, attrs, ctrl) {
                         console.log(ctrl);
                     }
