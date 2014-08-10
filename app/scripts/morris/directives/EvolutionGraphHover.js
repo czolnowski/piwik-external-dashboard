@@ -13,13 +13,13 @@
                     },
                     replace: true,
                     template:
-                        '<div class="morris-hover morris-default-style">' +
+                        '<div>' +
                             '<div class="morris-hover-row-label" ng-bind="label"></div>' +
                             '<div ng-repeat="metric in metrics"' +
                                 'ng-if="metric.enabled"' +
                                 'ng-style="{color: metric.color}"' +
                                 'class="morris-hover-point">' +
-                                ' {{ metric.name }}: {{ values[metric.key] }}' +
+                        '       {{ metric.name }}: {{ values[metric.key] }}' +
                             '</div>' +
                         '</div>'
                 };
