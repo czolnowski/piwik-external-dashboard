@@ -9,6 +9,8 @@
 
         $scope.add = function ()
         {
+            $scope.report.evolution = $scope.visualization === 'evolution';
+
             $modalInstance.close(
                 {
                     size: $scope.size,
