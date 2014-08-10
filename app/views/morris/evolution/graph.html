@@ -7,7 +7,11 @@
                data-tooltip-placement="bottom"
                data-tooltip="{{ metric.description }}"
                data-ng-click="toggleMetric($index)">
-                <small data-ng-bind="metric.name"></small>
+                <small>
+                    <span data-ng-hide="metric.enabled">[+]</span>
+                    <span data-ng-show="metric.enabled">[-]</span>
+                    <span data-ng-bind="metric.name"></span>
+                </small>
             </a>
         </li>
     </ul>
