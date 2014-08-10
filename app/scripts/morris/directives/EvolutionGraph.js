@@ -91,6 +91,8 @@
                         }
                     ],
                     link: function($scope, elem, attrs, ctrl) {
+                        ctrl.report.report.evolution = true;
+
                         ctrl.report.report.fetch().then(function (response) {
                             if (ng.isDefined(response.data.metadata)) {
                                 if (ng.isDefined(response.data.metadata.metrics)) {
@@ -116,12 +118,32 @@
                             }
 
                             if (ng.isDefined(response.data.reportData)) {
+                                var confirmedNumericValues = false;
+
                                 ng.forEach(
                                     response.data.reportData,
                                     function (values, key)
                                     {
                                         values[$scope.xkey] = new Date(key).getTime();
                                         $scope.data.push(values);
+
+                                        if (!confirmedNumericValues) {
+                                            ng.forEach(
+                                                values,
+                                                function (value, metricKey)
+                                                {
+                                                    if (!ng.isNumber(value)) {
+                                                        var index = $scope.ykeys.indexOf(metricKey);
+
+                                                        $scope.ykeys.splice(index, 1);
+                                                        $scope.labels.splice(index, 1);
+                                                        $scope.metrics.splice(index, 1);
+                                                    }
+                                                }
+                                            );
+
+                                            confirmedNumericValues = true;
+                                        }
                                     }
                                 );
                             }
