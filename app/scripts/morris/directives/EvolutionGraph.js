@@ -2,7 +2,7 @@
     'use strict';
 
     ng.module('piwikExtDash.morris').directive(
-        'evolutionGraph',
+        'morrisEvolutionGraph',
         [
             function ()
             {
@@ -76,7 +76,7 @@
 
                             $scope.hoverCallback = function (index, options, content, row)
                             {
-                                var html = '<div data-evolution-graph-hover ' +
+                                var html = '<div data-morris-evolution-graph-hover ' +
                                         'label="' + options.dateFormat(row.label) + '" ' +
                                         'metrics="metrics" ' +
                                         'values="values"></div>',
@@ -97,6 +97,7 @@
                             if (ng.isDefined(response.data.metadata)) {
                                 if (ng.isDefined(response.data.metadata.metrics)) {
                                     var i = -1;
+
                                     ng.forEach(
                                         response.data.metadata.metrics,
                                         function (name, key)
@@ -112,6 +113,9 @@
                                                     key: key
                                                 }
                                             );
+                                            if (i > $scope.metricsColors.length) {
+                                                i = -1;
+                                            }
                                         }
                                     );
                                 }

@@ -1,6 +1,6 @@
 (function (ng) {
     ng.module('piwikExtDash.morris').directive(
-        "evolutionGraphHover",
+        "morrisEvolutionGraphHover",
         [
             function ()
             {
