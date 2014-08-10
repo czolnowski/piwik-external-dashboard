@@ -21,7 +21,8 @@
         'piwikExtDash.users',
         'piwikExtDash.widget',
         'piwikExtDash.reports',
-        'piwikExtDash.morris'
+        'piwikExtDash.morris',
+        'piwikExtDash.whiteLabel'
     ]);
 
     app.config(function ($locationProvider) {
