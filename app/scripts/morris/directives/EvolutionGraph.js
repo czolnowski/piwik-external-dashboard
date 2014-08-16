@@ -4,15 +4,16 @@
     ng.module('piwikExtDash.morris').directive(
         'morrisEvolutionGraph',
         [
-            function ()
+            "moment", "metricsColors",
+            function (moment, metricsColors)
             {
                 return {
                     require: '^singleWidget',
                     restrict: 'AE',
                     templateUrl: 'views/morris/evolution/graph.html',
                     controller: [
-                        "$scope", "moment", "metricsColors", "$rootScope", "$compile",
-                        function ($scope, moment, metricsColors, $rootScope, $compile)
+                        "$scope",
+                        function ($scope)
                         {
                             var that = this;
 
@@ -21,7 +22,7 @@
                             $scope.ykeys = [];
                             $scope.labels = [];
 
-                            $scope.metricsColors = ng.copy(metricsColors);
+                            $scope.metricsColors = metricsColors;
                             $scope.metrics = [];
 
                             $scope.dateFormat = function (date)
@@ -31,15 +32,13 @@
 
                             $scope.toggleMetric = function (index)
                             {
-                                if (!ng.isDefined(that.graph)) {
+                                var metric;
+
+                                if (!ng.isDefined(that.graph) || !ng.isDefined($scope.metrics[index])) {
                                     return;
                                 }
 
-                                if (!ng.isDefined($scope.metrics[index])) {
-                                    return;
-                                }
-
-                                var metric = $scope.metrics[index];
+                                metric = $scope.metrics[index];
 
                                 if (metric.enabled) {
                                     var numberOfEnabled = $scope.metrics.filter(
@@ -57,15 +56,14 @@
                                 if (metric.enabled) {
                                     $scope.labels.splice(index, 0, metric.name);
                                     $scope.ykeys.splice(index, 0, metric.key);
-                                    $scope.metricsColors.splice(index, 0, metric.color);
                                 } else {
                                     var localIndex = $scope.ykeys.indexOf(metric.key);
 
                                     $scope.labels.splice(localIndex, 1);
                                     $scope.ykeys.splice(localIndex, 1);
-                                    $scope.metricsColors.splice(localIndex, 1);
                                 }
 
+                                $scope.rebuildMetricsColors();
                                 that.graph.setData($scope.data, true);
                             };
 
@@ -73,21 +71,6 @@
                             {
                                 that.graph = graph;
                             };
-
-                            $scope.hoverCallback = function (index, options, content, row)
-                            {
-                                var html = '<div data-morris-evolution-graph-hover ' +
-                                        'label="' + options.dateFormat(row.label) + '" ' +
-                                        'metrics="metrics" ' +
-                                        'values="values"></div>',
-                                    scope = $rootScope.$new();
-
-                                scope.metrics = $scope.metrics;
-                                scope.values = row;
-                                scope.label = options.dateFormat(row.label);
-
-                               return $compile(html)(scope);
-                            }
                         }
                     ],
                     link: function($scope, elem, attrs, ctrl) {
@@ -96,8 +79,6 @@
                         ctrl.report.report.fetch().then(function (response) {
                             if (ng.isDefined(response.data.metadata)) {
                                 if (ng.isDefined(response.data.metadata.metrics)) {
-                                    var i = -1;
-
                                     ng.forEach(
                                         response.data.metadata.metrics,
                                         function (name, key)
@@ -109,13 +90,9 @@
                                                     enabled: true,
                                                     description: response.data.metadata.metricsDocumentation[key],
                                                     name: name,
-                                                    color: $scope.metricsColors[++i],
                                                     key: key
                                                 }
                                             );
-                                            if (i > $scope.metricsColors.length) {
-                                                i = -1;
-                                            }
                                         }
                                     );
                                 }
@@ -128,9 +105,6 @@
                                     response.data.reportData,
                                     function (values, key)
                                     {
-                                        values[$scope.xkey] = new Date(key).getTime();
-                                        $scope.data.push(values);
-
                                         if (!confirmedNumericValues) {
                                             ng.forEach(
                                                 values,
@@ -148,10 +122,47 @@
 
                                             confirmedNumericValues = true;
                                         }
+
+                                        ng.forEach(
+                                            values,
+                                            function (value, key)
+                                            {
+                                                if (!ng.isNumber(value)) {
+                                                    delete values[key];
+                                                }
+
+                                                confirmedNumericValues = true;
+                                            }
+                                        );
+
+                                        values[$scope.xkey] = new Date(key).getTime();
+                                        $scope.data.push(values);
                                     }
                                 );
                             }
+
+                            $scope.rebuildMetricsColors();
                         });
+
+                        $scope.rebuildMetricsColors = function ()
+                        {
+                            var enabledMetrics = $scope.metrics.filter(
+                                    function (metric)
+                                    {
+                                        return metric.enabled;
+                                    }
+                                );
+
+                            ng.forEach(
+                                enabledMetrics,
+                                function (metric, index)
+                                {
+                                    metric.color = ng.copy(
+                                        $scope.metricsColors[index % $scope.metricsColors.length]
+                                    );
+                                }
+                            );
+                        };
                     }
                 };
             }
