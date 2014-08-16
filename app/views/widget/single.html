@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+    <div data-single-widget-header
+         data-report="report"
+         data-dashboard="dashboard"></div>
+    <div class="panel-body">
+        <div ng-if="report.visualization == 'evolution'"
+             data-morris-evolution-visualization></div>
+
+        <div ng-if="report.visualization == 'bar'"
+             data-morris-bar-visualization></div>
+
+        <div ng-if="report.visualization == 'pie'"
+             data-morris-pie-visualization></div>
+
+        <!--<div ng-if="report.visualization == 'bar'" bar-vis></div>-->
+        <!--<div ng-if="report.visualization == 'pie'" pie-vis></div>-->
+        <!--<div ng-if="report.visualization == 'table'" tablevis></div>-->
+    </div>
+</div>

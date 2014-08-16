@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="bower_components/select2/select2.css">
     <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" href="bower_components/morrisjs/morris.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -74,6 +75,9 @@ display: table;">
     <script src="bower_components/angular-bootstrap-slider/slider.js"></script>
     <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script src="bower_components/ng-bs-daterangepicker/src/ng-bs-daterangepicker.js"></script>
+    <script src="bower_components/raphael/raphael.js"></script>
+    <script src="bower_components/morrisjs/morris.js"></script>
+    <script src="bower_components/angular-morrisjs/angular-morrisjs.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -99,26 +103,37 @@ display: table;">
     <script src="scripts/widget/module.js"></script>
     <script src="scripts/widget/filters/isEmpty.js"></script>
 
-    <script src="scripts/widget/directives/Report.js"></script>
-    <script src="scripts/widget/controllers/ReportCtrl.js"></script>
-    <script src="scripts/widget/controllers/boot.ui.js"></script>
-    <script src="scripts/widget/controllers/ReportWidgetConfigCtrl.js"></script>
+    <!--<script src="scripts/widget/directives/Report.js"></script>-->
+    <script src="scripts/widget/directives/SingleWidget.js"></script>
+    <script src="scripts/widget/directives/SingleWidgetHeader.js"></script>
+    <!--<script src="scripts/widget/controllers/ReportCtrl.js"></script>-->
+    <!--<script src="scripts/widget/controllers/ReportWidgetConfigCtrl.js"></script>-->
+    <!--<script src="scripts/widget/controllers/WidgetCtrl.js"></script>-->
 
-    <script src="scripts/widget/directives/TableVis.js"></script>
-    <script src="scripts/widget/controllers/TableVisCtrl.js"></script>
+    <!--<script src="scripts/widget/directives/TableVis.js"></script>-->
+    <!--<script src="scripts/widget/controllers/TableVisCtrl.js"></script>-->
 
-    <script src="scripts/widget/directives/EvolutionVis.js"></script>
-    <script src="scripts/widget/controllers/EvolutionVisCtrl.js"></script>
+    <!--<script src="scripts/widget/directives/BarVis.js"></script>-->
+    <!--<script src="scripts/widget/controllers/BarVisCtrl.js"></script>-->
 
-    <script src="scripts/widget/directives/BarVis.js"></script>
-    <script src="scripts/widget/controllers/BarVisCtrl.js"></script>
-
-    <script src="scripts/widget/directives/PieVis.js"></script>
-    <script src="scripts/widget/controllers/PieVisCtrl.js"></script>
+    <!--<script src="scripts/widget/directives/PieVis.js"></script>-->
+    <!--<script src="scripts/widget/controllers/PieVisCtrl.js"></script>-->
 
     <script src="scripts/reports/module.js"></script>
     <script src="scripts/reports/controllers/AddReportModalCtrl.js"></script>
     <script src="scripts/reports/entities/Report.js"></script>
+
+    <script src="scripts/morris/module.js"></script>
+    <script src="scripts/morris/controllers/VisualizationCtrl.js"></script>
+    <script src="scripts/morris/controllers/PieVisualizationCtrl.js"></script>
+    <script src="scripts/morris/services/MetricsService.js"></script>
+    <script src="scripts/morris/services/Metric.js"></script>
+    <script src="scripts/morris/directives/MetricsSelector.js"></script>
+    <script src="scripts/morris/directives/EvolutionVisualization.js"></script>
+    <script src="scripts/morris/directives/BarVisualization.js"></script>
+    <script src="scripts/morris/directives/PieVisualization.js"></script>
+
+    <script src="scripts/white-label/module.js"></script>
 
     <script src="scripts/app.js"></script>
     <!-- endbuild -->
