@@ -8,6 +8,7 @@
             this.evolution = evolution;
             this.name = name;
             this.loading = false;
+            this.limit = false;
 
             this.result = [];
         },
@@ -18,16 +19,23 @@
     Report.prototype.fetch = function ()
     {
         var that = this,
-            request = $http.post(
-                '/api/API/getProcessedReport',
-                {
-                    apiModule: this.module,
-                    apiAction: this.action,
-                    idSite: $routeParams.idSite,
-                    period: this.getPeriod(),
-                    date: this.getDate()
-                }
-            );
+            parameters = {
+                apiModule: this.module,
+                apiAction: this.action,
+                idSite: $routeParams.idSite,
+                period: this.getPeriod(),
+                date: this.getDate()
+            },
+            request;
+
+        if (this.limit !== false) {
+            parameters.filter_limit = this.limit;
+        }
+
+        request = $http.post(
+            '/api/API/getProcessedReport',
+            parameters
+        );
 
         this.loading = true;
 

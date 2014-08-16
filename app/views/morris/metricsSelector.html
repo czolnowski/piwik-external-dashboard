@@ -1,0 +1,16 @@
+<ul class="list-inline">
+    <li data-ng-repeat="metric in metrics"
+        data-ng-style="{opacity: metric.enabled ? 1 : .4}">
+        <a href=""
+           data-ng-style="{color: metric.color}"
+           data-tooltip-placement="bottom"
+           data-tooltip="{{ metric.description }}"
+           data-ng-click="toggleMetric(metric, index)">
+            <small>
+                <span data-ng-hide="metric.enabled">[+]</span>
+                <span data-ng-show="metric.enabled">[-]</span>
+                <span data-ng-bind="metric.name"></span>
+            </small>
+        </a>
+    </li>
+</ul>

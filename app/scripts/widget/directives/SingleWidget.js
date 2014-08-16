@@ -18,7 +18,7 @@
                         '$scope',
                         function ($scope)
                         {
-                            this.report = $scope.report;
+                            this.report = $scope.report.report;
                         }
                     ]
                 };

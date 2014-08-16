@@ -1,0 +1,13 @@
+<div ng-if="data.length > 0">
+    <div data-morris-metrics-selector></div>
+    <div data-line-chart
+         data-data="data"
+         data-xkey="{{ xkey }}"
+         data-ykeys="ykeys"
+         data-labels="labels"
+         data-line-colors="metricsColors"
+         data-date-format="dateFormat"
+         data-set-graph="setGraphInstance"
+         data-hide-hover="true"
+         data-resize="true"></div>
+</div>
