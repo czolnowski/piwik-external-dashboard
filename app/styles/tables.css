@@ -37,3 +37,8 @@
     color: #a6a7aa;
     margin: 27px 0;
 }
+
+.table-responsive
+{
+    overflow-x: auto;
+}

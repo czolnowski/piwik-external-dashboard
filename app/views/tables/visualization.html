@@ -1,29 +1,31 @@
 <div>
-    <table class="table data-table table-bordered">
-        <thead>
-        <tr>
-            <th ng-click="sortBy('label')"
-                ng-class="{
-                    'sorting_desc': dimensions.sortBy === 'label' && dimensions.sortOrder === 'desc',
-                    'sorting_asc': dimensions.sortBy === 'label' && dimensions.sortOrder === 'asc'
-                }">Label</th>
+    <div class="table-responsive">
+        <table class="table data-table table-bordered">
+            <thead>
+            <tr>
+                <th ng-click="sortBy('label')"
+                    ng-class="{
+                        'sorting_desc': dimensions.sortBy === 'label' && dimensions.sortOrder === 'desc',
+                        'sorting_asc': dimensions.sortBy === 'label' && dimensions.sortOrder === 'asc'
+                    }">Label</th>
 
-            <th ng-repeat="column in columns"
-                ng-bind="column.label"
-                ng-click="sortBy(column.key)"
-                ng-class="{
-                    'sorting_desc': dimensions.sortBy === column.key && dimensions.sortOrder === 'desc',
-                    'sorting_asc': dimensions.sortBy === column.key && dimensions.sortOrder === 'asc'
-                }"></th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="row in data.reportData | orderBy: dimensions.sortBy:dimensions.sortOrder === 'desc' | limitFromTo: getFrom() : getTo()">
-                <td ng-bind="row.label"></td>
-                <td ng-repeat="column in columns" ng-bind="row[column.key]"></td>
+                <th ng-repeat="column in columns"
+                    ng-bind="column.label"
+                    ng-click="sortBy(column.key)"
+                    ng-class="{
+                        'sorting_desc': dimensions.sortBy === column.key && dimensions.sortOrder === 'desc',
+                        'sorting_asc': dimensions.sortBy === column.key && dimensions.sortOrder === 'asc'
+                    }"></th>
             </tr>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in data.reportData | orderBy: dimensions.sortBy:dimensions.sortOrder === 'desc' | limitFromTo: getFrom() : getTo()">
+                    <td ng-bind="row.label"></td>
+                    <td ng-repeat="column in columns" ng-bind="row[column.key]"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div data-table-pagination></div>
 </div>

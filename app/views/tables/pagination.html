@@ -1,8 +1,10 @@
 <div class="row panel-body">
-    <div class="col-md-4">
-        <div class="pull-right data-table-meta">
+    <div class="col-md-12">
+        <div class="data-table-meta text-center">
             Showing {{ (dimensions.page - 1) * dimensions.perPage + 1 }} to {{ dimensions.page * dimensions.perPage }} of {{ dimensions.total }}.
         </div>
+    </div>
+    <div class="col-md-4">
         <div class="btn-group pagination">
             <button type="button"
                     ng-class="{
@@ -35,7 +37,7 @@
         </div>
     </div>
 
-    <div class="col-md-6 text-right col-md-offset-2">
+    <div class="col-md-8 text-right">
         <div data-pagination
              data-total-items="dimensions.total"
              ng-model="dimensions.page"
