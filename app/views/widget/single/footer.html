@@ -1,7 +1,7 @@
 <div class="panel-footer">
     <button type="button"
             ng-repeat="visualization in visualizations"
-            ng-click="report.visualization = visualization"
+            ng-click="report.visualization = visualization; dashboard.persist();"
             ng-class="{
                 'btn-default': report.visualization !== visualization,
                 'btn-success': report.visualization === visualization
@@ -15,7 +15,9 @@
         </button>
         <ul class="dropdown-menu" role="menu">
             <li ng-repeat="size in sizes">
-                <a href ng-click="report.size = size; status.isopen = false;">{{ size }}</a>
+                <a href
+                   ng-hide="size === report.size"
+                   ng-click="report.size = size; status.isopen = false; dashboard.persist();">{{ size }}</a>
             </li>
         </ul>
     </div>
