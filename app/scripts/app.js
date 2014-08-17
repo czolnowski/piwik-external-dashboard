@@ -11,7 +11,6 @@
         'ui.select2',
         'firebase',
         'LocalStorageModule',
-        'ui.bootstrap-slider',
         'ngBootstrap',
         'angular-morrisjs',
 
