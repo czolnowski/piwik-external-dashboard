@@ -46,12 +46,14 @@
                 $scope.data,
                 function (values)
                 {
-                    $scope.pieData.push(
-                        {
-                            label: values.label,
-                            value: values[key]
-                        }
-                    );
+                    if (ng.isDefined(values[key])) {
+                        $scope.pieData.push(
+                            {
+                                label: values.label,
+                                value: values[key]
+                            }
+                        );
+                    }
                 }
             );
         };

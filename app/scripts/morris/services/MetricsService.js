@@ -71,7 +71,7 @@
             values,
             function (value, key)
             {
-                if (!ng.isNumber(value) && key !== labelKey) {
+                if (isNaN(value) && key !== labelKey) {
                     delete values[key];
                 }
             }
