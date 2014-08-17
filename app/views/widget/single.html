@@ -2,6 +2,17 @@
     <div data-single-widget-header
          data-report="report"
          data-dashboard="dashboard"></div>
+
+    <div class="panel-body text-center"
+         ng-if="report.report.loading">
+        <img src="images/loader.gif" />
+    </div>
+
+    <div class="panel-body text-center"
+         ng-if="report.report.data !== false && !report.report.loading && report.report.data | isEmpty">
+        <div class="alert alert-danger" role="alert">No data for this report.</div>
+    </div>
+
     <div class="panel-body">
         <div ng-if="report.visualization == 'evolution'"
              data-morris-evolution-visualization></div>

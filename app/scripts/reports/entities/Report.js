@@ -10,6 +10,7 @@
             this.loading = false;
             this.limit = false;
             this.metadata = {};
+            this.data = false;
         },
         $http = null,
         $routeParams = null,
@@ -41,6 +42,7 @@
         request.then(function (response) {
             that.loading = false;
             that.metadata = response.data.metadata;
+            that.data = response.data.reportData;
 
             return response;
         });
