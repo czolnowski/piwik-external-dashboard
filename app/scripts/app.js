@@ -27,25 +27,4 @@
     app.config(function ($locationProvider) {
         $locationProvider.html5Mode(true);
     });
-
-    app.run([
-        "$rootScope", "Authenticate",
-        function ($rootScope, Authenticate)
-        {
-            $rootScope.$on("$routeChangeStart", function (event, next) {
-                if (ng.isDefined(next.auth) && next.auth === true && !Authenticate.isAuthenticated()) {
-                    Authenticate.goToLogin();
-                    event.preventDefault();
-                }
-            });
-        }
-    ]);
-
-    app.config([
-        "$httpProvider",
-        function ($httpProvider)
-        {
-            $httpProvider.interceptors.push('TokenInterceptor');
-        }
-    ]);
 })(window.angular);
