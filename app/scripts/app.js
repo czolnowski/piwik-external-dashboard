@@ -6,7 +6,6 @@
         'ngSanitize',
         'ngRoute',
         'angular-md5',
-        'chartjs',
         'ui.bootstrap',
         'angularMoment',
         'ui.select2',
@@ -22,6 +21,7 @@
         'piwikExtDash.widget',
         'piwikExtDash.reports',
         'piwikExtDash.morris',
+        'piwikExtDash.tables',
         'piwikExtDash.whiteLabel'
     ]);
 

@@ -9,8 +9,7 @@
             this.name = name;
             this.loading = false;
             this.limit = false;
-
-            this.result = [];
+            this.metadata = {};
         },
         $http = null,
         $routeParams = null,
@@ -41,7 +40,7 @@
 
         request.then(function (response) {
             that.loading = false;
-            that.result = response.data;
+            that.metadata = response.data.metadata;
 
             return response;
         });
@@ -74,16 +73,6 @@
     Report.prototype.getNumberOfDaysForEvolution = function ()
     {
         return 10;
-    };
-
-    Report.prototype.getNumberOfColumnsForBar = function ()
-    {
-        return 5;
-    };
-
-    Report.prototype.getNumberOfColumnsForPie = function ()
-    {
-        return 5;
     };
 
     Report.createFromMetaData = function (metaData)

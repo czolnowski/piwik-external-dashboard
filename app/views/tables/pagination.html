@@ -1,0 +1,51 @@
+<div class="row panel-body">
+    <div class="col-md-4">
+        <div class="pull-right data-table-meta">
+            Showing {{ (dimensions.page - 1) * dimensions.perPage + 1 }} to {{ dimensions.page * dimensions.perPage }} of {{ dimensions.total }}.
+        </div>
+        <div class="btn-group pagination">
+            <button type="button"
+                    ng-class="{
+                        'btn-default': dimensions.perPage !== 10,
+                        'btn-success': dimensions.perPage === 10
+                    }"
+                    class="btn"
+                    ng-click="dimensions.perPage = 10">10</button>
+            <button type="button"
+                    ng-class="{
+                        'btn-default': dimensions.perPage !== 25,
+                        'btn-success': dimensions.perPage === 25
+                    }"
+                    class="btn"
+                    ng-click="dimensions.perPage = 25">25</button>
+            <button type="button"
+                    ng-class="{
+                        'btn-default': dimensions.perPage !== 50,
+                        'btn-success': dimensions.perPage === 50,
+                    }"
+                    class="btn"
+                    ng-click="dimensions.perPage = 50">50</button>
+            <button type="button"
+                    ng-class="{
+                        'btn-default': dimensions.perPage !== 100,
+                        'btn-success': dimensions.perPage === 100,
+                    }"
+                    class="btn"
+                    ng-click="dimensions.perPage = 100">100</button>
+        </div>
+    </div>
+
+    <div class="col-md-6 text-right col-md-offset-2">
+        <div data-pagination
+             data-total-items="dimensions.total"
+             ng-model="dimensions.page"
+             data-items-per-page="dimensions.perPage"
+             data-max-size="8"
+             data-boundary-links="true"
+             data-previous-text="&lsaquo;"
+             data-next-text="&rsaquo;"
+             data-first-text="&laquo;"
+             data-last-text="&raquo;"
+             ng-change="changePage()"></div>
+    </div>
+</div>
