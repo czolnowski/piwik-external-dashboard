@@ -1,66 +1,53 @@
-<div class="row login-box">
-    <div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Log into dashboard</h3>
-            </div>
-            <div class="panel-body">
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <label for="inputHost" class="col-sm-4 control-label">Piwik host name</label>
-                        <div class="col-sm-8">
-                            <input type="text"
-                                   id="inputHost"
-                                   class="form-control"
-                                   placeholder="demo.piwik.org"
-                                   ng-model="login.host" />
-                        </div>
-                    </div>
+<div class="login-page">
+    <form class="form-login">
+        <h3 class="form-login-heading">Please login to your Piwik</h3>
+        <input type="text"
+               class="form-control host-input"
+               name="host"
+               ng-model="login.host"
+               placeholder="Your piwik host name"  />
 
-                    <div class="form-group">
-                        <label for="inputLogin" class="col-sm-4 control-label">Login</label>
-                        <div class="col-sm-8">
-                            <input type="text"
-                                   id="inputLogin"
-                                   class="form-control"
-                                   placeholder="Piwik login"
-                                   ng-model="login.login"
-                                   ng-disabled="login.anonymous" />
-                        </div>
-                    </div>
+        <input type="text"
+               class="form-control login-input"
+               name="login"
+               ng-model="login.login"
+               placeholder="Your username"
+               ng-disabled="login.anonymous" />
 
-                    <div class="form-group">
-                        <label for="inputPassword" class="col-sm-4 control-label">Password</label>
-                        <div class="col-sm-8">
-                            <input type="password"
-                                   id="inputPassword"
-                                   class="form-control"
-                                   ng-model="login.password"
-                                   ng-disabled="login.anonymous" />
-                        </div>
-                    </div>
+        <input type="password"
+               class="form-control password-input"
+               name="password"
+               ng-model="login.password"
+               placeholder="Password"
+               ng-disabled="login.anonymous" />
 
-                    <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-8">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"
-                                           ng-model="login.anonymous"> Login as anonymous
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+        <label class="checkbox" for="asAnonymousCheckbox">
+            <input type="checkbox"
+                   id="asAnonymousCheckbox"
+                   name="anonymous" ng-model="login.anonymous"> Login as anonymous
+        </label>
 
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <button class="btn btn-lg btn-primary btn-block"
-                                    type="button"
-                                    ng-disabled="!login.isComplete()"
-                                    ng-click="login.process()">Sign in</button>
-                        </div>
-                    </div>
-                </form>
+        <div class="text-center"
+             ng-if="login.loading"
+             ng-cloak>
+            <div class="alert alert-info" role="alert">
+                Authenticating with your piwik, please wait...
             </div>
         </div>
-    </div>
+
+        <div class="text-center"
+             ng-if="login.noAccess"
+             ng-cloak>
+            <div class="alert alert-danger" role="alert">You don't have access to this Piwik!</div>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block"
+                type="button"
+                ng-disabled="!login.isComplete() || login.loading"
+                ng-click="login.process()">
+            <i class="fa fa-spinner fa-spin"
+               ng-if="login.loading"></i>
+            <span ng-if="!login.loading">Sign in</span>
+        </button>
+    </form>
 </div>

@@ -14,7 +14,8 @@
         },
         $http = null,
         $routeParams = null,
-        moment = null;
+        moment = null,
+        $q = null;
 
     Report.prototype.fetch = function ()
     {
@@ -27,6 +28,21 @@
                 date: this.getDate()
             },
             request;
+
+        if (!ng.isDefined($routeParams.idSite)) {
+            var deferred = $q.defer();
+
+            deferred.resolve(
+                {
+                    data: {}
+                }
+            );
+
+            that.loading = false;
+            that.data = {};
+
+            return deferred.promise;
+        }
 
         if (this.limit !== false) {
             parameters.filter_limit = this.limit;
@@ -156,12 +172,13 @@
     ng.module('piwikExtDash.reports').factory(
         "Report",
         [
-            "$http", "$routeParams", "moment",
-            function (_$http, _$routeParams, _moment)
+            "$http", "$routeParams", "moment", "$q",
+            function (_$http, _$routeParams, _moment, _$q)
             {
                 $http = _$http;
                 $routeParams = _$routeParams;
                 moment = _moment;
+                $q = _$q;
 
                 return Report;
             }

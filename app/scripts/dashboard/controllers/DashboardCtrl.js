@@ -112,7 +112,7 @@
 
     DashboardCtrl.prototype.exportDashboard = function () {
         var reportsAsString = Report.serialize(this.reports),
-            reportsName = md5.createHash(reportsAsString),
+            reportsName = md5(reportsAsString),
             that = this;
 
         this.exportIsLoading = true;

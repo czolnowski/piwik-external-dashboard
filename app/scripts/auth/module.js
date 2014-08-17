@@ -4,12 +4,10 @@
     var app = ng.module('piwikExtDash.auth', []);
 
     app.run([
-        "$cookieStore", "Token", "Authenticate",
-        function ($cookieStore, Token, Authenticate)
+        "Token", "Authenticate",
+        function (Token, Authenticate)
         {
-            if (ng.isDefined($cookieStore.get("token"))) {
-                Token.createFromTokenInstance($cookieStore.get("token"));
-            }
+            Token.restore();
 
             if (Authenticate.isAuthenticated()) {
                 if (!ng.isDefined(Authenticate.me)) {
@@ -28,12 +26,12 @@
     ]);
 
     app.run([
-        "$rootScope", "Authenticate",
-        function ($rootScope, Authenticate)
+        "$rootScope", "Authenticate", "$location",
+        function ($rootScope, Authenticate, $location)
         {
             $rootScope.$on("$routeChangeStart", function (event, next) {
                 if (ng.isDefined(next.auth) && next.auth === true && !Authenticate.isAuthenticated()) {
-                    Authenticate.goToLogin();
+                    $location.path(Authenticate.getLoginPath());
                     event.preventDefault();
                 }
             });

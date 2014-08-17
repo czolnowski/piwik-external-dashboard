@@ -1,35 +1,60 @@
 (function (ng) {
     'use strict';
 
-    var LoginCtrl = function (authenticate)
-    {
-        this.authenticate = authenticate;
+    var Site,
+        $location,
+        LoginCtrl = function (authenticate, _Site, _$location)
+        {
+            this.authenticate = authenticate;
 
-        this.host = "";
-        this.login = "";
-        this.password = "";
-        this.anonymous = false;
-        this.loading = false;
-    };
+            this.host = "";
+            this.login = "";
+            this.password = "";
+            this.anonymous = false;
+            this.loading = false;
+            this.noAccess = false;
+
+            Site = _Site;
+            $location = _$location;
+        };
 
     LoginCtrl.prototype.process = function ()
     {
+        var request,
+            that = this;
         if (this.anonymous) {
-            this.authenticate.asAnonymous(this.host);
+            request = this.authenticate.asAnonymous(this.host);
         } else {
-            var request = this.authenticate.login(
-                    this.host,
-                    this.login,
-                    this.password
-                ),
-                that = this;
-
-            this.loading = true;
-
-            request['finally'](function () {
-                that.loading = false;
-            });
+            request = this.authenticate.login(
+                this.host,
+                this.login,
+                this.password
+            );
         }
+
+        this.loading = true;
+
+        request.then(
+            function ()
+            {
+                Site.fetchAllWithAtLeastViewAccess().then(
+                    function (response)
+                    {
+                        if (ng.isArray(response.data)) {
+                            if (response.data.length > 0) {
+                                $location.path("/" + response.data[0].idsite);
+                            } else {
+                                that.noAccess = true;
+                            }
+                        }
+                    }
+                );
+            }
+        );
+
+        request['finally'](function () {
+            that.loading = false;
+        });
     };
 
     LoginCtrl.prototype.isComplete = function ()
@@ -43,7 +68,7 @@
     };
 
     ng.module('piwikExtDash.auth').controller("LoginCtrl", [
-        "Authenticate",
+        "Authenticate", "Site", "$location",
         LoginCtrl
     ]);
 })(angular);

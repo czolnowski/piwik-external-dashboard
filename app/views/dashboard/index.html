@@ -1,95 +1,23 @@
-<nav class="navbar navbar-default navbar-fixed-top"
-     role="navigation"
-     id="top-navbar"
-     ng-controller="DashboardNavBarCtrl as navBar">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ped-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Piwik external dashboard</a>
+<div class="page-container">
+
+    <div application-sidebar
+         active="dashboard"></div>
+
+    <div class="container">
+
+        <div dashboard-nav-bar></div>
+
+        <div class="row"
+             ui-sortable="dashboard.sortableOptions"
+             ng-model="dashboard.reports">
+            <div class="col-md-{{report.size}} widget"
+                 ng-repeat="report in dashboard.reports">
+                <div single-widget
+                     report="report"
+                     dashboard="dashboard"></div>
+            </div>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="ped-navbar-collapse">
-            <form class="navbar-form navbar-left" role="search" ng-controller="DatePickerCtrl as datePicker">
-                <div class="form-group">
-                    <input type="daterange"
-                           class="form-control col-md-4"
-                           ng-model="dates"
-                           ng-show="datePicker.period === 'day'"
-                           singleDatePicker="true" />
-
-                    <input type="daterange"
-                           class="form-control col-md-4"
-                           ng-model="dates"
-                           ng-show="datePicker.period === 'range'"
-                           singleDatePicker="false"
-                           ranges="datePicker.ranges" />
-                </div>
-
-                <div class="btn-group">
-                    <button type="button"
-                            class="btn"
-                            ng-click="datePicker.period = 'day'"
-                            ng-class="{
-                                'btn-default': datePicker.period !== 'day',
-                                'btn-success': datePicker.period === 'day'
-                            }">day</button>
-                    <button type="button"
-                            class="btn"
-                            ng-click="datePicker.period = 'range'"
-                            ng-class="{
-                                'btn-default': datePicker.period !== 'range',
-                                'btn-success': datePicker.period === 'range'
-                            }">range</button>
-                </div>
-            </form>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href=""
-                       ng-click="dashboard.openReportsModal()"
-                       ng-disabled="dashboard.reportsModalIsLoading"><i class="glyphicon glyphicon-plus"></i> Add widget</a>
-                </li>
-                <li>
-                    <a href=""
-                       ng-click="dashboard.exportDashboard()"
-                       ng-disabled="dashboard.exportIsLoading"><i class="glyphicon glyphicon-export"></i> Export dashboard</a>
-                </li>
-                <li class="dropdown" ng-init="user = navBar.getUser()">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">{{ user.alias }} <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="/login" ng-click="navBar.logout()"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            <form class="navbar-form navbar-right" role="search" ng-controller="SiteSelectorCtrl" ng-show="sites">
-                <div class="form-group">
-                    <select ng-model="site" class="form-control"
-                            ng-options="site.name for site in sites">
-                    </select>
-                </div>
-            </form>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
-
-<div class="row" ng-if="isLoading" id="loader">
-    <img src="images/loader.gif" />
-</div>
-
-<div class="row"
-     ui-sortable="dashboard.sortableOptions"
-     ng-model="dashboard.reports">
-    <div class="col-md-{{report.size}} widget"
-         ng-repeat="report in dashboard.reports">
-        <div single-widget
-             report="report"
-             dashboard="dashboard"></div>
     </div>
+
 </div>

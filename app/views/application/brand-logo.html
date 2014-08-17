@@ -1,0 +1,27 @@
+<header class="logo-env">
+
+    <div class="logo">
+        <a href="/">
+            <img ng-src="{{ logoUrl }}" alt="" /><br />
+        </a>
+        <a href="{{ changeLogUrl }}"
+           target="_blank">
+            <small ng-bind="version"></small>
+        </a>
+    </div>
+
+    <!-- logo collapse icon -->
+
+    <div class="sidebar-collapse">
+        <a href="#" class="sidebar-collapse-icon with-animation">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <div class="sidebar-mobile-menu visible-xs">
+        <a href="#" class="with-animation">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+</header>

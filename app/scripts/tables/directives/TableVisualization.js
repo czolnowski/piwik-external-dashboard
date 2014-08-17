@@ -19,6 +19,10 @@
                         ctrl.report.fetch().then(
                             function (response)
                             {
+                                if (!ng.isDefined(response.data.metadata)) {
+                                    return;
+                                }
+
                                 var columns = ng.extend(
                                     response.data.metadata.metrics,
                                     response.data.metadata.processedMetrics

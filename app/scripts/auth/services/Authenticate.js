@@ -1,13 +1,13 @@
 (function (ng) {
-    var Authenticate = function (token, user, http, cookieStore, $location)
-    {
-        this.token = token;
-        this.user = user;
+    var
+        $q,
+        Authenticate = function (token, user, _$q)
+        {
+            this.token = token;
+            this.user = user;
 
-        this.http = http;
-        this.cookieStore = cookieStore;
-        this.$location = $location;
-    };
+            $q = _$q;
+        };
 
     Authenticate.prototype.login = function (host, login, password)
     {
@@ -20,10 +20,8 @@
                     that.token.setTokenAuth(response.data.value);
                     that.token.setHost(host);
                     that.token.setLogin(login);
-                    that.cookieStore.put('token', that.token);
+                    that.token.persist();
                     that.getUserInformation(login);
-
-                    that.$location.path('/');
                 } else {
                     console.log('something goes wrong')
                 }
@@ -35,14 +33,18 @@
 
     Authenticate.prototype.asAnonymous = function (host)
     {
+        var deferred = $q.defer();
+
+        deferred.resolve('anonymous');
+
         this.token.setTokenAuth('anonymous');
         this.token.setHost(host);
         this.token.setLogin('anonymous');
         this.getUserInformation('anonymous');
 
-        this.cookieStore.put('token', this.token);
+        this.token.persist();
 
-        this.$location.path('/');
+        return deferred.promise;
     };
 
     Authenticate.prototype.isAuthenticated = function ()
@@ -50,9 +52,9 @@
         return this.token.isValid();
     };
 
-    Authenticate.prototype.goToLogin = function ()
+    Authenticate.prototype.getLoginPath = function ()
     {
-        this.$location.path('/login');
+        return '/login';
     };
 
     Authenticate.prototype.getUserInformation = function (login)
@@ -63,7 +65,7 @@
     };
 
     ng.module('piwikExtDash.auth').service("Authenticate", [
-        "Token", "User", "$http", "$cookieStore", "$location",
+        "Token", "User", "$q",
         Authenticate
     ]);
 })(angular);

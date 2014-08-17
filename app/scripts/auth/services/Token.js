@@ -1,24 +1,28 @@
 (function (ng) {
     'use strict';
 
-    var Token = function ($http, md5)
-    {
-        this.$http = $http;
-        this.md5 = md5;
+    var $cookieStore,
+        $http,
+        md5,
+        Token = function (_$http, _md5, _$cookieStore)
+        {
+            this.login = null;
+            this.token_auth = null;
+            this.host = null;
 
-        this.login = null;
-        this.token_auth = null;
-        this.host = null
-    };
+            $http = _$http;
+            md5 = _md5;
+            $cookieStore = _$cookieStore;
+        };
 
     Token.prototype.get = function (host, login, password)
     {
-        return this.$http.post(
+        return $http.post(
             '/api/UsersManager/getTokenAuth',
             {
                 host: host,
                 userLogin: login,
-                md5Password: this.md5.createHash(password)
+                md5Password: md5(password)
             }
         );
     };
@@ -59,12 +63,33 @@
             && this.host !== null;
     };
 
-    Token.prototype.createFromTokenInstance = function (token)
+    Token.prototype.persist = function ()
     {
-        this.token_auth = token.token_auth;
-        this.login = token.login;
-        this.host = token.host;
+        $cookieStore.put(
+            'token',
+            {
+                token_auth: this.token_auth,
+                login: this.login,
+                host: this.host
+            }
+        );
     };
 
-    ng.module('piwikExtDash.auth').service('Token', ['$http', 'md5', Token]);
+    Token.prototype.restore = function ()
+    {
+        var token = $cookieStore.get("token");
+        if (ng.isDefined(token)) {
+            this.token_auth = token.token_auth;
+            this.login = token.login;
+            this.host = token.host;
+        }
+    };
+
+    ng.module('piwikExtDash.auth').service(
+        'Token',
+        [
+            '$http', 'md5', '$cookieStore',
+            Token
+        ]
+    );
 })(angular);

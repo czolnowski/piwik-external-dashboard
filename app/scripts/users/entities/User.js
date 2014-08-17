@@ -1,10 +1,12 @@
 (function (ng) {
-    var User = function ()
-    {
-        this.login = null;
-        this.alias = null;
-    },
-        _$http = null;
+    var $http = null,
+        User = function ()
+        {
+            this.login = null;
+            this.alias = null;
+            this.email = null;
+            this.superuser = false;
+        };
 
     User.prototype.me = function ()
     {
@@ -23,15 +25,19 @@
             that = this;
 
         request.then(function (response) {
-            that.alias = response[0].alias
+            if (response.data.length === 1) {
+                that.alias = response.data[0].alias;
+                that.email = response.data[0].email;
+                that.superuser = response.data[0].superuser_access === '1';
+            }
         });
     };
 
     ng.module('piwikExtDash.users').factory('User', [
         "$http",
-        function ($http)
+        function (_$http)
         {
-            _$http = $http;
+            $http = _$http;
 
             return User;
         }

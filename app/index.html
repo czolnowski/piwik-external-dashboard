@@ -25,27 +25,25 @@
     <link rel="stylesheet" href="styles/dashboard.css" />
     <link rel="stylesheet" href="styles/sticky-footer-navbar.css" />
     <link rel="stylesheet" href="styles/tables.css" />
+    <link rel="stylesheet" href="styles/page-container.css" />
+    <link rel="stylesheet" href="styles/login-page.css" />
     <!-- endbuild -->
   </head>
-  <body ng-app="piwikExtDash"
-          style="
-          padding: 0;
-margin: 0;
-background: #000000 url(/images/backgrounds/01.jpg) no-repeat center top;
-width: 100%;
-display: table;">
+  <body ng-app="piwikExtDash">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div ng-view=""></div>
 
     <div class="footer">
         <div class="container">
             <p class="text-muted text-center"><a href="https://piwik.pro">Piwik PRO</a></p>
         </div>
     </div>
+
+    <div application-backdrop></div>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -78,6 +76,8 @@ display: table;">
     <script src="bower_components/morrisjs/morris.js"></script>
     <script src="bower_components/angular-morrisjs/angular-morrisjs.js"></script>
     <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+    <script src="bower_components/angular-gravatar/build/md5.js"></script>
+    <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -92,13 +92,19 @@ display: table;">
     <script src="scripts/auth/services/TokenInterceptor.js"></script>
     <script src="scripts/auth/controllers/LoginCtrl.js"></script>
 
+    <script src="scripts/application/module.js"></script>
+    <script src="scripts/application/directives/Sidebar.js"></script>
+    <script src="scripts/application/directives/BrandLogo.js"></script>
+    <script src="scripts/application/directives/Backdrop.js"></script>
+    <script src="scripts/application/directives/UserBar.js"></script>
+
     <script src="scripts/dashboard/module.js"></script>
     <script src="scripts/dashboard/routes.js"></script>
     <script src="scripts/dashboard/controllers/DashboardCtrl.js"></script>
     <script src="scripts/dashboard/controllers/SiteSelectorCtrl.js"></script>
-    <script src="scripts/dashboard/controllers/DashboardNavBarCtrl.js"></script>
     <script src="scripts/dashboard/controllers/DatePickerCtrl.js"></script>
     <script src="scripts/dashboard/entities/Reports.js"></script>
+    <script src="scripts/dashboard/directives/DashboardNavBar.js"></script>
 
     <script src="scripts/widget/module.js"></script>
     <script src="scripts/widget/filters/isEmpty.js"></script>
@@ -109,6 +115,9 @@ display: table;">
     <script src="scripts/reports/module.js"></script>
     <script src="scripts/reports/controllers/AddReportModalCtrl.js"></script>
     <script src="scripts/reports/entities/Report.js"></script>
+
+    <script src="scripts/sites/module.js"></script>
+    <script src="scripts/sites/entities/Site.js"></script>
 
     <script src="scripts/morris/module.js"></script>
     <script src="scripts/morris/controllers/VisualizationCtrl.js"></script>
