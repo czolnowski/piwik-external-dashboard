@@ -83,8 +83,11 @@
     <img src="images/loader.gif" />
 </div>
 
-<div class="row">
-    <div class="col-md-{{report.size}} widget" ng-repeat="report in dashboard.reports">
+<div class="row"
+     ui-sortable="dashboard.sortableOptions"
+     ng-model="dashboard.reports">
+    <div class="col-md-{{report.size}} widget"
+         ng-repeat="report in dashboard.reports">
         <div single-widget
              report="report"
              dashboard="dashboard"></div>

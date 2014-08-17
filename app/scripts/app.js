@@ -13,6 +13,7 @@
         'LocalStorageModule',
         'ngBootstrap',
         'angular-morrisjs',
+        'ui.sortable',
 
         'piwikExtDash.auth',
         'piwikExtDash.dashboard',

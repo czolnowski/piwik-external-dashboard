@@ -3,8 +3,10 @@
 
     var DashboardCtrl = function ($scope, _$routeParams, _$location,
                                   _$firebase, _md5, _$modal, _localStorageService,
-                                  _Report)
+                                  _Report, $timeout)
     {
+        var that = this;
+
         $firebase = _$firebase;
         localStorageService = _localStorageService;
         $location = _$location;
@@ -20,6 +22,15 @@
         this.isLoading = false;
         this.reportsModalIsLoading = false;
         this.exportIsLoading = false;
+
+        this.sortableOptions = {
+            update: function ()
+            {
+                $timeout(function () {
+                    that.persist();
+                });
+            }
+        };
 
         this.initialize();
     },
@@ -139,6 +150,7 @@
         "$modal",
         "localStorageService",
         "Report",
+        "$timeout",
         DashboardCtrl
     ]);
 })(angular, window.Firebase);
