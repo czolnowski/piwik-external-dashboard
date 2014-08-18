@@ -1,7 +1,7 @@
 <div class="row panel-body">
     <div class="col-md-12">
         <div class="data-table-meta text-center">
-            Showing {{ (dimensions.page - 1) * dimensions.perPage + 1 }} to {{ dimensions.page * dimensions.perPage }} of {{ dimensions.total }}.
+            Showing {{ (dimensions.page - 1) * dimensions.perPage + 1 }} to {{ dimensions.page * dimensions.perPage | min: dimensions.total }} of {{ dimensions.total }}.
         </div>
     </div>
     <div class="col-md-4">
