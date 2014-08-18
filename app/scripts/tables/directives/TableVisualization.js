@@ -32,18 +32,43 @@
                                 $scope.data = response.data;
                                 $scope.columns = [];
 
-                                ng.forEach(
-                                    columns,
-                                    function (label, key)
-                                    {
-                                        $scope.columns.push(
-                                            {
-                                                key: key,
-                                                label: label
-                                            }
-                                        );
-                                    }
-                                );
+                                if (ng.isArray(response.data.reportData)) {
+                                    ng.forEach(
+                                        columns,
+                                        function (label, key)
+                                        {
+                                            $scope.columns.push(
+                                                {
+                                                    key: key,
+                                                    label: label
+                                                }
+                                            );
+                                        }
+                                    );
+                                } else {
+                                    $scope.columns = [
+                                        {
+                                            key: 'value',
+                                            label: 'Value'
+                                        }
+                                    ];
+
+                                    var data = ng.copy(response.data.reportData);
+
+                                    $scope.data.reportData = [];
+                                    ng.forEach(
+                                        data,
+                                        function (value, key)
+                                        {
+                                            $scope.data.reportData.push(
+                                                {
+                                                    label: columns[key],
+                                                    value: value
+                                                }
+                                            );
+                                        }
+                                    );
+                                }
 
                                 $scope.dimensions = {
                                     page: 1,
