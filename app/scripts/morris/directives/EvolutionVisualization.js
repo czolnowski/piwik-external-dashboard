@@ -35,7 +35,7 @@
                                     }
 
                                     if (firstRow !== null) {
-                                        if (ng.isObject(firstRow)) {
+                                        if (ng.isObject(firstRow) && !ng.isArray(firstRow)) {
                                             $scope.data = MetricsService.parseValues(
                                                 response.data.reportData,
                                                 $scope.ykeys,
@@ -48,6 +48,7 @@
                                                 }
                                             );
                                         } else {
+                                            console.log('multiple')
                                             var firstLoop = true,
                                                 keyForValues = $scope.metrics[0].key,
                                                 numberOfMetrics = 0,
