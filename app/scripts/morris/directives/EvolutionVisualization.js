@@ -25,55 +25,66 @@
                                 );
 
                                 if (ng.isDefined(response.data.reportData)) {
-                                    if (ng.isObject(response.data.reportData[0])) {
-                                        console.log('nie ma transformacji', response.data.reportData)
-                                        $scope.data = MetricsService.parseValues(
-                                            response.data.reportData,
-                                            $scope.ykeys,
-                                            $scope.labels,
-                                            $scope.metrics,
-                                            $scope.xkey,
-                                            function (values, key)
-                                            {
-                                                values[$scope.xkey] = new Date(key).getTime();
-                                            }
-                                        );
-                                    } else {
-                                        var firstLoop = true,
-                                            keyForValues = $scope.metrics[0].key,
-                                            numberOfMetrics = 0;
-                                        for (var key in response.data.reportData) {
-                                            if (response.data.reportData.hasOwnProperty(key)) {
-                                                var values = response.data.reportData[key],
-                                                    valuesForData = {};
+                                    var firstRow = null;
+                                    for (var date in response.data.reportData) {
+                                        if (response.data.reportData.hasOwnProperty(date)) {
+                                            firstRow = response.data.reportData[date];
 
-                                                if (firstLoop) {
-                                                    numberOfMetrics = Math.min(10, values.length);
-                                                    firstLoop = false;
+                                            break;
+                                        }
+                                    }
 
-                                                    $scope.ykeys = [];
-                                                    $scope.metrics = [];
-                                                    $scope.labels = [];
+                                    if (firstRow !== null) {
+                                        if (ng.isObject(firstRow)) {
+                                            $scope.data = MetricsService.parseValues(
+                                                response.data.reportData,
+                                                $scope.ykeys,
+                                                $scope.labels,
+                                                $scope.metrics,
+                                                $scope.xkey,
+                                                function (values, key)
+                                                {
+                                                    values[$scope.xkey] = new Date(key).getTime();
+                                                }
+                                            );
+                                        } else {
+                                            var firstLoop = true,
+                                                keyForValues = $scope.metrics[0].key,
+                                                numberOfMetrics = 0,
+                                                i;
+                                            for (var key in response.data.reportData) {
+                                                if (response.data.reportData.hasOwnProperty(key)) {
+                                                    var values = response.data.reportData[key],
+                                                        valuesForData = {};
 
-                                                    for (var i = 0; i < numberOfMetrics; ++i) {
-                                                        $scope.ykeys.push('metric' + i);
-                                                        $scope.labels.push(values[i].label);
-                                                        $scope.metrics.push(
-                                                            new Metric(
-                                                                values[i].label,
-                                                                'metric' + i,
-                                                                ""
-                                                            )
-                                                        );
+                                                    if (firstLoop) {
+                                                        numberOfMetrics = Math.min(10, values.length);
+                                                        firstLoop = false;
+
+                                                        $scope.ykeys = [];
+                                                        $scope.metrics = [];
+                                                        $scope.labels = [];
+
+                                                        for (i = 0; i < numberOfMetrics; ++i) {
+                                                            $scope.ykeys.push('metric' + i);
+                                                            $scope.labels.push(values[i].label);
+                                                            $scope.metrics.push(
+                                                                new Metric(
+                                                                    values[i].label,
+                                                                    'metric' + i,
+                                                                    ""
+                                                                )
+                                                            );
+                                                        }
                                                     }
-                                                }
 
-                                                for (var i = 0; i < numberOfMetrics; ++i) {
-                                                    valuesForData['metric' + i] = values[i][keyForValues];
-                                                }
+                                                    for (i = 0; i < numberOfMetrics; ++i) {
+                                                        valuesForData['metric' + i] = values[i][keyForValues];
+                                                    }
 
-                                                valuesForData[$scope.xkey] = new Date(key).getTime();
-                                                $scope.data.push(valuesForData);
+                                                    valuesForData[$scope.xkey] = new Date(key).getTime();
+                                                    $scope.data.push(valuesForData);
+                                                }
                                             }
                                         }
                                     }
