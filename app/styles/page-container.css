@@ -1,46 +1,61 @@
+/*  PAGE CONTAINER ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- */
 .page-container {
-    padding-left: 40px;
+    /*padding-left: 40px;*/
+    /*-webkit-transition: all 1s ease;*/
+    /*-moz-transition: all 1s ease;*/
+    /*-o-transition: all 1s ease;*/
+    /*transition: all 1s ease;*/
+}
+
+.page-container,
+.page-container .sidebar{
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
     transition: all 1s ease;
 }
 
-.page-container.toggled {
-    padding-left: 240px;
-}
+/*.page-container.toggled {*/
+    /*padding-left: 240px;*/
+/*}*/
 
+/*.page-container .sidebar {*/
+    /*-webkit-transition: all 1s ease;*/
+    /*-moz-transition: all 1s ease;*/
+    /*-o-transition: all 1s ease;*/
+    /*transition: all 1s ease;*/
+/*}*/
+
+/*.page-container.toggled .sidebar {*/
+    /*width: 240px;*/
+/*}*/
+
+.page-container .container,
 .page-container .sidebar {
-    z-index: 1000;
-    position: fixed;
-    left: 240px;
-    width: 0;
-    height: 100%;
-    margin-left: -240px;
-    overflow-y: auto;
-    border-right: 1px solid #e7e7e7;
-    background: #f8f8f8;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    transition: all 1s ease;
-}
-
-.page-container.toggled .sidebar {
-    width: 240px;
-}
-
-.page-container .container {
     width: 100%;
     padding: 15px;
 }
 
-.page-container.toggled .container {
-    position: absolute;
-    margin-right: -240px;
+.page-container .sidebar {
+    padding-bottom: 5px;
 }
 
+.page-container .sidebar .box {
+    background-color: #f8f8f8;
+}
+
+/*.page-container .sidebar .logo-env .sidebar-collapse {*/
+    /*display: none;*/
+/*}*/
+
+/*.page-container.toggled .container {*/
+    /*position: absolute;*/
+    /*margin-right: -240px;*/
+/*}*/
+
 /* Sidebar Styles */
+
+/*  SIDEBAR UL ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- */
 
 .page-container .sidebar ul {
     width: 100%;
@@ -52,10 +67,10 @@
     padding: 0 20px;
     line-height: 40px;
     background-color: #e7e7e7;
-    -webkit-transition: all .4s ease;
-    -moz-transition: all .4s ease;
-    -o-transition: all .4s ease;
-    transition: all .4s ease;
+    -webkit-transition: color 250ms ease-in-out,background-color 250ms ease-in-out;
+    -moz-transition: color 250ms ease-in-out,background-color 250ms ease-in-out;
+    -o-transition: color 250ms ease-in-out,background-color 250ms ease-in-out;
+    transition: color 250ms ease-in-out,background-color 250ms ease-in-out;
 }
 
 .page-container .sidebar ul li:hover,
@@ -66,6 +81,10 @@
 .page-container .sidebar ul li a {
     color: #777777;
     display: block;
+    -webkit-transition: color 250ms ease-in-out,background-color 250ms ease-in-out;
+    -moz-transition: color 250ms ease-in-out,background-color 250ms ease-in-out;
+    -o-transition: color 250ms ease-in-out,background-color 250ms ease-in-out;
+    transition: color 250ms ease-in-out,background-color 250ms ease-in-out;
 }
 
 .page-container .sidebar ul li a:hover {
@@ -73,39 +92,56 @@
     text-decoration: none;
 }
 
-.page-container .sidebar ul li a:active,
-.page-container .sidebar ul li a:focus {
-}
+/*  SIDEBAR LOGO-BOX ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- */
 
-.page-container .sidebar .logo-env {
+.page-container .sidebar .logo-box {
     width: 100%;
     padding: 35px;
     height: 110px;
     border-bottom: 1px solid #e7e7e7;
 }
 
-.page-container .sidebar .logo-env .logo img {
+.page-container .sidebar .logo-box .logo img {
     max-width: 120px;
 }
 
-.page-container .sidebar .logo-env > div {
+.page-container .sidebar .logo-box > div {
     display: block;
     vertical-align: middle;
     white-space: nowrap;
     float: left;
 }
 
-.page-container .sidebar .logo-env > div.sidebar-collapse {
+.page-container .sidebar .logo-box .sidebar-collapse-button {
     position: relative;
     float: right;
 }
 
-.page-container .sidebar .user-info {
+.page-container .sidebar .logo-box .sidebar-collapse-button button {
+    padding: 7px;
+    background-color: #e7e7e7;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+}
+
+.page-container .sidebar .logo-box .sidebar-collapse-button button:hover {
+    background-color: #f7f7f7;
+}
+
+.page-container .sidebar .logo-box .sidebar-collapse-button i {
+    font-size: 15px;
+    color: #ccc;
+    width: 20px;
+}
+
+/*  SIDEBAR USER-BOX ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- */
+
+.page-container .sidebar .user-box {
     position: relative;
     padding: 25px 35px;
     border-bottom: 1px solid #e7e7e7;
 }
-.page-container .sidebar .user-info img {
+.page-container .sidebar .user-box img {
     float: left;
     margin-right: 15px;
     border: 4px solid rgba(0,0,0,.11);
@@ -114,8 +150,8 @@
     height: auto;
 }
 
-.page-container .sidebar .user-info span,
-.page-container .sidebar .user-info strong {
+.page-container .sidebar .user-box span,
+.page-container .sidebar .user-box strong {
     display: block;
     font-size: 12px;
     color: #333;
@@ -123,7 +159,7 @@
     line-height: 1.2;
 }
 
-.page-container .sidebar .user-info span {
+.page-container .sidebar .user-box span {
     -webkit-opacity: .8;
     -moz-opacity: .8;
     opacity: .8;
@@ -131,43 +167,134 @@
     filter: alpha(opacity=80);
 }
 
-.page-container .sidebar .user-info img+span,
-.page-container .sidebar .user-info img+strong {
+.page-container .sidebar .user-box img+span,
+.page-container .sidebar .user-box img+strong {
     padding-top: 8px;
 }
 
-.page-container .sidebar .user-info strong {
+.page-container .sidebar .user-box strong {
     font-size: 16px;
 }
 
-.page-container .sidebar .user-info .links {
+.page-container .sidebar .user-box .links {
     padding: 10px 0 0;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media(min-width:768px) {
+    .page-container {
+        padding-left: 65px;
+    }
+
+    .page-container .sidebar {
+        position: fixed;
+        left: 0;
+        height: 100%;
+        overflow-y: auto;
+        border-right: 1px solid #e7e7e7;
+        width: 65px;
+        padding: 0;
+        background-color: #f8f8f8;
+    }
+
+    .page-container .sidebar .logo-box {
+        padding: 15px;
+        height: auto;
+    }
+
+    .page-container .sidebar .logo-box .sidebar-collapse-button {
+        float: none;
+    }
+
+    .page-container .sidebar .user-box {
+        padding: 15px 6px;
+    }
+
+    .page-container .sidebar .user-box .links {
+        text-align: center;
+    }
+
+    .page-container .sidebar .user-box .links i {
+        display: none;
+    }
+
+    .page-container .sidebar ul li {
+        font-size: 16px;
+        text-align: center;
+        padding: 0 5px;
+    }
+
+    .page-container .sidebar ul li span {
+        display: none;
+    }
+}
+
+@media(min-width:992px) {
     .page-container {
         padding-left: 240px;
     }
 
-    .page-container.toggled {
-        padding-left: 0;
-    }
-
     .page-container .sidebar {
+        position: fixed;
+        left: 0;
+        height: 100%;
+        overflow-y: auto;
+        border-right: 1px solid #e7e7e7;
         width: 240px;
+        padding: 0;
+        background-color: #f8f8f8;
     }
 
-    .page-container.toggled .sidebar {
-        width: 0;
+    .page-container .sidebar .logo-box {
+        padding: 35px;
+        height: 110px;
     }
 
-    .page-container .container {
-        padding: 20px;
+    .page-container .sidebar .logo-box .sidebar-collapse-button {
+        float: right;
     }
 
-    .page-container.toggled .container {
-        position: relative;
-        margin-right: 0;
+    .page-container .sidebar .user-box {
+        padding: 25px 35px;
+    }
+
+    .page-container .sidebar .user-box .links {
+        text-align: right;
+    }
+
+    .page-container .sidebar .user-box .links i {
+        display: inline;
+    }
+
+    .page-container .sidebar ul li {
+        font-size: 14px;
+        text-align: left;
+        padding: 0 20px;
+    }
+
+    .page-container .sidebar ul li span {
+        display: inline !important;
     }
 }
 

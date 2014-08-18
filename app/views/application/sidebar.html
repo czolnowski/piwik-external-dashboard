@@ -2,18 +2,18 @@
 
     <div application-brand-logo></div>
     <div application-user-bar></div>
-    <ul class="sidebar-nav">
+    <ul class="nav-box box">
         <li ng-class="{'active': active === 'dashboard'}">
-            <i class="fa fa-arrow-right pull-right"
+            <i class="fa fa-arrow-right pull-right hidden-sm"
                style="margin-top: 13px;"
                ng-show="active === 'dashboard'"></i>
-            <a href="/"><i class="fa fa-dashboard"></i> &nbsp; Dashboard</a>
+            <a href="/"><i class="fa fa-dashboard"></i><span>&nbsp; Dashboard</span></a>
         </li>
         <li ng-class="{'active': active === 'customize'}">
-            <i class="fa fa-arrow-right pull-right"
+            <i class="fa fa-arrow-right pull-right hidden-sm"
                style="margin-top: 13px;"
                ng-show="active === 'customize'"></i>
-            <a href="/customize"><i class="fa fa-suitcase"></i> &nbsp; Customize</a>
+            <a href="/customize"><i class="fa fa-suitcase"></i><span>&nbsp; Customize</span></a>
         </li>
     </ul>
 </div>
