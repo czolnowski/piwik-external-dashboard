@@ -15,6 +15,7 @@
                     replace: true,
                     link: function($scope, elem, attrs, ctrl) {
                         ctrl.report.limit = -1;
+                        ctrl.report.evolution = false;
 
                         ctrl.report.fetch().then(
                             function (response)
