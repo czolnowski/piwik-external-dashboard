@@ -1,7 +1,0 @@
-<div ng-hide="report.report.loading || report.report.result.reportData | isEmpty">
-    <div ng-transclude=""></div>
-</div>
-
-<div ng-show="report.report.loading" class="text-center">Loading data ...<br /><img src="images/loader.gif" /></div>
-
-<div ng-show="!report.report.loading && report.report.result.reportData | isEmpty">No data for this report</div>
