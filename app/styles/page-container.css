@@ -281,7 +281,7 @@
     }
 
     .page-container .sidebar ul li.active .active-arrow {
-        display: block;
+        display: block !important;
     }
 
     .page-container .sidebar ul li span {
