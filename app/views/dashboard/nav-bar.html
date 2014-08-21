@@ -16,39 +16,7 @@
 
         <div class="collapse navbar-collapse"
              id="dashboard-navbar-collapse">
-            <form class="navbar-form navbar-left" role="search" ng-controller="DatePickerCtrl as datePicker">
-                <div class="form-group">
-                    <input type="daterange"
-                           class="form-control col-md-4"
-                           ng-model="dates"
-                           ng-show="datePicker.period === 'day'"
-                           singleDatePicker="true" />
-
-                    <input type="daterange"
-                           class="form-control col-md-4"
-                           ng-model="dates"
-                           ng-show="datePicker.period === 'range'"
-                           singleDatePicker="false"
-                           ranges="datePicker.ranges" />
-                </div>
-
-                <div class="btn-group">
-                    <button type="button"
-                            class="btn"
-                            ng-click="datePicker.period = 'day'"
-                            ng-class="{
-                                        'btn-default': datePicker.period !== 'day',
-                                        'btn-success': datePicker.period === 'day'
-                                    }">day</button>
-                    <button type="button"
-                            class="btn"
-                            ng-click="datePicker.period = 'range'"
-                            ng-class="{
-                                        'btn-default': datePicker.period !== 'range',
-                                        'btn-success': datePicker.period === 'range'
-                                    }">range</button>
-                </div>
-            </form>
+            <div dashboard-date-selector></div>
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -63,13 +31,7 @@
                 </li>
             </ul>
 
-            <form class="navbar-form navbar-right" role="search" ng-controller="SiteSelectorCtrl" ng-show="sites">
-                <div class="form-group">
-                    <select ng-model="site" class="form-control"
-                            ng-options="site.name for site in sites">
-                    </select>
-                </div>
-            </form>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+            <div sites-selector></div>
+        </div>
+    </div>
 </nav>

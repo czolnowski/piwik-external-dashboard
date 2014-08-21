@@ -1,0 +1,34 @@
+<form class="navbar-form navbar-left"
+      role="search">
+    <div class="form-group">
+        <input type="daterange"
+               class="form-control col-md-4"
+               ng-model="dates"
+               ng-show="dateSelector.period === 'day'"
+               singleDatePicker="true" />
+
+        <input type="daterange"
+               class="form-control col-md-4"
+               ng-model="dates"
+               ng-show="dateSelector.period === 'range'"
+               singleDatePicker="false"
+               ranges="dateSelector.ranges" />
+    </div>
+
+    <div class="btn-group">
+        <button type="button"
+                class="btn"
+                ng-click="dateSelector.period = 'day'"
+                ng-class="{
+                    'btn-default': dateSelector.period !== 'day',
+                    'btn-success': dateSelector.period === 'day'
+                }">day</button>
+        <button type="button"
+                class="btn"
+                ng-click="dateSelector.period = 'range'"
+                ng-class="{
+                    'btn-default': dateSelector.period !== 'range',
+                    'btn-success': dateSelector.period === 'range'
+                }">range</button>
+    </div>
+</form>

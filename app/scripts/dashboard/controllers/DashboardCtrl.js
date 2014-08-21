@@ -7,6 +7,12 @@
     {
         var that = this;
 
+        $scope.$on('sites.selectedSite', function (event, site) {
+            if (ng.isDefined(site.idsite)) {
+                $location.path('/' + site.idsite);
+            }
+        });
+
         $firebase = _$firebase;
         localStorageService = _localStorageService;
         $location = _$location;

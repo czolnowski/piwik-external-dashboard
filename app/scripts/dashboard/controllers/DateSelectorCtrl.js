@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    var DatePickerCtrl = function ($scope, $location, $routeParams, moment)
+    var DashboardDateSelectorCtrl = function ($scope, $location, $routeParams, moment)
     {
         var that = this;
 
@@ -46,10 +46,10 @@
     };
 
     ng.module('piwikExtDash.dashboard').controller(
-        'DatePickerCtrl',
+        'DashboardDateSelectorCtrl',
         [
             "$scope", "$location", "$routeParams", "moment",
-            DatePickerCtrl
+            DashboardDateSelectorCtrl
         ]
     );
 })(window.angular);
