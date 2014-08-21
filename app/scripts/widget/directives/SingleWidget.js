@@ -15,10 +15,11 @@
                     },
                     templateUrl: 'views/widget/single.html',
                     controller: [
-                        '$scope',
-                        function ($scope)
+                        '$scope', '$routeParams',
+                        function ($scope, $routeParams)
                         {
                             this.report = $scope.report.report;
+                            $scope.hasIdSite = ng.isDefined($routeParams.idSite);
                         }
                     ]
                 };
