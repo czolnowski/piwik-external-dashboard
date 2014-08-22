@@ -55,11 +55,19 @@
                                             var firstLoop = true,
                                                 keyForValues = $scope.metrics[0].key,
                                                 numberOfMetrics = 0,
-                                                i;
+                                                i,
+                                                emptyKeys = [];
+
                                             for (var key in response.data.reportData) {
                                                 if (response.data.reportData.hasOwnProperty(key)) {
                                                     var values = response.data.reportData[key],
                                                         valuesForData = {};
+
+                                                    if (values.length === 0) {
+                                                        emptyKeys.push(key);
+
+                                                        continue;
+                                                    }
 
                                                     if (firstLoop) {
                                                         numberOfMetrics = Math.min(10, values.length);
@@ -90,6 +98,21 @@
                                                     $scope.data.push(valuesForData);
                                                 }
                                             }
+
+                                            ng.forEach(
+                                                emptyKeys,
+                                                function (key)
+                                                {
+                                                    var valuesForData = {};
+
+                                                    for (i = 0; i < numberOfMetrics; ++i) {
+                                                        valuesForData['metric' + i] = 0;
+                                                    }
+
+                                                    valuesForData[$scope.xkey] = new Date(key).getTime();
+                                                    $scope.data.push(valuesForData);
+                                                }
+                                            );
                                         }
                                     }
                                 }
