@@ -16,7 +16,7 @@
             return;
         }
 
-        var request = _$http.post(
+        var request = $http.post(
             '/api/UsersManager/getUser',
             {
                 userLogin: this.login
