@@ -1,76 +1,53 @@
-(function (ng, Firebase) {
+(function (ng) {
     'use strict';
 
-    var DashboardCtrl = function ($scope, _$routeParams, _$location,
-                                  _$firebase, _md5, _$modal, _localStorageService,
-                                  _Report, $timeout)
+    var $timeout,
+        $location,
+        $modal,
+        Report,
+        DashboardCtrl = function ($scope, $routeParams, _$location, _$modal, _$timeout,
+                                  _Report, ReportsStateFetcher)
+        {
+            $timeout = _$timeout;
+            $location = _$location;
+            $modal = _$modal;
+            Report = _Report;
+
+            this.reports = [];
+            this.stateFetcher = ReportsStateFetcher;
+
+            this.initialize($scope, $routeParams);
+        };
+
+    DashboardCtrl.prototype.initialize = function ($scope, $routeParams)
     {
-        var that = this;
+        var vm = this;
+
+        this.stateFetcher.load('dashboards', $routeParams.dashboard).then(
+            function (result)
+            {
+                var reports = Report.unserialize(result);
+
+                if (ng.isArray(reports)) {
+                    vm.reports = reports;
+                }
+            }
+        );
+
+        this.sortableOptions = {
+            update: function ()
+            {
+                $timeout(function () {
+                    vm.persist();
+                });
+            }
+        };
 
         $scope.$on('sites.selectedSite', function (event, site) {
             if (ng.isDefined(site.idsite)) {
                 $location.path('/' + site.idsite);
             }
         });
-
-        $firebase = _$firebase;
-        localStorageService = _localStorageService;
-        $location = _$location;
-        md5 = _md5;
-        $modal = _$modal;
-        $routeParams = _$routeParams;
-        Report = _Report;
-
-        this.sync = $firebase(
-            new Firebase('https://piwik-ext-dashboard.firebaseio.com/dashboards')
-        );
-        this.reports = [];
-        this.isLoading = false;
-        this.reportsModalIsLoading = false;
-        this.exportIsLoading = false;
-
-        this.sortableOptions = {
-            update: function ()
-            {
-                $timeout(function () {
-                    that.persist();
-                });
-            }
-        };
-
-        this.initialize();
-    },
-        localStorageService,
-        $location,
-        $firebase,
-        $modal,
-        md5,
-        $routeParams,
-        Report;
-
-    DashboardCtrl.prototype.initialize = function ()
-    {
-        var that = this;
-
-        if (ng.isDefined($routeParams.dashboard)) {
-            this.isLoading = true;
-
-            this.sync.$asObject().$loaded().then(function (response) {
-                that.reports = Report.unserialize(
-                    response[$routeParams.dashboard]
-                );
-
-                that.isLoading = false;
-            });
-        } else {
-            var reports = Report.unserialize(
-                localStorageService.get('reports')
-            );
-
-            if (ng.isArray(reports)) {
-                this.reports = reports;
-            }
-        }
     };
 
     DashboardCtrl.prototype.openReportsModal = function ()
@@ -88,20 +65,13 @@
                     ]
                 }
             }),
-            that = this;
-
-        this.reportsModalIsLoading = true;
+            vm = this;
 
         modalInstance.result.then(
-            function (result) {
-                that.reports.push(ng.copy(result));
-
-                that.persist();
-                that.reportsModalIsLoading = false;
-            },
-            function ()
+            function (result)
             {
-                that.reportsModalIsLoading = false;
+                vm.reports.push(ng.copy(result));
+                vm.persist();
             }
         );
     };
@@ -116,33 +86,22 @@
         }
     };
 
-    DashboardCtrl.prototype.exportDashboard = function () {
-        var reportsAsString = Report.serialize(this.reports),
-            reportsName = md5(reportsAsString),
-            that = this;
-
-        this.exportIsLoading = true;
-
-        if (reportsName in this.sync.$asObject()) {
-            $location.search('dashboard', reportsName);
-            this.exportIsLoading = false;
-        } else {
-            this.sync.$set(reportsName, reportsAsString).then(function () {
+    DashboardCtrl.prototype.exportDashboard = function ()
+    {
+        this.stateFetcher.save(
+            'dashboards',
+            Report.serialize(this.reports)
+        ).then(
+            function (reportsName)
+            {
                 $location.search('dashboard', reportsName);
-                that.exportIsLoading = false;
-            });
-        }
+            }
+        );
     };
 
     DashboardCtrl.prototype.persist = function ()
     {
-        var reportsAsString = Report.serialize(this.reports);
-
-        if (localStorageService.isSupported) {
-            localStorageService.add("reports", reportsAsString);
-        } else {
-            localStorageService.cookie.add("reports", reportsAsString);
-        }
+        this.stateFetcher.persist('reports', Report.serialize(this.reports));
 
         $location.search('dashboard', null);
     };
@@ -151,12 +110,10 @@
         "$scope",
         "$routeParams",
         "$location",
-        "$firebase",
-        "md5",
         "$modal",
-        "localStorageService",
-        "Report",
         "$timeout",
+        "Report",
+        "ReportsStateFetcher",
         DashboardCtrl
     ]);
-})(angular, window.Firebase);
+})(window.angular);
