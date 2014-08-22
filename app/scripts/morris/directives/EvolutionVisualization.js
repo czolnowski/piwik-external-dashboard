@@ -30,6 +30,10 @@
                                         if (response.data.reportData.hasOwnProperty(date)) {
                                             firstRow = response.data.reportData[date];
 
+                                            if (ng.isArray(firstRow) && firstRow.length === 0) {
+                                                continue;
+                                            }
+
                                             break;
                                         }
                                     }
@@ -48,7 +52,6 @@
                                                 }
                                             );
                                         } else {
-                                            console.log('multiple')
                                             var firstLoop = true,
                                                 keyForValues = $scope.metrics[0].key,
                                                 numberOfMetrics = 0,

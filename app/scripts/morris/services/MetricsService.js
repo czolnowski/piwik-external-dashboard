@@ -88,13 +88,23 @@
             data,
             function (values, key)
             {
-                if (!confirmedNumericValues) {
-                    that.confirmNumericValues(values, ykeys, labels, metrics, labelKey);
+                if (ng.isArray(values) && values.length === 0) {
+                    ng.forEach(
+                        metrics,
+                        function (metric)
+                        {
+                            values[metric.key] = 0;
+                        }
+                    );
+                } else {
+                    if (!confirmedNumericValues) {
+                        that.confirmNumericValues(values, ykeys, labels, metrics, labelKey);
 
-                    confirmedNumericValues = true;
+                        confirmedNumericValues = true;
+                    }
+
+                    that.removeNonNumericValues(values, labelKey);
                 }
-
-                that.removeNonNumericValues(values, labelKey);
 
                 if (ng.isFunction(valuesCallback)) {
                     valuesCallback(values, key);
