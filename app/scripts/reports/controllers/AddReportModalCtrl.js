@@ -75,7 +75,7 @@
         };
     };
 
-    ng.module('piwikExtDash.reports').controller(
+    ng.module('piwik-external-dashboard.reports').controller(
         'AddReportModalCtrl',
         [
             "$scope", "$modalInstance", "reports", "Report",

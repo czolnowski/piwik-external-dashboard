@@ -61,7 +61,7 @@
         return pages;
     };
 
-    ng.module('piwikExtDash.tables').service(
+    ng.module('piwik-external-dashboard.tables').service(
         'TablePaginationService',
         [
             TablePaginationService

@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    var app = ng.module('piwikExtDash.auth', []);
+    var app = ng.module('piwik-external-dashboard.auth', []);
 
     app.run([
         "Token", "Authenticate",

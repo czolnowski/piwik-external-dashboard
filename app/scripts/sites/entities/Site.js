@@ -13,7 +13,7 @@
         );
     };
 
-    ng.module('piwikExtDash.sites').factory(
+    ng.module('piwik-external-dashboard.sites').factory(
         'Site',
         [
             "$http",

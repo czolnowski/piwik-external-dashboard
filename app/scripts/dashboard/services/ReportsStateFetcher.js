@@ -71,5 +71,5 @@
         "$firebase", "md5", "localStorageService", "$q"
     ];
 
-    ng.module('piwikExtDash.dashboard').service('ReportsStateFetcher', ReportsStateFetcher);
+    ng.module('piwik-external-dashboard.dashboard').service('ReportsStateFetcher', ReportsStateFetcher);
 })(window.angular, window.Firebase);

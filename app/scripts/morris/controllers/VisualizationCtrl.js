@@ -47,7 +47,7 @@
         };
     };
 
-    ng.module('piwikExtDash.morris').controller(
+    ng.module('piwik-external-dashboard.morris').controller(
         'MorrisVisualizationCtrl',
         [
             "$scope", "moment", "metricsColors", "MetricsService",

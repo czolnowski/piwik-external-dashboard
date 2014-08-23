@@ -106,7 +106,7 @@
         $location.search('dashboard', null);
     };
 
-    ng.module('piwikExtDash.dashboard').controller("DashboardCtrl", [
+    ng.module('piwik-external-dashboard.dashboard').controller("DashboardCtrl", [
         "$scope",
         "$routeParams",
         "$location",

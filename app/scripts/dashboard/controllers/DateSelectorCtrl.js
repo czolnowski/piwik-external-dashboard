@@ -45,7 +45,7 @@
         });
     };
 
-    ng.module('piwikExtDash.dashboard').controller(
+    ng.module('piwik-external-dashboard.dashboard').controller(
         'DashboardDateSelectorCtrl',
         [
             "$scope", "$location", "$routeParams", "moment",

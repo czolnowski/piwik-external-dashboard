@@ -64,7 +64,7 @@
         this.me.me();
     };
 
-    ng.module('piwikExtDash.auth').service("Authenticate", [
+    ng.module('piwik-external-dashboard.auth').service("Authenticate", [
         "Token", "User", "$q",
         Authenticate
     ]);

@@ -17,7 +17,7 @@
      * Returns a copy of the array with the remaining elements from the selected position. In the example above, the div will be populated with 6 elements from position 2.
      *
      */
-    ng.module('piwikExtDash.tables').filter('limitFromTo', function() {
+    ng.module('piwik-external-dashboard.tables').filter('limitFromTo', function() {
         return function(input, offset, limit) {
             if(!(input instanceof Array) && !(input instanceof String)) return input;
 

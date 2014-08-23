@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.sites').directive(
+    ng.module('piwik-external-dashboard.sites').directive(
         'sitesSelector',
         [
             function ()

@@ -34,7 +34,7 @@
         });
     };
 
-    ng.module('piwikExtDash.sites').controller('SitesSelectorCtrl', [
+    ng.module('piwik-external-dashboard.sites').controller('SitesSelectorCtrl', [
         "$scope", "Site", "$routeParams",
         SiteSelectorCtrl
     ]);

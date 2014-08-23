@@ -56,7 +56,7 @@
         });
     };
 
-    ng.module('piwikExtDash.tables').controller(
+    ng.module('piwik-external-dashboard.tables').controller(
         'TableVisualizationCtrl',
         [
             "$scope", "TablePaginationService",

@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.morris').directive(
+    ng.module('piwik-external-dashboard.morris').directive(
         'morrisMetricsSelector',
         [
             function ()

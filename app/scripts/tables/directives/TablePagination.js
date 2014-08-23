@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.tables').directive(
+    ng.module('piwik-external-dashboard.tables').directive(
         'tablePagination',
         [
             function ()

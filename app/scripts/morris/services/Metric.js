@@ -9,7 +9,7 @@
         this.key = key;
     };
 
-    ng.module('piwikExtDash.morris').factory(
+    ng.module('piwik-external-dashboard.morris').factory(
         'Metric',
         [
             function ()

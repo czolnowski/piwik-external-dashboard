@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.widget').filter(
+    ng.module('piwik-external-dashboard.widget').filter(
         'isEmpty',
         function ()
         {

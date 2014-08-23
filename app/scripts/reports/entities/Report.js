@@ -169,7 +169,7 @@
         return result;
     };
 
-    ng.module('piwikExtDash.reports').factory(
+    ng.module('piwik-external-dashboard.reports').factory(
         "Report",
         [
             "$http", "$routeParams", "moment", "$q",

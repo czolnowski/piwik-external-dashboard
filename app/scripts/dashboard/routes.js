@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.dashboard').config(function ($routeProvider) {
+    ng.module('piwik-external-dashboard.dashboard').config(function ($routeProvider) {
         $routeProvider
             .when('/:idSite?', {
                 templateUrl: 'views/dashboard/index.html',

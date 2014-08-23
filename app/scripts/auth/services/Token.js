@@ -85,7 +85,7 @@
         }
     };
 
-    ng.module('piwikExtDash.auth').service(
+    ng.module('piwik-external-dashboard.auth').service(
         'Token',
         [
             '$http', 'md5', '$cookieStore',

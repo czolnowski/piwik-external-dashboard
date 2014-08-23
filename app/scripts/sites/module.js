@@ -1,5 +1,5 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.sites', []);
+    ng.module('piwik-external-dashboard.sites', []);
 })(angular);

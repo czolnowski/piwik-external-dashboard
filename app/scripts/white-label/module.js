@@ -1,5 +1,5 @@
 (function (ng) {
-    ng.module('piwikExtDash.whiteLabel', [], [
+    ng.module('piwik-external-dashboard.whiteLabel', [], [
         "$provide",
         function ($provide)
         {

@@ -16,7 +16,7 @@
         );
     };
 
-    ng.module('piwikExtDash.dashboard').factory('Reports', [
+    ng.module('piwik-external-dashboard.dashboard').factory('Reports', [
         "$http",
         function ($http)
         {

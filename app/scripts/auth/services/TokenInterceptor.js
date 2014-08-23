@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.auth').service(
+    ng.module('piwik-external-dashboard.auth').service(
         'TokenInterceptor',
         [
             "$injector",

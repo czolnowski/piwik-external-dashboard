@@ -33,7 +33,7 @@
         });
     };
 
-    ng.module('piwikExtDash.users').factory('User', [
+    ng.module('piwik-external-dashboard.users').factory('User', [
         "$http",
         function (_$http)
         {

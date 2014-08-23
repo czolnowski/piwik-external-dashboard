@@ -37,7 +37,7 @@
         "$scope", "$modal", "ReportsStateFetcher", "$location", "Report"
     ];
 
-    ng.module('piwikExtDash.dashboard').controller(
+    ng.module('piwik-external-dashboard.dashboard').controller(
         'DashboardExportReportsCtrl',
         DashboardExportReportsCtrl
     );

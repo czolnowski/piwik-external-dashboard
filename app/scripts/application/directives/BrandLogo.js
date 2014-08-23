@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.application').directive(
+    ng.module('piwik-external-dashboard.application').directive(
         'applicationBrandLogo',
         [
             "$http",

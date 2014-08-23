@@ -117,7 +117,7 @@
         return result;
     };
 
-    ng.module('piwikExtDash.morris').service(
+    ng.module('piwik-external-dashboard.morris').service(
         'MetricsService',
         [
             "metricsColors", "Metric",

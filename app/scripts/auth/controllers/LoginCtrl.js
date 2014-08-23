@@ -67,7 +67,7 @@
             );
     };
 
-    ng.module('piwikExtDash.auth').controller("LoginCtrl", [
+    ng.module('piwik-external-dashboard.auth').controller("LoginCtrl", [
         "Authenticate", "Site", "$location",
         LoginCtrl
     ]);

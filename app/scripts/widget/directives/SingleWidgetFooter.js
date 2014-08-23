@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.widget').directive(
+    ng.module('piwik-external-dashboard.widget').directive(
         'singleWidgetFooter',
         [
             function ()

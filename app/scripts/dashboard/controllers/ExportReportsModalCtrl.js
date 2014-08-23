@@ -21,7 +21,7 @@
         "$scope", "$modalInstance", "key", "md5"
     ];
 
-    ng.module('piwikExtDash.dashboard').controller(
+    ng.module('piwik-external-dashboard.dashboard').controller(
         'DashboardExportReportsModalCtrl',
         DashboardExportReportsModalCtrl
     );

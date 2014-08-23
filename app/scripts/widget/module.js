@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.widget', [], function ($provide) {
+    ng.module('piwik-external-dashboard.widget', [], function ($provide) {
         $provide.value(
             'chartsColors', [
                 {
