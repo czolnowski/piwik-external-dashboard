@@ -4,7 +4,7 @@
     ng.module('piwik-external-dashboard.application').directive(
         'applicationUserBar',
         [
-            "$cookieStore", "Authenticate",
+            '$cookieStore', 'Authenticate',
             function ($cookieStore, Authenticate)
             {
                 return {

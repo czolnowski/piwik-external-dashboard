@@ -120,7 +120,7 @@
     ng.module('piwik-external-dashboard.morris').service(
         'MetricsService',
         [
-            "metricsColors", "Metric",
+            'metricsColors', 'Metric',
             MetricsService
         ]
     );

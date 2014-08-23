@@ -3,7 +3,7 @@
 
     var DashboardExportReportsModalCtrl = function ($scope, $modalInstance, key, md5)
     {
-        $scope.name = "";
+        $scope.name = '';
         $scope.key = md5(key);
 
         $scope.save = function ()
@@ -18,7 +18,7 @@
     };
 
     DashboardExportReportsModalCtrl.$inject = [
-        "$scope", "$modalInstance", "key", "md5"
+        '$scope', '$modalInstance', 'key', 'md5'
     ];
 
     ng.module('piwik-external-dashboard.dashboard').controller(

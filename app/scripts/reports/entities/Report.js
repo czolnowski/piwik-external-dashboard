@@ -45,7 +45,9 @@
         }
 
         if (this.limit !== false) {
+            /*jshint camelcase: false */
             parameters.filter_limit = this.limit;
+            /*jshint camelcase: true */
         }
 
         request = $http.post(
@@ -170,9 +172,9 @@
     };
 
     ng.module('piwik-external-dashboard.reports').factory(
-        "Report",
+        'Report',
         [
-            "$http", "$routeParams", "moment", "$q",
+            '$http', '$routeParams', 'moment', '$q',
             function (_$http, _$routeParams, _moment, _$q)
             {
                 $http = _$http;

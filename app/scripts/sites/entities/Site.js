@@ -16,7 +16,7 @@
     ng.module('piwik-external-dashboard.sites').factory(
         'Site',
         [
-            "$http",
+            '$http',
             function (_$http)
             {
                 $http = _$http;

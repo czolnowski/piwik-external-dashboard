@@ -57,7 +57,7 @@
                 controller: 'AddReportModalCtrl',
                 resolve: {
                     reports: [
-                        "Report",
+                        'Report',
                         function (Report)
                         {
                             return Report.fetchMetaData();
@@ -106,14 +106,14 @@
         $location.search('dashboard', null);
     };
 
-    ng.module('piwik-external-dashboard.dashboard').controller("DashboardCtrl", [
-        "$scope",
-        "$routeParams",
-        "$location",
-        "$modal",
-        "$timeout",
-        "Report",
-        "ReportsStateFetcher",
+    ng.module('piwik-external-dashboard.dashboard').controller('DashboardCtrl', [
+        '$scope',
+        '$routeParams',
+        '$location',
+        '$modal',
+        '$timeout',
+        'Report',
+        'ReportsStateFetcher',
         DashboardCtrl
     ]);
 })(window.angular);

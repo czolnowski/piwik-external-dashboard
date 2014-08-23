@@ -31,13 +31,13 @@
         $scope.$watch('dates', function (after, before) {
             if (after !== before) {
                 if (that.period === 'day') {
-                    $location.search('date', after.startDate.format("YYYY-MM-DD"));
+                    $location.search('date', after.startDate.format('YYYY-MM-DD'));
                 } else {
                     $location.search(
                         'date',
                         [
-                            after.startDate.format("YYYY-MM-DD"),
-                            after.endDate.format("YYYY-MM-DD")
+                            after.startDate.format('YYYY-MM-DD'),
+                            after.endDate.format('YYYY-MM-DD')
                         ].join(',')
                     );
                 }
@@ -48,7 +48,7 @@
     ng.module('piwik-external-dashboard.dashboard').controller(
         'DashboardDateSelectorCtrl',
         [
-            "$scope", "$location", "$routeParams", "moment",
+            '$scope', '$location', '$routeParams', 'moment',
             DashboardDateSelectorCtrl
         ]
     );

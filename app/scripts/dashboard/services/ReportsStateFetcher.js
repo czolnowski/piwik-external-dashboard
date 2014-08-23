@@ -68,7 +68,7 @@
     };
 
     ReportsStateFetcher.$inject = [
-        "$firebase", "md5", "localStorageService", "$q"
+        '$firebase', 'md5', 'localStorageService', '$q'
     ];
 
     ng.module('piwik-external-dashboard.dashboard').service('ReportsStateFetcher', ReportsStateFetcher);

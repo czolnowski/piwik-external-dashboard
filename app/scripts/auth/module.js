@@ -4,7 +4,7 @@
     var app = ng.module('piwik-external-dashboard.auth', []);
 
     app.run([
-        "Token", "Authenticate",
+        'Token', 'Authenticate',
         function (Token, Authenticate)
         {
             Token.restore();
@@ -18,7 +18,7 @@
     ]);
 
     app.config([
-        "$httpProvider",
+        '$httpProvider',
         function ($httpProvider)
         {
             $httpProvider.interceptors.push('TokenInterceptor');
@@ -26,10 +26,10 @@
     ]);
 
     app.run([
-        "$rootScope", "Authenticate", "$location",
+        '$rootScope', 'Authenticate', '$location',
         function ($rootScope, Authenticate, $location)
         {
-            $rootScope.$on("$routeChangeStart", function (event, next) {
+            $rootScope.$on('$routeChangeStart', function (event, next) {
                 if (ng.isDefined(next.auth) && next.auth === true && !Authenticate.isAuthenticated()) {
                     $location.path(Authenticate.getLoginPath());
                     event.preventDefault();

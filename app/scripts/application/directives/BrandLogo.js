@@ -4,7 +4,7 @@
     ng.module('piwik-external-dashboard.application').directive(
         'applicationBrandLogo',
         [
-            "$http",
+            '$http',
             function ($http)
             {
                 return {

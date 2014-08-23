@@ -4,14 +4,14 @@
     ng.module('piwik-external-dashboard.morris').directive(
         'morrisBarVisualization',
         [
-            "MetricsService",
+            'MetricsService',
             function (MetricsService)
             {
                 return {
                     require: '^singleWidget',
                     restrict: 'AE',
                     templateUrl: 'views/morris/bar/index.html',
-                    controller: "MorrisVisualizationCtrl",
+                    controller: 'MorrisVisualizationCtrl',
                     link: function($scope, elem, attrs, ctrl) {
                         ctrl.report.evolution = false;
                         ctrl.report.limit = 20;

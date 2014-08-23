@@ -10,8 +10,8 @@
                     require: '^singleWidget',
                     restrict: 'AE',
                     templateUrl: 'views/tables/visualization.html',
-                    controller: "TableVisualizationCtrl",
-                    controllerAs: "visualization",
+                    controller: 'TableVisualizationCtrl',
+                    controllerAs: 'visualization',
                     replace: true,
                     link: function($scope, elem, attrs, ctrl) {
                         ctrl.report.limit = -1;

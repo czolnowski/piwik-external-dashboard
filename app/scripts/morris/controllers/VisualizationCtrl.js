@@ -1,4 +1,6 @@
 (function (ng) {
+    'use strict';
+
     var VisualizationCtrl = function ($scope, moment, metricsColors, MetricsService)
     {
         var that = this;
@@ -13,7 +15,7 @@
 
         $scope.dateFormat = function (date)
         {
-            return moment(date).format("YYYY-MM-DD");
+            return moment(date).format('YYYY-MM-DD');
         };
 
         $scope.toggleMetric = function (metric, index)
@@ -50,7 +52,7 @@
     ng.module('piwik-external-dashboard.morris').controller(
         'MorrisVisualizationCtrl',
         [
-            "$scope", "moment", "metricsColors", "MetricsService",
+            '$scope', 'moment', 'metricsColors', 'MetricsService',
             VisualizationCtrl
         ]
     );

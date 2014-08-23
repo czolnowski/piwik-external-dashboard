@@ -6,7 +6,7 @@
             .when('/:idSite?', {
                 templateUrl: 'views/dashboard/index.html',
                 controller: 'DashboardCtrl',
-                controllerAs: "dashboard",
+                controllerAs: 'dashboard',
                 auth: true
             })
             .otherwise({

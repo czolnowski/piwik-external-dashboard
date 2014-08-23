@@ -4,14 +4,14 @@
     ng.module('piwik-external-dashboard.morris').directive(
         'morrisEvolutionVisualization',
         [
-            "MetricsService", "Metric",
+            'MetricsService', 'Metric',
             function (MetricsService, Metric)
             {
                 return {
                     require: '^singleWidget',
                     restrict: 'AE',
                     templateUrl: 'views/morris/evolution/index.html',
-                    controller: "MorrisVisualizationCtrl",
+                    controller: 'MorrisVisualizationCtrl',
                     link: function($scope, elem, attrs, ctrl) {
                         ctrl.report.evolution = true;
 
@@ -84,7 +84,7 @@
                                                                 new Metric(
                                                                     values[i].label,
                                                                     'metric' + i,
-                                                                    ""
+                                                                    ''
                                                                 )
                                                             );
                                                         }

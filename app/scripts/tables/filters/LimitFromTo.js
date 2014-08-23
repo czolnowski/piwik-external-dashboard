@@ -13,13 +13,15 @@
      * specified by the value and sign (positive or negative) of `limit`.
      *
      * Usage:
-     * <div ng-repeat="data in array|limitFromTo:2:8"></div>
+     * <div ng-repeat='data in array|limitFromTo:2:8'></div>
      * Returns a copy of the array with the remaining elements from the selected position. In the example above, the div will be populated with 6 elements from position 2.
      *
      */
     ng.module('piwik-external-dashboard.tables').filter('limitFromTo', function() {
         return function(input, offset, limit) {
-            if(!(input instanceof Array) && !(input instanceof String)) return input;
+            if(!(input instanceof Array) && !(input instanceof String)) {
+                return input;
+            }
 
             limit = parseInt(limit,10);
 
@@ -27,17 +29,18 @@
                 if (limit) {
                     return limit >= 0 ? input.slice(offset, limit) : input.slice(limit, input.length);
                 } else {
-                    return "";
+                    return '';
                 }
             }
 
             var out = [],
                 i, n;
 
-            if (limit > input.length)
+            if (limit > input.length) {
                 limit = input.length;
-            else if (limit < -input.length)
+            } else if (limit < -input.length) {
                 limit = -input.length;
+            }
 
             if (limit > 0) {
                 i = offset;

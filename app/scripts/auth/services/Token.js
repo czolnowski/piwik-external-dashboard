@@ -7,7 +7,7 @@
         Token = function (_$http, _md5, _$cookieStore)
         {
             this.login = null;
-            this.token_auth = null;
+            this.tokenAuth = null;
             this.host = null;
 
             $http = _$http;
@@ -27,14 +27,14 @@
         );
     };
 
-    Token.prototype.setTokenAuth = function (token_auth)
+    Token.prototype.setTokenAuth = function (tokenAuth)
     {
-        this.token_auth = token_auth;
+        this.tokenAuth = tokenAuth;
     };
 
     Token.prototype.getTokenAuth = function ()
     {
-        return this.token_auth;
+        return this.tokenAuth;
     };
 
     Token.prototype.setLogin = function (login)
@@ -59,8 +59,7 @@
 
     Token.prototype.isValid = function ()
     {
-        return this.token_auth !== null
-            && this.host !== null;
+        return this.tokenAuth !== null && this.host !== null;
     };
 
     Token.prototype.persist = function ()
@@ -68,7 +67,7 @@
         $cookieStore.put(
             'token',
             {
-                token_auth: this.token_auth,
+                tokenAuth: this.tokenAuth,
                 login: this.login,
                 host: this.host
             }
@@ -77,9 +76,9 @@
 
     Token.prototype.restore = function ()
     {
-        var token = $cookieStore.get("token");
+        var token = $cookieStore.get('token');
         if (ng.isDefined(token)) {
-            this.token_auth = token.token_auth;
+            this.tokenAuth = token.tokenAuth;
             this.login = token.login;
             this.host = token.host;
         }

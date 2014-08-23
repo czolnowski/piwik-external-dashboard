@@ -1,4 +1,6 @@
 (function (ng) {
+    'use strict';
+
     var
         $q,
         Authenticate = function (token, user, _$q)
@@ -22,8 +24,6 @@
                     that.token.setLogin(login);
                     that.token.persist();
                     that.getUserInformation(login);
-                } else {
-                    console.log('something goes wrong')
                 }
             }
         );
@@ -64,8 +64,8 @@
         this.me.me();
     };
 
-    ng.module('piwik-external-dashboard.auth').service("Authenticate", [
-        "Token", "User", "$q",
+    ng.module('piwik-external-dashboard.auth').service('Authenticate', [
+        'Token', 'User', '$q',
         Authenticate
     ]);
 })(angular);

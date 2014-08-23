@@ -1,4 +1,6 @@
 (function (ng) {
+    'use strict';
+
     var AddReportModalCtrl = function (_$scope, $modalInstance, reports, Report)
     {
         $scope = _$scope;
@@ -50,7 +52,7 @@
             if ($scope.visualizationTypes.indexOf(visualization) > -1) {
                 $scope.visualization = visualization;
             }
-        }
+        };
     };
 
     AddReportModalCtrl.prototype.initializeReports = function (reports, Report)
@@ -58,7 +60,7 @@
         $scope.report = null;
         $scope.reports = Report.groupMetaDataByColumn(
             reports.data,
-            "category"
+            'category'
         );
         $scope.changeReport = function (report)
         {
@@ -78,8 +80,8 @@
     ng.module('piwik-external-dashboard.reports').controller(
         'AddReportModalCtrl',
         [
-            "$scope", "$modalInstance", "reports", "Report",
+            '$scope', '$modalInstance', 'reports', 'Report',
             AddReportModalCtrl
         ]
-    )
+    );
 })(window.angular);

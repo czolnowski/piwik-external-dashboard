@@ -23,7 +23,7 @@
                     $scope.sites,
                     function (site)
                     {
-                        if (site.idsite == $routeParams.idSite) {
+                        if (site.idsite === $routeParams.idSite) {
                             $scope.site = site  ;
                         }
                     }
@@ -35,7 +35,7 @@
     };
 
     ng.module('piwik-external-dashboard.sites').controller('SitesSelectorCtrl', [
-        "$scope", "Site", "$routeParams",
+        '$scope', 'Site', '$routeParams',
         SiteSelectorCtrl
     ]);
 })(window.angular);

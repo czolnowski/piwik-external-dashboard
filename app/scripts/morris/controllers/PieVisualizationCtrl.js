@@ -1,4 +1,6 @@
 (function (ng) {
+    'use strict';
+
     var PieVisualizationCtrl = function ($scope, moment, metricsColors, MetricsService)
     {
         var that = this;
@@ -62,7 +64,7 @@
     ng.module('piwik-external-dashboard.morris').controller(
         'MorrisPieVisualizationCtrl',
         [
-            "$scope", "moment", "metricsColors", "MetricsService",
+            '$scope', 'moment', 'metricsColors', 'MetricsService',
             PieVisualizationCtrl
         ]
     );

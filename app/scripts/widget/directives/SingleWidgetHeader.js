@@ -26,7 +26,7 @@
                             this.dashboard = $scope.dashboard;
                             $scope.size = null;
 
-                            $scope.$watch("size", function (after, before) {
+                            $scope.$watch('size', function (after, before) {
                                 if (after !== before) {
                                     if (sizeQ !== null) {
                                         $timeout.cancel(sizeQ);

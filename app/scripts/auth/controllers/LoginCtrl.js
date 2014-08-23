@@ -7,9 +7,9 @@
         {
             this.authenticate = authenticate;
 
-            this.host = "";
-            this.login = "";
-            this.password = "";
+            this.host = '';
+            this.login = '';
+            this.password = '';
             this.anonymous = false;
             this.loading = false;
             this.noAccess = false;
@@ -42,7 +42,7 @@
                     {
                         if (ng.isArray(response.data)) {
                             if (response.data.length > 0) {
-                                $location.path("/" + response.data[0].idsite);
+                                $location.path('/' + response.data[0].idsite);
                             } else {
                                 that.noAccess = true;
                             }
@@ -59,16 +59,31 @@
 
     LoginCtrl.prototype.isComplete = function ()
     {
-        return this.host !== null && this.host.length > 0
-            && (
-                (this.login !== null && this.login.length > 0
-                    && this.password !== null && this.password.length > 0)
-                || this.anonymous === true
-            );
+        return this.isValidHost() && this.isValidUser();
     };
 
-    ng.module('piwik-external-dashboard.auth').controller("LoginCtrl", [
-        "Authenticate", "Site", "$location",
+    LoginCtrl.prototype.isValidHost = function ()
+    {
+        return this.host !== null && this.host.length > 0;
+    };
+
+    LoginCtrl.prototype.isValidUser = function ()
+    {
+        return (this.isValidLogin() && this.isValidPassword()) || this.anonymous === true;
+    };
+
+    LoginCtrl.prototype.isValidLogin = function ()
+    {
+        return this.login !== null && this.login.length;
+    };
+
+    LoginCtrl.prototype.isValidPassword = function ()
+    {
+        return this.password !== null && this.password.length > 0;
+    };
+
+    ng.module('piwik-external-dashboard.auth').controller('LoginCtrl', [
+        'Authenticate', 'Site', '$location',
         LoginCtrl
     ]);
 })(angular);

@@ -37,19 +37,19 @@
             }
         };
 
-        $scope.$watch("dimensions.page", function () {
+        $scope.$watch('dimensions.page', function () {
             $scope.pages = tablePaginationService.generatePagesArray($scope.dimensions);
         });
 
-        $scope.$watch("dimensions.perPage", function () {
+        $scope.$watch('dimensions.perPage', function () {
             $scope.pages = tablePaginationService.generatePagesArray($scope.dimensions);
         });
 
-        $scope.$watch("dimensions.total", function () {
+        $scope.$watch('dimensions.total', function () {
             $scope.pages = tablePaginationService.generatePagesArray($scope.dimensions);
         });
 
-        $scope.$watch("data", function () {
+        $scope.$watch('data', function () {
             if (ng.isDefined($scope.data)) {
                 $scope.dimensions.total = $scope.data.reportData.length;
             }
@@ -59,7 +59,7 @@
     ng.module('piwik-external-dashboard.tables').controller(
         'TableVisualizationCtrl',
         [
-            "$scope", "TablePaginationService",
+            '$scope', 'TablePaginationService',
             TableVisualizationCtrl
         ]
     );

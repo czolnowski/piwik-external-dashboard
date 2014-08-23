@@ -1,6 +1,8 @@
 (function (ng) {
+    'use strict';
+
     ng.module('piwik-external-dashboard.whiteLabel', [], [
-        "$provide",
+        '$provide',
         function ($provide)
         {
             $provide.value(

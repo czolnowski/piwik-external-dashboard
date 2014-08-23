@@ -34,7 +34,7 @@
     };
 
     DashboardExportReportsCtrl.$inject = [
-        "$scope", "$modal", "ReportsStateFetcher", "$location", "Report"
+        '$scope', '$modal', 'ReportsStateFetcher', '$location', 'Report'
     ];
 
     ng.module('piwik-external-dashboard.dashboard').controller(

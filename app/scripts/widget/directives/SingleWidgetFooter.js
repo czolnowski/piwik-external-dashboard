@@ -15,7 +15,7 @@
                     replace: true,
                     templateUrl: 'views/widget/single/footer.html',
                     controller: [
-                        "$scope",
+                        '$scope',
                         function ($scope)
                         {
                             $scope.sizes = [];

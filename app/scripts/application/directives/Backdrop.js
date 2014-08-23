@@ -4,14 +4,16 @@
     ng.module('piwik-external-dashboard.application').directive(
         'applicationBackdrop',
         [
-            "$window", "$http",
+            '$window', '$http',
             function ($window, $http)
             {
                 return {
-                    template: '<div class="overlay text-center" ng-show="numberOfActiveRequests > 0">' +
-                        '<i class="fa fa-spinner fa-spin fa-5x" ng-style="{\'marginTop\': dimensionsForIcon().height}"></i>' +
-                        '<br />Waiting for {{ numberOfActiveRequests }} requests... ' +
-                        '</div>',
+                    template: [
+                        '<div class="overlay text-center" ng-show="numberOfActiveRequests > 0">',
+                        '<i class="fa fa-spinner fa-spin fa-5x" ng-style=""{\"marginTop\": dimensionsForIcon().height}"></i>',
+                        '<br />Waiting for {{ numberOfActiveRequests }} requests... ',
+                        '</div>'
+                    ].join(''),
                     scope: {},
                     replace: true,
                     link: function (scope, element)

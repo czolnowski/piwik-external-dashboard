@@ -1,4 +1,6 @@
 (function (ng) {
+    'use strict';
+
     var $http = null,
         User = function ()
         {
@@ -28,13 +30,15 @@
             if (response.data.length === 1) {
                 that.alias = response.data[0].alias;
                 that.email = response.data[0].email;
+                /*jshint camelcase: false */
                 that.superuser = response.data[0].superuser_access === '1';
+                /*jshint camelcase: true */
             }
         });
     };
 
     ng.module('piwik-external-dashboard.users').factory('User', [
-        "$http",
+        '$http',
         function (_$http)
         {
             $http = _$http;
