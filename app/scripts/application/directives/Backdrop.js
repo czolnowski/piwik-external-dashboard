@@ -10,8 +10,8 @@
                 return {
                     template: [
                         '<div class="overlay text-center" ng-show="numberOfActiveRequests > 0">',
-                        '<i class="fa fa-spinner fa-spin fa-5x" ng-style=""{\"marginTop\": dimensionsForIcon().height}"></i>',
-                        '<br />Waiting for {{ numberOfActiveRequests }} requests... ',
+                            '<i class="fa fa-spinner fa-spin fa-5x" ng-style="{\'marginTop\': dimensionsForIcon().height}"></i>',
+                            '<br />Waiting for {{ numberOfActiveRequests }} requests... ',
                         '</div>'
                     ].join(''),
                     scope: {},
