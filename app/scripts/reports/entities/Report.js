@@ -153,10 +153,8 @@
 
     Report.unserialize = function (reports)
     {
-        var result = ng.fromJson(reports);
-
         ng.forEach(
-            result,
+            reports,
             function (row)
             {
                 row.report = new Report(
@@ -168,7 +166,7 @@
             }
         );
 
-        return result;
+        return reports;
     };
 
     ng.module('piwik-external-dashboard.reports').factory(

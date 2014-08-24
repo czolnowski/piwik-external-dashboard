@@ -82,8 +82,23 @@
         return this.password !== null && this.password.length > 0;
     };
 
-    ng.module('piwik-external-dashboard.auth').controller('LoginCtrl', [
-        'Authenticate', 'Site', '$location',
-        LoginCtrl
-    ]);
+    LoginCtrl.$inject = ['Authenticate', 'Site', '$location'];
+
+    ng.module('piwik-external-dashboard.auth')
+    .controller('LoginCtrl', LoginCtrl)
+    .config(
+        [
+            '$routeProvider',
+            function ($routeProvider) {
+                $routeProvider.when(
+                    '/login',
+                    {
+                        templateUrl: 'views/login/index.html',
+                        controller: 'LoginCtrl',
+                        controllerAs: 'login'
+                    }
+                );
+            }
+        ]
+    );
 })(angular);

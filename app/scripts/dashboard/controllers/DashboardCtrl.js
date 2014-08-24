@@ -3,34 +3,35 @@
 
     var $timeout,
         $location,
-        $modal,
-        Report,
-        DashboardCtrl = function ($scope, $routeParams, _$location, _$modal, _$timeout,
-                                  _Report, ReportsStateFetcher)
+        State,
+        DashboardCtrl = function ($scope, _$location, _$timeout, _State, states, localState)
         {
             $timeout = _$timeout;
             $location = _$location;
-            $modal = _$modal;
-            Report = _Report;
+            State = _State;
 
-            this.reports = [];
-            this.stateFetcher = ReportsStateFetcher;
-
-            this.initialize($scope, $routeParams);
+            this.localState = localState;
+            this.dashboards = states;
+            this.initialize($scope);
         };
 
-    DashboardCtrl.prototype.initialize = function ($scope, $routeParams)
+    DashboardCtrl.prototype.initialize = function ($scope)
     {
         var vm = this;
 
-        this.stateFetcher.load('dashboards', $routeParams.dashboard).then(
-            function (result)
+        this.localState.load().then(
+            function (dashboards)
             {
-                var reports = Report.unserialize(result);
+                vm.dashboards.add(dashboards);
+                vm.current = vm.dashboards.getActive();
+            },
+            function ()
+            {
+                var state = new State();
+                vm.current = state;
+                vm.current.active = true;
 
-                if (ng.isArray(reports)) {
-                    vm.reports = reports;
-                }
+                vm.dashboards.add(state);
             }
         );
 
@@ -40,7 +41,8 @@
                 $timeout(function () {
                     vm.persist();
                 });
-            }
+            },
+            cancel: '.add'
         };
 
         $scope.$on('sites.selectedSite', function (event, site) {
@@ -50,70 +52,70 @@
         });
     };
 
-    DashboardCtrl.prototype.openReportsModal = function ()
+    DashboardCtrl.prototype.persist = function ()
     {
-        var modalInstance = $modal.open({
-                templateUrl: 'views/reports/add-modal.html',
-                controller: 'AddReportModalCtrl',
-                resolve: {
-                    reports: [
-                        'Report',
-                        function (Report)
-                        {
-                            return Report.fetchMetaData();
-                        }
-                    ]
-                }
-            }),
-            vm = this;
+        this.localState.persist(this.dashboards.states);
+    };
 
-        modalInstance.result.then(
-            function (result)
+    DashboardCtrl.prototype.add = function ()
+    {
+        this.dashboards.add(new State());
+    };
+
+    DashboardCtrl.prototype.change = function (current)
+    {
+        this.current.active = false;
+        this.current = current;
+        this.current.active = true;
+
+        this.persist();
+    };
+
+    DashboardCtrl.prototype.remove = function ()
+    {
+        if (!this.canRemove()) {
+            return;
+        }
+
+        var vm = this;
+
+        this.dashboards.remove(this.current).then(
+            function (current)
             {
-                vm.reports.push(ng.copy(result));
+                vm.current = current;
+                vm.current.active = true;
+
                 vm.persist();
             }
         );
     };
 
-    DashboardCtrl.prototype.remove = function (report)
+    DashboardCtrl.prototype.canRemove = function ()
     {
-        var index = this.reports.indexOf(report);
-
-        if (index > -1) {
-            this.reports.splice(index, 1);
-            this.persist();
-        }
+        return this.dashboards.getSize() > 1;
     };
 
-    DashboardCtrl.prototype.exportDashboard = function ()
-    {
-        this.stateFetcher.save(
-            'dashboards',
-            Report.serialize(this.reports)
-        ).then(
-            function (reportsName)
-            {
-                $location.search('dashboard', reportsName);
+    DashboardCtrl.$inject = [
+        '$scope', '$location', '$timeout',
+        'DashboardState', 'DashboardStates', 'DashboardLocalState'
+    ];
+
+    ng.module('piwik-external-dashboard.dashboard')
+    .controller('DashboardCtrl', DashboardCtrl)
+    .config(
+        [
+            '$routeProvider',
+            function ($routeProvider) {
+                $routeProvider.when(
+                    '/:idSite?',
+                    {
+                        templateUrl: 'views/dashboard/index.html',
+                        controller: 'DashboardCtrl',
+                        controllerAs: 'dashboard',
+                        auth: true
+                    }
+                );
             }
-        );
-    };
-
-    DashboardCtrl.prototype.persist = function ()
-    {
-        this.stateFetcher.persist('reports', Report.serialize(this.reports));
-
-        $location.search('dashboard', null);
-    };
-
-    ng.module('piwik-external-dashboard.dashboard').controller('DashboardCtrl', [
-        '$scope',
-        '$routeParams',
-        '$location',
-        '$modal',
-        '$timeout',
-        'Report',
-        'ReportsStateFetcher',
-        DashboardCtrl
-    ]);
+        ]
+    );
 })(window.angular);

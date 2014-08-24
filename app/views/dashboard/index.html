@@ -5,11 +5,29 @@
     <div class="container">
         <div dashboard-nav-bar></div>
 
+        <ul class="nav well nav-pills"
+            role="tablist"
+            ui-sortable="dashboard.sortableOptions"
+            ng-model="dashboard.dashboards.states">
+            <li ng-repeat="tab in dashboard.dashboards.states"
+                ng-class="{'active' : tab.active}">
+                <a href=""
+                   ng-click="dashboard.change(tab)"
+                   ng-bind="tab.name"></a>
+            </li>
+            <li class="add">
+                <a href=""
+                   ng-click="dashboard.add(); dashboard.persist();">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </li>
+        </ul>
+
         <div class="row"
              ui-sortable="dashboard.sortableOptions"
-             ng-model="dashboard.reports">
+             ng-model="dashboard.current.reports">
             <div class="col-md-{{report.size}} widget"
-                 ng-repeat="report in dashboard.reports">
+                 ng-repeat="report in dashboard.current.reports">
                 <div single-widget
                      report="report"
                      dashboard="dashboard"></div>

@@ -2,15 +2,15 @@
     'use strict';
 
     ng.module('piwik-external-dashboard.dashboard').directive(
-        'dashboardExportReports',
+        'dashboardAddReport',
         [
             function ()
             {
                 return {
                     scope: false,
-                    controller: 'DashboardExportReportsCtrl',
-                    controllerAs: 'export',
-                    templateUrl: 'views/dashboard/nav/export-reports.html'
+                    controller: 'DashboardAddReportCtrl',
+                    controllerAs: 'addReport',
+                    templateUrl: 'views/dashboard/nav/add-report.html'
                 };
             }
         ]

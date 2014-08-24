@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default"
      role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="navbar-header" ng-init="editName = false;">
             <button type="button"
                     class="navbar-toggle"
                     data-toggle="collapse"
@@ -11,7 +11,33 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Dashboard</a>
+            <a class="navbar-brand"
+               href="/"
+               ng-bind="dashboard.current.name"
+               ng-hide="editName"></a>
+            <form class="navbar-form navbar-left"
+                  ng-show="editName">
+                <div class="form-group">
+                    <input type="text"
+                           class="form-control col-md-2"
+                           ng-model="dashboard.current.name" />
+                </div>
+            </form>
+
+            <div class="btn-group navbar-left navbar-btn">
+                <button type="button"
+                        class="btn btn-default"
+                        ng-click="editName === true ? dashboard.persist() : true; editName = !editName;">
+                    <i class="fa fa-pencil"></i>
+                </button>
+
+                <button type="button"
+                        class="btn btn-default"
+                        ng-if="dashboard.canRemove()"
+                        ng-click="dashboard.remove()">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
         </div>
 
         <div class="collapse navbar-collapse"
@@ -19,18 +45,9 @@
             <div dashboard-date-selector></div>
 
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href=""
-                       ng-click="dashboard.openReportsModal()">
-                        <i class="glyphicon glyphicon-plus"></i> Add widget
-                    </a>
-                </li>
-                <li dashboard-export-reports reports="dashboard.reports">
-                    <!--<a href=""-->
-                       <!--ng-click="dashboard.exportDashboard()">-->
-                        <!--<i class="glyphicon glyphicon-export"></i> Export dashboard-->
-                    <!--</a>-->
-                </li>
+                <li dashboard-add-report
+                    style="margin: 0 15px 0 0;"></li>
+                <li dashboard-export-reports></li>
             </ul>
 
             <div sites-selector></div>

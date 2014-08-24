@@ -7,7 +7,7 @@
             function ()
             {
                 return {
-                    templateUrl: 'views/dashboard/date-selector.html',
+                    templateUrl: 'views/dashboard/nav/date-selector.html',
                     controller: 'DashboardDateSelectorCtrl',
                     controllerAs: 'dateSelector',
                     replace: true

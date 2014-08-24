@@ -32,8 +32,14 @@
     );
 
     app.config(
-        function ($locationProvider) {
-            $locationProvider.html5Mode(true);
-        }
+        [
+            '$locationProvider',
+            '$routeProvider',
+            function ($locationProvider, $routeProvider)
+            {
+                $locationProvider.html5Mode(true);
+                $routeProvider.otherwise('/');
+            }
+        ]
     );
 })(window.angular);
