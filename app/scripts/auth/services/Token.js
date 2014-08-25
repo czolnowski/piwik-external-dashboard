@@ -1,35 +1,50 @@
 (function (ng) {
     'use strict';
 
-    var Token = function ($http, md5)
-    {
-        this.$http = $http;
-        this.md5 = md5;
+    var $cookieStore,
+        $http,
+        md5,
+        Token = function (_$http, _md5, _$cookieStore)
+        {
+            this.login = null;
+            this.tokenAuth = null;
+            this.host = null;
 
-        this.token_auth = null;
-        this.host = null
-    };
+            $http = _$http;
+            md5 = _md5;
+            $cookieStore = _$cookieStore;
+        };
 
     Token.prototype.get = function (host, login, password)
     {
-        return this.$http.post(
+        return $http.post(
             '/api/UsersManager/getTokenAuth',
             {
                 host: host,
                 userLogin: login,
-                md5Password: this.md5.createHash(password)
+                md5Password: md5(password)
             }
         );
     };
 
-    Token.prototype.setTokenAuth = function (token_auth)
+    Token.prototype.setTokenAuth = function (tokenAuth)
     {
-        this.token_auth = token_auth;
+        this.tokenAuth = tokenAuth;
     };
 
     Token.prototype.getTokenAuth = function ()
     {
-        return this.token_auth;
+        return this.tokenAuth;
+    };
+
+    Token.prototype.setLogin = function (login)
+    {
+        this.login = login;
+    };
+
+    Token.prototype.getLogin = function ()
+    {
+        return this.login;
     };
 
     Token.prototype.setHost = function (host)
@@ -44,15 +59,36 @@
 
     Token.prototype.isValid = function ()
     {
-        return this.token_auth !== null
-            && this.host !== null;
+        return this.tokenAuth !== null && this.host !== null;
     };
 
-    Token.prototype.createFromTokenInstance = function (token)
+    Token.prototype.persist = function ()
     {
-        this.token_auth = token.token_auth;
-        this.host = token.host;
+        $cookieStore.put(
+            'token',
+            {
+                tokenAuth: this.tokenAuth,
+                login: this.login,
+                host: this.host
+            }
+        );
     };
 
-    ng.module('piwikExtDash.auth').service('Token', ['$http', 'md5', Token]);
+    Token.prototype.restore = function ()
+    {
+        var token = $cookieStore.get('token');
+        if (ng.isDefined(token)) {
+            this.tokenAuth = token.tokenAuth;
+            this.login = token.login;
+            this.host = token.host;
+        }
+    };
+
+    ng.module('piwik-external-dashboard.auth').service(
+        'Token',
+        [
+            '$http', 'md5', '$cookieStore',
+            Token
+        ]
+    );
 })(angular);

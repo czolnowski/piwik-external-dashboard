@@ -1,13 +1,15 @@
 (function (ng) {
-    var Authenticate = function (token, user, http, cookieStore, $location)
-    {
-        this.token = token;
-        this.user = user;
+    'use strict';
 
-        this.http = http;
-        this.cookieStore = cookieStore;
-        this.$location = $location;
-    };
+    var
+        $q,
+        Authenticate = function (token, user, _$q)
+        {
+            this.token = token;
+            this.user = user;
+
+            $q = _$q;
+        };
 
     Authenticate.prototype.login = function (host, login, password)
     {
@@ -16,15 +18,12 @@
 
         request.then(
             function (response) {
-                if (ng.isDefined(response.token_auth)) {
-                    that.token.setTokenAuth(response.token_auth);
+                if (ng.isDefined(response.data.value)) {
+                    that.token.setTokenAuth(response.data.value);
                     that.token.setHost(host);
-                    that.cookieStore.put('token', that.token);
+                    that.token.setLogin(login);
+                    that.token.persist();
                     that.getUserInformation(login);
-
-                    that.$location.path('/');
-                } else {
-                    console.log('something goes wrong')
                 }
             }
         );
@@ -34,13 +33,18 @@
 
     Authenticate.prototype.asAnonymous = function (host)
     {
+        var deferred = $q.defer();
+
+        deferred.resolve('anonymous');
+
         this.token.setTokenAuth('anonymous');
         this.token.setHost(host);
+        this.token.setLogin('anonymous');
         this.getUserInformation('anonymous');
 
-        this.cookieStore.put('token', this.token);
+        this.token.persist();
 
-        this.$location.path('/');
+        return deferred.promise;
     };
 
     Authenticate.prototype.isAuthenticated = function ()
@@ -48,9 +52,9 @@
         return this.token.isValid();
     };
 
-    Authenticate.prototype.goToLogin = function ()
+    Authenticate.prototype.getLoginPath = function ()
     {
-        this.$location.path('/login');
+        return '/login';
     };
 
     Authenticate.prototype.getUserInformation = function (login)
@@ -60,8 +64,8 @@
         this.me.me();
     };
 
-    ng.module('piwikExtDash.auth').service("Authenticate", [
-        "Token", "User", "$http", "$cookieStore", "$location",
+    ng.module('piwik-external-dashboard.auth').service('Authenticate', [
+        'Token', 'User', '$q',
         Authenticate
     ]);
 })(angular);

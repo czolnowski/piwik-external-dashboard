@@ -1,43 +1,45 @@
 (function (ng) {
     'use strict';
-    var app = ng.module('piwikExtDash', [
-        'ngCookies',
-        'ngSanitize',
-        'ngRoute',
-        'angular-md5',
-        'chartjs',
-        'ui.bootstrap',
-        'angularMoment',
-        'ui.select2',
 
-        'piwikExtDash.auth',
-        'piwikExtDash.dashboard',
-        'piwikExtDash.users',
-        'piwikExtDash.widget'
-    ]);
+    var app = ng.module(
+        'piwik-external-dashboard',
+        [
+            'ngCookies',
+            'ngSanitize',
+            'ngRoute',
+            'ui.bootstrap',
+            'angularMoment',
+            'ui.select2',
+            'firebase',
+            'LocalStorageModule',
+            'ngBootstrap',
+            'angular-morrisjs',
+            'ui.sortable',
+            'ui.gravatar',
+            'md5',
 
-    app.config(function ($locationProvider) {
-        $locationProvider.html5Mode(true);
-    });
+            'piwik-external-dashboard.application',
+            'piwik-external-dashboard.auth',
+            'piwik-external-dashboard.dashboard',
+            'piwik-external-dashboard.users',
+            'piwik-external-dashboard.widget',
+            'piwik-external-dashboard.reports',
+            'piwik-external-dashboard.sites',
+            'piwik-external-dashboard.morris',
+            'piwik-external-dashboard.tables',
+            'piwik-external-dashboard.whiteLabel'
+        ]
+    );
 
-    app.run([
-        "$rootScope", "Authenticate",
-        function ($rootScope, Authenticate)
-        {
-            $rootScope.$on("$routeChangeStart", function (event, next) {
-                if (ng.isDefined(next.auth) && next.auth === true && !Authenticate.isAuthenticated()) {
-                    Authenticate.goToLogin();
-                    event.preventDefault();
-                }
-            });
-        }
-    ]);
-
-    app.config([
-        "$httpProvider",
-        function ($httpProvider)
-        {
-            $httpProvider.interceptors.push('TokenInterceptor');
-        }
-    ]);
+    app.config(
+        [
+            '$locationProvider',
+            '$routeProvider',
+            function ($locationProvider, $routeProvider)
+            {
+                $locationProvider.html5Mode(true);
+                $routeProvider.otherwise('/');
+            }
+        ]
+    );
 })(window.angular);

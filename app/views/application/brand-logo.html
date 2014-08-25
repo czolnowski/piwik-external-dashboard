@@ -1,0 +1,32 @@
+<header class="logo-box box">
+    <div class="logo hidden-sm">
+        <a href="/">
+            <img ng-src="{{ logoUrl }}" alt="" /><br />
+        </a>
+        <a href="{{ changeLogUrl }}"
+           target="_blank">
+            <small ng-bind="version"></small>
+        </a>
+    </div>
+
+    <div class="sidebar-collapse-button visible-xs"
+         ng-click="menu.show = !menu.show">
+        <button type="button">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+
+    <div class="sidebar-collapse-button visible-sm"
+         ng-click="menu.sm.toggle = !menu.sm.toggle">
+        <button type="button">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+
+    <div class="sidebar-collapse-button hidden-xs hidden-sm"
+         ng-click="menu.md.toggle = !menu.md.toggle">
+        <button type="button">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+</header>

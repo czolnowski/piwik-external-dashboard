@@ -1,0 +1,20 @@
+<div class="user-box box">
+    <div>
+        <img gravatar-src="user.email"
+             gravatar-size="52"
+             class="img-circle">
+
+        <span class="hidden-sm">Welcome,</span>
+        <strong class="hidden-sm" ng-bind="user.alias"></strong>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="links text-right">
+        <a href="/login"
+           ng-click="logout()">
+            <i class="fa fa-lock"></i>
+            Log Off
+        </a>
+    </div>
+</div>

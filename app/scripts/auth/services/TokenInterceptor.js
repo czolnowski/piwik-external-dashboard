@@ -1,10 +1,10 @@
 (function (ng) {
     'use strict';
 
-    ng.module('piwikExtDash.auth').service(
+    ng.module('piwik-external-dashboard.auth').service(
         'TokenInterceptor',
         [
-            "$injector",
+            '$injector',
             function ($injector)
             {
                 return {
@@ -14,7 +14,9 @@
                             $injector.invoke(['Token', function(Token) {
                                 if (Token.isValid()) {
                                     config.data.host = Token.host;
-                                    config.data.token_auth = Token.token_auth;
+                                    /*jshint camelcase: false */
+                                    config.data.token_auth = Token.tokenAuth;
+                                    /*jshint camelcase: true */
                                 }
                             }]);
                         }

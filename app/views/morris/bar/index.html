@@ -1,0 +1,12 @@
+<div ng-if="data.length > 0">
+    <div data-morris-metrics-selector></div>
+    <div data-bar-chart
+         data-data="data"
+         data-xkey="{{ xkey }}"
+         data-ykeys="ykeys"
+         data-labels="labels"
+         data-bar-colors="metricsColors"
+         data-set-graph="setGraphInstance"
+         data-hide-hover="true"
+         data-resize="true"></div>
+</div>

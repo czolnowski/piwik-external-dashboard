@@ -1,101 +1,37 @@
-<header class="row">
-	<div class="col-md-8">
-		<img src="/images/piwik.png" class="logo">
-	
-        <div class="range calendarpick">
-            <div ng-controller="DatepickerCtrl">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="maxDate" format="dd.MM.yyyy" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+<div application-container >
+    <div application-sidebar
+         active="dashboard"></div>
 
-                <i class="glyphicon glyphicon-calendar pick" ng-click="open($event)" ></i>
-            </div>
-	    </div>
-	</div>
-    <div class="col-md-4">
-        <ul class="list-inline">
+    <div class="container">
+        <div dashboard-nav-bar></div>
 
-            <li class="add-widget">
-                <div ng-controller="ModalCtrl">
-                    <script type="text/ng-template" id="myModalContent.html">
-                        <div class="modal-header">
-                            <h3 class="modal-title">add new module</h3>
-                        </div>
-                        <div class="modal-body">
-                            choose module type:
-                            <div ng-controller="ReportsCtrl">
-                                <div ng-repeat="categoryReports in allReportsByCategory">
-                                    {{ categoryReports.0.category }}
-
-                                    <div ng-repeat="report in categoryReports">
-                                        <div class="btn-group" dropdown is-open="status.isopen">
-                                            <button type="button" class="btn btn-sm dropdown-toggle" ng-disabled="disabled">
-                                                {{ report.name }} <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a ng-click="addReport(report, 'table', 'small')" href="#">Table small</a></li>
-                                                <li><a ng-click="addReport(report, 'table', 'medium')" href="#">Table medium</a></li>
-                                                <li><a ng-click="addReport(report, 'table', 'large')" href="#">Table large</a></li>
-                                                <li><a ng-click="addReport(report, 'evolution', 'small')" href="#">Evolution small</a></li>
-                                                <li><a ng-click="addReport(report, 'evolution', 'medium')" href="#">Evolution medium</a></li>
-                                                <li><a ng-click="addReport(report, 'evolution', 'large')" href="#">Evolution large</a></li>
-                                                <li><a ng-click="addReport(report, 'bar', 'small')" href="#">Bar small</a></li>
-                                                <li><a ng-click="addReport(report, 'bar', 'medium')" href="#">Bar medium</a></li>
-                                                <li><a ng-click="addReport(report, 'bar', 'large')" href="#">Bar large</a></li>
-                                                <li><a ng-click="addReport(report, 'pie', 'small')" href="#">Pie small</a></li>
-                                                <li><a ng-click="addReport(report, 'pie', 'medium')" href="#">Pie medium</a></li>
-                                                <li><a ng-click="addReport(report, 'pie', 'large')" href="#">Pie large</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-warning" ng-click="cancel()"> <span class="glyphicon glyphicon-remove" ></span> Cancel</button>
-                        </div>
-                    </script>
-                    <span class="glyphicon glyphicon-plus" ng-click="open()"></span>
-
-                </div>
+        <ul class="nav well nav-pills"
+            role="tablist"
+            ui-sortable="dashboard.sortableOptions"
+            ng-model="dashboard.dashboards.states">
+            <li ng-repeat="tab in dashboard.dashboards.states"
+                ng-class="{'active' : tab.active}">
+                <a href=""
+                   ng-click="dashboard.change(tab)"
+                   ng-bind="tab.name"></a>
             </li>
-            <li>
-                <div class="site-selector">
-                    <div ng-controller="SiteSelectorCtrl">
-                        <select ui-select2 ng-model="ss" data-placeholder="Choose site" ng-required="true">
-                            <option value=""></option>
-                            <option ng-repeat="site in sites" value="{{site.idsite}}">{{site.name}}</option>
-                        </select>
-                    </div>
-                </div>
-            </li>
-
-            <li>
-                <div class="site-selector">
-                    <button ng-click="exportDashboard()" class="btn">Export</button>
-                </div>
-            </li>
-
-            <li>
-                <a href="/login" class="btn"><span class="glyphicon glyphicon-log-out"
-                        style="background: #56baec;
-color: #fff;
-border-radius: 999px;
-width: auto !important; padding-right: 5px;"></span> Logout</a>
+            <li class="add">
+                <a href=""
+                   ng-click="dashboard.add(); dashboard.persist();">
+                    <i class="fa fa-plus"></i>
+                </a>
             </li>
         </ul>
+
+        <div class="row"
+             ui-sortable="dashboard.sortableOptions"
+             ng-model="dashboard.current.reports">
+            <div class="col-md-{{report.size}} widget"
+                 ng-repeat="report in dashboard.current.reports">
+                <div single-widget
+                     report="report"
+                     dashboard="dashboard"></div>
+            </div>
+        </div>
     </div>
-</header>
-<div class="row">
-  <div class="col-md-{{report.size}}" ng-repeat="report in reports track by $index">
-      <div report class="widget" currentreport="report" module="{{ report.module }}" action="{{ report.action }}"
-              evolution="report.visualization == 'evolution' ? true : false">
-          <div ng-if="report.visualization == 'evolution'" evolution-vis></div>
-          <div ng-if="report.visualization == 'bar'" bar-vis></div>
-          <div ng-if="report.visualization == 'pie'" pie-vis></div>
-          <div ng-if="report.visualization == 'table'" tablevis></div>
-      </div>
-  </div>
 </div>
-
-<div ng-show="selected">Selection from a modal: {{ selected }}</div>
-
