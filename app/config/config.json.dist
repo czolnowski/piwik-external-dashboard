@@ -1,0 +1,8 @@
+{
+    "persistenceLayer": {
+        "name": "firebase",
+        "configuration": {
+            "host": "piwik-ext-dashboard.firebaseio.com"
+        }
+    }
+}

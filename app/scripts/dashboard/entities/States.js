@@ -58,6 +58,11 @@
 
             return deferred.promise;
         };
+
+        vm.clear = function ()
+        {
+            vm.states = [];
+        };
     };
 
     States.$inject = ['$q'];

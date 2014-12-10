@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
     <link rel="stylesheet" href="bower_components/morrisjs/morris.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-growl-v2/build/angular-growl.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -45,7 +46,16 @@
         </div>
     </div>
 
-    <div application-backdrop></div>
+    <div data-application-backdrop></div>
+
+    <div data-growl></div>
+
+    <div class="overlay text-center bootstrap-loader">
+        <div class="inner">
+            <i class="fa fa-spinner fa-spin fa-5x"></i>
+            <br />Loading ...
+        </div>
+    </div>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -80,6 +90,8 @@
     <script src="bower_components/angular-ui-sortable/sortable.js"></script>
     <script src="bower_components/angular-gravatar/build/md5.js"></script>
     <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
+    <script src="bower_components/angular-growl-v2/build/angular-growl.js"></script>
+    <script src="bower_components/angular-deferred-bootstrap/angular-deferred-bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -149,13 +161,41 @@
 
     <script src="scripts/white-label/module.js"></script>
 
+    <script src="scripts/configurations/module.js"></script>
+    <script src="scripts/configurations/services/Configurator.js"></script>
+
+    <script src="scripts/firebase/module.js"></script>
+
     <script src="scripts/app.js"></script>
+    <!--<script src="scripts/bootstrap.js"></script>-->
     <!-- endbuild -->
 
     <script>
-        angular.element(document).ready(function() {
-            angular.bootstrap(document, ['piwik-external-dashboard']);
-        });
+        (function (db, document) {
+            'use strict';
+
+            db.bootstrap(
+                    {
+                        element: document   ,
+                        module: 'piwik-external-dashboard',
+                        moduleResolves: [
+                            {
+                                module: 'piwik-external-dashboard.configurations',
+                                resolve: {
+                                    CONFIG: [
+                                        '$http',
+                                        function (initializer)
+                                        {
+                                            return initializer.get('config.json');
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+            );
+        })(window.deferredBootstrapper, window.document);
+
     </script>
 </body>
 </html>

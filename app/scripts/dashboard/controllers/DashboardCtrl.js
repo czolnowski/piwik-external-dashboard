@@ -6,6 +6,8 @@
         State,
         DashboardCtrl = function ($scope, _$location, _$timeout, _State, states, localState)
         {
+            var vm = this;
+
             $timeout = _$timeout;
             $location = _$location;
             State = _State;
@@ -13,6 +15,10 @@
             this.localState = localState;
             this.dashboards = states;
             this.initialize($scope);
+
+            $scope.$on('$destroy', function () {
+                vm.dashboards.clear();
+            });
         };
 
     DashboardCtrl.prototype.initialize = function ($scope)
