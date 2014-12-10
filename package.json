@@ -1,7 +1,14 @@
 {
-  "name": "piwikexternaldashboard",
-  "version": "0.0.0",
-  "dependencies": {},
+  "name": "piwik-external-dashboard",
+  "description": "Piwik external dashboard application",
+  "version": "1.1.0",
+  "repository": "git@github.com:czolnowski/piwik-external-dashboard.git",
+  "dependencies": {
+    "connect": "~3.3.x",
+    "request": "~2.x.x",
+    "serve-static": "~1.7.x",
+    "winston": "^0.8.3"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
@@ -36,7 +43,5 @@
   "engines": {
     "node": ">=0.8.0"
   },
-  "scripts": {
-    "test": "grunt test"
-  }
+  "scripts": {}
 }
