@@ -161,39 +161,32 @@
 
     <script src="scripts/white-label/module.js"></script>
 
-    <script src="scripts/configurations/module.js"></script>
-    <script src="scripts/configurations/services/Configurator.js"></script>
-
     <script src="scripts/firebase/module.js"></script>
 
     <script src="scripts/app.js"></script>
-    <!--<script src="scripts/bootstrap.js"></script>-->
     <!-- endbuild -->
 
     <script>
         (function (db, document) {
             'use strict';
 
-            db.bootstrap(
+            db.bootstrap({
+                element: document   ,
+                module: 'piwik-external-dashboard',
+                moduleResolves: [
                     {
-                        element: document   ,
-                        module: 'piwik-external-dashboard',
-                        moduleResolves: [
-                            {
-                                module: 'piwik-external-dashboard.configurations',
-                                resolve: {
-                                    CONFIG: [
-                                        '$http',
-                                        function (initializer)
-                                        {
-                                            return initializer.get('config.json');
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
+                        module: 'piwik-external-dashboard.reports',
+                        resolve: {
+                            REPORTS_SOURCE: ['$http', function ($http) {
+                              return $http.get('/config/reports.json');
+                            }]
+                        }
                     }
-            );
+                ],
+                onError: function (error) {
+                  alert('Could not bootstrap, error: ' + error);
+                }
+            });
         })(window.deferredBootstrapper, window.document);
 
     </script>

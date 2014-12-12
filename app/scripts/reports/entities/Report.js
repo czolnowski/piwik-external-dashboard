@@ -172,9 +172,10 @@
     ng.module('piwik-external-dashboard.reports').factory(
         'Report',
         [
-            '$http', '$routeParams', 'moment', '$q',
-            function (_$http, _$routeParams, _moment, _$q)
+            '$http', '$routeParams', 'moment', '$q', 'REPORTS_SOURCE',
+            function (_$http, _$routeParams, _moment, _$q, REPORTS_SOURCE)
             {
+                Report.source = REPORTS_SOURCE.source;
                 $http = _$http;
                 $routeParams = _$routeParams;
                 moment = _moment;

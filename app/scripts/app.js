@@ -29,7 +29,6 @@
             'piwik-external-dashboard.morris',
             'piwik-external-dashboard.tables',
             'piwik-external-dashboard.whiteLabel',
-            'piwik-external-dashboard.configurations',
             'piwik-external-dashboard.firebase'
         ]
     )
