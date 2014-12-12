@@ -7,7 +7,8 @@ var bodyRequests = ['post', 'delete', 'put', 'patch'],
     },
     parser = require('./parser');
 
-var route = function (request, response) {
+var resolver = function (request, response) {
+
     if (isStreamableMethod(request.method.toLowerCase())) {
         parser.parseApiPostRequest(
             request,
@@ -22,4 +23,9 @@ var route = function (request, response) {
     }
 };
 
-module.exports = route;
+module.exports = {
+    path: '/api',
+    resolver: function () {
+        return resolver;
+    }
+};

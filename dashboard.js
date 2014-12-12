@@ -14,6 +14,9 @@ process.argv.forEach(function (val) {
     }
 });
 
-dashboard((config && config.server) ? config.server : {});
+dashboard(
+    (config && config.server) ? config.server : {},
+    (config && config.frontend) ? config.frontend : {}
+);
 
 

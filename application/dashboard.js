@@ -2,29 +2,31 @@
 "use strict";
 
 var app = require('connect')(),
-    api = require('./api/api'),
+    apiRoute = require('./api/index'),
+    configRoute = require('./config/index'),
     serveStatic = require('serve-static'),
     fs = require('fs'),
     http = require('http'),
     winston = require('winston'),
     log = new winston.Logger();
 
-module.exports = function (config) {
-    if (typeof config.static !== 'string') {
+module.exports = function (serverConfig, frontendConfig) {
+    if (typeof serverConfig.static !== 'string') {
         log.log('info', 'config.static set to "app".');
-        config.static = 'app';
+        serverConfig.static = 'app';
     }
 
-    if (typeof config.port !== 'number') {
+    if (typeof serverConfig.port !== 'number') {
         log.log('info', 'config.port set to "3000".');
-        config.port = 3000;
+        serverConfig.port = 3000;
     }
 
-    app.use('/api', api);
-    app.use(serveStatic(config.static, {}))
+    app.use(apiRoute.path, apiRoute.resolver(serverConfig, frontendConfig));
+    app.use(configRoute.path, configRoute.resolver(serverConfig, frontendConfig));
+    app.use(serveStatic(serverConfig.static, {}))
 
     app.use(function (request, response) {
-        fs.readFile(config.static + '/index.html', "binary", function (err, file) {
+        fs.readFile(serverConfig.static + '/index.html', "binary", function (err, file) {
             if (err) {
                 response.writeHead(500, {"Content-Type": "text/plain"});
                 response.write(err + "\n");
@@ -39,7 +41,7 @@ module.exports = function (config) {
         });
     });
 
-    http.createServer(app).listen(config.port);
+    http.createServer(app).listen(serverConfig.port);
     log.log('info', 'Server is running.');
 };
 
