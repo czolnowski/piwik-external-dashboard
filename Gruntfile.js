@@ -29,65 +29,30 @@ module.exports = function (grunt) {
         watch: {
             js: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-                tasks: ['newer:jshint:all'],
-                options: {
-                    livereload: true
-                }
+                tasks: ['newer:jshint:all']
             },
             jsTest: {
                 files: ['test/spec/{,*/}*.js'],
                 tasks: ['newer:jshint:test', 'karma']
             },
-            compass: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-                tasks: ['compass:server', 'autoprefixer']
-            },
-            gruntfile: {
-                files: ['Gruntfile.js']
-            },
-            livereload: {
-                options: {
-                    livereload: '<%= connect.options.livereload %>'
-                },
-                files: [
-                    '<%= yeoman.app %>/{,*/}*.html',
-                    '.tmp/styles/{,*/}*.css',
-                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-                ]
+            application: {
+                files: ['./application/{,*/}*.js'],
+                tasks: ['foreverMulti:dev']
             }
         },
 
-        // The actual grunt server settings
-        connect: {
-            options: {
-                port: 123001,
-                // Change this to '0.0.0.0' to access the server from outside.
-                hostname: 'localhost',
-                livereload: 35729
-            },
-            livereload: {
-                options: {
-                    open: true,
-                    base: [
-                        '.tmp',
-                        '<%= yeoman.app %>'
-                    ]
-                }
+        foreverMulti: {
+            dev: {
+                file: 'dashboard.js',
+                options: ['--config=./config/dev-config.json']
             },
             test: {
-                options: {
-                    port: 9001,
-                    base: [
-                        '.tmp',
-                        'test',
-                        '<%= yeoman.app %>'
-                    ]
-                }
+                file: 'dashboard.js',
+                options: ['--config=./config/test-config.json']
             },
             dist: {
-                options: {
-                    base: '<%= yeoman.dist %>'
-                }
+                file: 'dashboard.js',
+                options: ['--config=./config/config.json']
             }
         },
 
@@ -144,38 +109,6 @@ module.exports = function (grunt) {
             app: {
                 html: '<%= yeoman.app %>/index.html',
                 ignorePath: '<%= yeoman.app %>/'
-            }
-        },
-
-
-
-
-        // Compiles Sass to CSS and generates necessary files if requested
-        compass: {
-            options: {
-                sassDir: '<%= yeoman.app %>/styles',
-                cssDir: '.tmp/styles',
-                generatedImagesDir: '.tmp/images/generated',
-                imagesDir: '<%= yeoman.app %>/images',
-                javascriptsDir: '<%= yeoman.app %>/scripts',
-                fontsDir: '<%= yeoman.app %>/styles/fonts',
-                importPath: '<%= yeoman.app %>/bower_components',
-                httpImagesPath: '/images',
-                httpGeneratedImagesPath: '/images/generated',
-                httpFontsPath: '/styles/fonts',
-                relativeAssets: false,
-                assetCacheBuster: false,
-                raw: 'Sass::Script::Number.precision = 10\n'
-            },
-            dist: {
-                options: {
-                    generatedImagesDir: '<%= yeoman.dist %>/images/generated'
-                }
-            },
-            server: {
-                options: {
-                    debugInfo: false
-                }
             }
         },
 
@@ -252,7 +185,7 @@ module.exports = function (grunt) {
 
         // Allow the use of non-minsafe AngularJS files. Automatically makes it
         // minsafe compatible so Uglify does not destroy the ng references
-        ngmin: {
+        ngAnnotate: {
             dist: {
                 files: [{
                     expand: true,
@@ -304,14 +237,7 @@ module.exports = function (grunt) {
 
         // Run some tasks in parallel to speed up the build process
         concurrent: {
-            server: [
-                'compass:server'
-            ],
-            test: [
-                'compass'
-            ],
             dist: [
-                'compass:dist',
                 'imagemin',
                 'svgmin'
             ]
@@ -329,15 +255,14 @@ module.exports = function (grunt) {
 
     grunt.registerTask('serve', function (target) {
         if (target === 'dist') {
-            return grunt.task.run(['build', 'connect:dist:keepalive']);
+            return grunt.task.run(['build', 'foreverMulti:dist']);
         }
 
         grunt.task.run([
             'clean:server',
             'bower-install',
-            'concurrent:server',
             'autoprefixer',
-            'connect:livereload',
+            'foreverMulti:dev',
             'watch'
         ]);
     });
@@ -346,7 +271,7 @@ module.exports = function (grunt) {
         'clean:server',
         'concurrent:test',
         'autoprefixer',
-        'connect:test',
+        'foreverMulti:test',
         'karma'
     ]);
 
@@ -357,7 +282,7 @@ module.exports = function (grunt) {
         'concurrent:dist',
         'autoprefixer',
         'concat',
-        'ngmin',
+        'ngAnnotate',
         'copy:dist',
         'cdnify',
         'cssmin',
