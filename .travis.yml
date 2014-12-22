@@ -6,3 +6,4 @@ before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
   - 'bower jshint'
+  - 'grunt test'
