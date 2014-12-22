@@ -36,7 +36,7 @@ module.exports = function (grunt) {
                 tasks: ['newer:jshint:test', 'karma']
             },
             application: {
-                files: ['./application/{,*/}*.js'],
+                files: ['application/{,*/}*.js'],
                 tasks: ['foreverMulti:dev']
             }
         },
@@ -193,6 +193,9 @@ module.exports = function (grunt) {
                     src: '*.js',
                     dest: '.tmp/concat/scripts'
                 }]
+            },
+            options: {
+                singleQuotes: true
             }
         },
 
@@ -269,7 +272,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', [
         'clean:server',
-        'concurrent:test',
         'autoprefixer',
         'foreverMulti:test',
         'karma'
