@@ -13,8 +13,6 @@
     "angular-route": "1.2.21",
     "angular-md5": "~0.1.7",
     "ng-table": "0.3.2",
-    "ng-chartjs": "*",
-    "chartjs": "git@github.com:nnnick/Chart.js.git",
     "angular-moment": "~0.8.0",
     "perfect-scrollbar": "0.4.11",
     "angular-ui-select2": "~0.0.5",
