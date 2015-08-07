@@ -1,7 +1,7 @@
 (function (ng) {
     'use strict';
 
-    var app = ng.module(
+    ng.module(
         'piwik-external-dashboard',
         [
             'ngCookies',
@@ -16,7 +16,8 @@
             'angular-morrisjs',
             'ui.sortable',
             'ui.gravatar',
-            'md5',
+            'angular-md5',
+            'angular-growl',
 
             'piwik-external-dashboard.application',
             'piwik-external-dashboard.auth',
@@ -27,11 +28,12 @@
             'piwik-external-dashboard.sites',
             'piwik-external-dashboard.morris',
             'piwik-external-dashboard.tables',
-            'piwik-external-dashboard.whiteLabel'
+            'piwik-external-dashboard.whiteLabel',
+            'piwik-external-dashboard.firebase',
+            'piwik-external-dashboard.api'
         ]
-    );
-
-    app.config(
+    )
+    .config(
         [
             '$locationProvider',
             '$routeProvider',

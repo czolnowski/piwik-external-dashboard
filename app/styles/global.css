@@ -9,3 +9,18 @@ html {
 body {
     background: transparent;
 }
+
+
+.bootstrap-loader {
+    display: none;
+}
+
+.bootstrap-loader .inner {
+    position: fixed;
+    top: 45%;
+    width: 100%;
+}
+
+.deferred-bootstrap-loading .bootstrap-loader {
+    display: block;
+}

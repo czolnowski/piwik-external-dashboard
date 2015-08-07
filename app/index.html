@@ -14,11 +14,15 @@
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/select2/select2.css">
+    <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" />
+    <link rel="stylesheet" href="bower_components/perfect-scrollbar/min/perfect-scrollbar.min.css" />
+    <link rel="stylesheet" href="bower_components/select2/select2.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
     <link rel="stylesheet" href="bower_components/morrisjs/morris.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-growl-v2/build/angular-growl.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -45,7 +49,16 @@
         </div>
     </div>
 
-    <div application-backdrop></div>
+    <div data-application-backdrop></div>
+
+    <div data-growl></div>
+
+    <div class="overlay text-center bootstrap-loader">
+        <div class="inner">
+            <i class="fa fa-spinner fa-spin fa-5x"></i>
+            <br />Loading ...
+        </div>
+    </div>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -54,32 +67,40 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/jquery.js"></script>
-    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-md5/angular-md5.js"></script>
+    <script src="bower_components/ng-table/ng-table.js"></script>
     <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/moment-range/lib/moment-range.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
-    <script type="text/javascript" src="bower_components/select2/select2.js"></script>
-    <script type="text/javascript" src="bower_components/angular-ui-select2/src/select2.js"></script>
+    <script src="bower_components/perfect-scrollbar/min/perfect-scrollbar.min.js"></script>
+    <script src="bower_components/perfect-scrollbar/min/perfect-scrollbar.with-mousewheel.min.js"></script>
+    <script src="bower_components/select2/select2.js"></script>
+    <script src="bower_components/angular-ui-select2/src/select2.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/angular-local-storage/angular-local-storage.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/seiyria-bootstrap-slider/js/bootstrap-slider.js"></script>
+    <script src="bower_components/angular-bootstrap-slider/slider.js"></script>
     <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script src="bower_components/ng-bs-daterangepicker/src/ng-bs-daterangepicker.js"></script>
+    <script src="bower_components/moment-range/lib/moment-range.js"></script>
     <script src="bower_components/raphael/raphael.js"></script>
+    <script src="bower_components/mocha/mocha.js"></script>
     <script src="bower_components/morrisjs/morris.js"></script>
-    <script src="bower_components/angular-morrisjs/angular-morrisjs.js"></script>
+    <script src="bower_components/angular-morrisjs/dist/angular-morrisjs.min.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/angular-ui-sortable/sortable.js"></script>
-    <script src="bower_components/angular-gravatar/build/md5.js"></script>
     <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
+    <script src="bower_components/angular-growl-v2/build/angular-growl.js"></script>
+    <script src="bower_components/angular-deferred-bootstrap/angular-deferred-bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -92,6 +113,12 @@
     <script src="scripts/auth/services/Token.js"></script>
     <script src="scripts/auth/services/TokenInterceptor.js"></script>
     <script src="scripts/auth/controllers/LoginCtrl.js"></script>
+    <script src="scripts/auth/collections/AuthFetchers.js"></script>
+
+    <script src="scripts/api/module.js"></script>
+    <script src="scripts/api/fetchers/ApiReportFetcher.js"></script>
+    <script src="scripts/api/fetchers/UsersFetcher.js"></script>
+    <script src="scripts/api/interceptors/ApiTokenInterceptor.js"></script>
 
     <script src="scripts/application/module.js"></script>
     <script src="scripts/application/directives/Sidebar.js"></script>
@@ -99,6 +126,9 @@
     <script src="scripts/application/directives/Backdrop.js"></script>
     <script src="scripts/application/directives/UserBar.js"></script>
     <script src="scripts/application/directives/Container.js"></script>
+    <script src="scripts/application/collections/Fetchers.js"></script>
+    <script src="scripts/application/collections/ApplicationFetchers.js"></script>
+    <script src="scripts/application/services/Window.js"></script>
 
     <script src="scripts/dashboard/module.js"></script>
     <script src="scripts/dashboard/controllers/DashboardCtrl.js"></script>
@@ -123,6 +153,7 @@
     <script src="scripts/reports/module.js"></script>
     <script src="scripts/reports/controllers/AddReportModalCtrl.js"></script>
     <script src="scripts/reports/entities/Report.js"></script>
+    <script src="scripts/reports/collections/ReportFetchers.js"></script>
 
     <script src="scripts/sites/module.js"></script>
     <script src="scripts/sites/entities/Site.js"></script>
@@ -149,13 +180,34 @@
 
     <script src="scripts/white-label/module.js"></script>
 
+    <script src="scripts/firebase/module.js"></script>
+
     <script src="scripts/app.js"></script>
     <!-- endbuild -->
 
     <script>
-        angular.element(document).ready(function() {
-            angular.bootstrap(document, ['piwik-external-dashboard']);
-        });
+        (function (db, document) {
+            'use strict';
+
+            db.bootstrap({
+                element: document   ,
+                module: 'piwik-external-dashboard',
+                moduleResolves: [
+                    {
+                        module: 'piwik-external-dashboard.application',
+                        resolve: {
+                            REPORTS_SOURCE: ['$http', function ($http) {
+                              return $http.get('/config/reports.json');
+                            }]
+                        }
+                    }
+                ],
+                onError: function (error) {
+                  alert('Could not bootstrap, error: ' + error);
+                }
+            });
+        })(window.deferredBootstrapper, window.document);
+
     </script>
 </body>
 </html>
