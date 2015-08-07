@@ -71,7 +71,7 @@
             values,
             function (value, key)
             {
-                if (isNaN(value) && key !== labelKey) {
+                if (isNaN(value) && key !== labelKey && angular.isObject(values)) {
                     delete values[key];
                 }
             }
