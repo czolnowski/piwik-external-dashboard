@@ -7,34 +7,58 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Piwik Dashboard</title>
+    <base href="/" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
-      <link rel="stylesheet" href="bower_components/select2/select2.css">
+    <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" />
+    <link rel="stylesheet" href="bower_components/perfect-scrollbar/min/perfect-scrollbar.min.css" />
+    <link rel="stylesheet" href="bower_components/select2/select2.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" href="bower_components/morrisjs/morris.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-growl-v2/build/angular-growl.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/dashboard.css" />
+    <link rel="stylesheet" href="styles/sticky-footer-navbar.css" />
+    <link rel="stylesheet" href="styles/tables.css" />
+    <link rel="stylesheet" href="styles/page-container.css" />
+    <link rel="stylesheet" href="styles/login-page.css" />
+    <link rel="stylesheet" href="styles/overlay.css" />
     <!-- endbuild -->
-
-      <link rel="stylesheet" href="/styles/graph.css">
   </head>
-  <body ng-app="piwikExtDash"
-          style="
-          padding: 0;
-margin: 0;
-background: #000000 url(/images/backgrounds/01.jpg) no-repeat center top;
-width: 100%;
-display: table;">
+  <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div ng-view=""></div>
+
+    <div class="footer">
+        <div class="container">
+            <p class="text-muted text-center"><a href="https://piwik.pro">Piwik PRO</a></p>
+        </div>
+    </div>
+
+    <div data-application-backdrop></div>
+
+    <div data-growl></div>
+
+    <div class="overlay text-center bootstrap-loader">
+        <div class="inner">
+            <i class="fa fa-spinner fa-spin fa-5x"></i>
+            <br />Loading ...
+        </div>
+    </div>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -43,21 +67,40 @@ display: table;">
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-md5/angular-md5.js"></script>
-    <script src="bower_components/ng-chartjs/src/angular-chartjs.js"></script>
-    <script src="bower_components/chartjs/Chart.min.js"></script>
+    <script src="bower_components/ng-table/ng-table.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
-    <script type="text/javascript" src="bower_components/select2/select2.js"></script>
-    <script type="text/javascript" src="bower_components/angular-ui-select2/src/select2.js"></script>
+    <script src="bower_components/perfect-scrollbar/min/perfect-scrollbar.min.js"></script>
+    <script src="bower_components/perfect-scrollbar/min/perfect-scrollbar.with-mousewheel.min.js"></script>
+    <script src="bower_components/select2/select2.js"></script>
+    <script src="bower_components/angular-ui-select2/src/select2.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/angular-local-storage/angular-local-storage.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/seiyria-bootstrap-slider/js/bootstrap-slider.js"></script>
+    <script src="bower_components/angular-bootstrap-slider/slider.js"></script>
+    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="bower_components/ng-bs-daterangepicker/src/ng-bs-daterangepicker.js"></script>
+    <script src="bower_components/moment-range/lib/moment-range.js"></script>
+    <script src="bower_components/raphael/raphael.js"></script>
+    <script src="bower_components/mocha/mocha.js"></script>
+    <script src="bower_components/morrisjs/morris.js"></script>
+    <script src="bower_components/angular-morrisjs/dist/angular-morrisjs.min.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+    <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
+    <script src="bower_components/angular-growl-v2/build/angular-growl.js"></script>
+    <script src="bower_components/angular-deferred-bootstrap/angular-deferred-bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -66,40 +109,105 @@ display: table;">
     <script src="scripts/users/entities/User.js"></script>
 
     <script src="scripts/auth/module.js"></script>
-    <script src="scripts/auth/routes.js"></script>
     <script src="scripts/auth/services/Authenticate.js"></script>
     <script src="scripts/auth/services/Token.js"></script>
     <script src="scripts/auth/services/TokenInterceptor.js"></script>
     <script src="scripts/auth/controllers/LoginCtrl.js"></script>
+    <script src="scripts/auth/collections/AuthFetchers.js"></script>
+
+    <script src="scripts/api/module.js"></script>
+    <script src="scripts/api/fetchers/ApiReportFetcher.js"></script>
+    <script src="scripts/api/fetchers/UsersFetcher.js"></script>
+    <script src="scripts/api/interceptors/ApiTokenInterceptor.js"></script>
+
+    <script src="scripts/application/module.js"></script>
+    <script src="scripts/application/directives/Sidebar.js"></script>
+    <script src="scripts/application/directives/BrandLogo.js"></script>
+    <script src="scripts/application/directives/Backdrop.js"></script>
+    <script src="scripts/application/directives/UserBar.js"></script>
+    <script src="scripts/application/directives/Container.js"></script>
+    <script src="scripts/application/collections/Fetchers.js"></script>
+    <script src="scripts/application/collections/ApplicationFetchers.js"></script>
+    <script src="scripts/application/services/Window.js"></script>
 
     <script src="scripts/dashboard/module.js"></script>
-    <script src="scripts/dashboard/routes.js"></script>
     <script src="scripts/dashboard/controllers/DashboardCtrl.js"></script>
-    <script src="scripts/dashboard/controllers/ReportsCtrl.js"></script>
-    <script src="scripts/dashboard/controllers/SiteSelectorCtrl.js"></script>
-    <script src="scripts/dashboard/entities/Reports.js"></script>
+    <script src="scripts/dashboard/controllers/nav/DateSelectorCtrl.js"></script>
+    <script src="scripts/dashboard/controllers/nav/ExportReportsCtrl.js"></script>
+    <script src="scripts/dashboard/controllers/nav/AddReportCtrl.js"></script>
+    <script src="scripts/dashboard/directives/DashboardNavBar.js"></script>
+    <script src="scripts/dashboard/directives/DateSelector.js"></script>
+    <script src="scripts/dashboard/directives/ExportReports.js"></script>
+    <script src="scripts/dashboard/directives/AddReport.js"></script>
+    <script src="scripts/dashboard/entities/State.js"></script>
+    <script src="scripts/dashboard/entities/States.js"></script>
+    <script src="scripts/dashboard/services/ReportsStateFetcher.js"></script>
+    <script src="scripts/dashboard/services/LocalState.js"></script>
 
     <script src="scripts/widget/module.js"></script>
     <script src="scripts/widget/filters/isEmpty.js"></script>
+    <script src="scripts/widget/directives/SingleWidget.js"></script>
+    <script src="scripts/widget/directives/SingleWidgetHeader.js"></script>
+    <script src="scripts/widget/directives/SingleWidgetFooter.js"></script>
 
-    <script src="scripts/widget/directives/Report.js"></script>
-    <script src="scripts/widget/controllers/ReportCtrl.js"></script>
-    <script src="scripts/widget/controllers/boot.ui.js"></script>
-    <script src="scripts/widget/entities/Report.js"></script>
+    <script src="scripts/reports/module.js"></script>
+    <script src="scripts/reports/controllers/AddReportModalCtrl.js"></script>
+    <script src="scripts/reports/entities/Report.js"></script>
+    <script src="scripts/reports/collections/ReportFetchers.js"></script>
 
-    <script src="scripts/widget/directives/TableVis.js"></script>
-    <script src="scripts/widget/controllers/TableVisCtrl.js"></script>
+    <script src="scripts/sites/module.js"></script>
+    <script src="scripts/sites/entities/Site.js"></script>
+    <script src="scripts/sites/controllers/SitesSelectorCtrl.js"></script>
+    <script src="scripts/sites/directives/SitesSelector.js"></script>
 
-    <script src="scripts/widget/directives/EvolutionVis.js"></script>
-    <script src="scripts/widget/controllers/EvolutionVisCtrl.js"></script>
+    <script src="scripts/morris/module.js"></script>
+    <script src="scripts/morris/controllers/VisualizationCtrl.js"></script>
+    <script src="scripts/morris/controllers/PieVisualizationCtrl.js"></script>
+    <script src="scripts/morris/services/MetricsService.js"></script>
+    <script src="scripts/morris/services/Metric.js"></script>
+    <script src="scripts/morris/directives/MetricsSelector.js"></script>
+    <script src="scripts/morris/directives/EvolutionVisualization.js"></script>
+    <script src="scripts/morris/directives/BarVisualization.js"></script>
+    <script src="scripts/morris/directives/PieVisualization.js"></script>
 
-    <script src="scripts/widget/directives/BarVis.js"></script>
-    <script src="scripts/widget/controllers/BarVisCtrl.js"></script>
+    <script src="scripts/tables/module.js"></script>
+    <script src="scripts/tables/controllers/TableVisualizationCtrl.js"></script>
+    <script src="scripts/tables/directives/TableVisualization.js"></script>
+    <script src="scripts/tables/directives/TablePagination.js"></script>
+    <script src="scripts/tables/filters/LimitFromTo.js"></script>
+    <script src="scripts/tables/filters/Min.js"></script>
+    <script src="scripts/tables/services/TablePaginationService.js"></script>
 
-    <script src="scripts/widget/directives/PieVis.js"></script>
-    <script src="scripts/widget/controllers/PieVisCtrl.js"></script>
+    <script src="scripts/white-label/module.js"></script>
+
+    <script src="scripts/firebase/module.js"></script>
 
     <script src="scripts/app.js"></script>
     <!-- endbuild -->
+
+    <script>
+        (function (db, document) {
+            'use strict';
+
+            db.bootstrap({
+                element: document   ,
+                module: 'piwik-external-dashboard',
+                moduleResolves: [
+                    {
+                        module: 'piwik-external-dashboard.application',
+                        resolve: {
+                            REPORTS_SOURCE: ['$http', function ($http) {
+                              return $http.get('/config/reports.json');
+                            }]
+                        }
+                    }
+                ],
+                onError: function (error) {
+                  alert('Could not bootstrap, error: ' + error);
+                }
+            });
+        })(window.deferredBootstrapper, window.document);
+
+    </script>
 </body>
 </html>

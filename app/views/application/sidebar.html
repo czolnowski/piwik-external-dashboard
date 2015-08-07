@@ -1,0 +1,16 @@
+<div class="sidebar">
+
+    <div application-brand-logo></div>
+    <div application-user-bar></div>
+    <ul class="nav-box box list-unstyled"
+        ng-class="{'hidden-xs': !menu.show}">
+        <li ng-class="{'active': active === 'dashboard'}">
+            <i class="fa fa-arrow-right pull-right active-arrow"></i>
+            <a href="/"><i class="fa fa-dashboard"></i><span>&nbsp; Dashboard</span></a>
+        </li>
+        <li ng-class="{'active': active === 'customize'}">
+            <i class="fa fa-arrow-right pull-right active-arrow"></i>
+            <a href="/customize"><i class="fa fa-suitcase"></i><span>&nbsp; Customize</span></a>
+        </li>
+    </ul>
+</div>

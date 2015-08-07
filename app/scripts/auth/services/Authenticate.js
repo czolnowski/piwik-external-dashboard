@@ -1,67 +1,54 @@
-(function (ng) {
-    var Authenticate = function (token, user, http, cookieStore, $location)
-    {
-        this.token = token;
-        this.user = user;
+(function () {
+    'use strict';
 
-        this.http = http;
-        this.cookieStore = cookieStore;
-        this.$location = $location;
-    };
+    var Authenticate = function (Token, User, $q) {
+        this.me = new User();
 
-    Authenticate.prototype.login = function (host, login, password)
-    {
-        var request = this.token.get(host, login, password),
-            that = this;
+        this.login = function (host, login, password) {
+            var request = Token.get(host, login, password),
+                that = this;
 
-        request.then(
-            function (response) {
-                if (ng.isDefined(response.token_auth)) {
-                    that.token.setTokenAuth(response.token_auth);
-                    that.token.setHost(host);
-                    that.cookieStore.put('token', that.token);
+            request.then(function (response) {
+                if (angular.isDefined(response.data.value)) {
+                    Token.tokenAuth = response.data.value;
+                    Token.host = host;
+                    Token.login = login;
+                    Token.persist();
                     that.getUserInformation(login);
-
-                    that.$location.path('/');
-                } else {
-                    console.log('something goes wrong')
                 }
-            }
-        );
+            });
 
-        return request;
+            return request;
+        };
+
+        this.asAnonymous = function (host) {
+            var deferred = $q.defer();
+
+            deferred.resolve('anonymous');
+
+            Token.tokenAuth = 'anonymous';
+            Token.host = host;
+            Token.login = 'anonymous';
+            this.getUserInformation('anonymous');
+
+            Token.persist();
+
+            return deferred.promise;
+        };
+
+        this.isAuthenticated = function () {
+            return Token.isValid();
+        };
+
+        this.getLoginPath = function () {
+            return '/login';
+        };
+
+        this.getUserInformation = function (login) {
+            this.me.login = login;
+            this.me.me();
+        };
     };
 
-    Authenticate.prototype.asAnonymous = function (host)
-    {
-        this.token.setTokenAuth('anonymous');
-        this.token.setHost(host);
-        this.getUserInformation('anonymous');
-
-        this.cookieStore.put('token', this.token);
-
-        this.$location.path('/');
-    };
-
-    Authenticate.prototype.isAuthenticated = function ()
-    {
-        return this.token.isValid();
-    };
-
-    Authenticate.prototype.goToLogin = function ()
-    {
-        this.$location.path('/login');
-    };
-
-    Authenticate.prototype.getUserInformation = function (login)
-    {
-        this.me = new this.user();
-        this.me.login = login;
-        this.me.me();
-    };
-
-    ng.module('piwikExtDash.auth').service("Authenticate", [
-        "Token", "User", "$http", "$cookieStore", "$location",
-        Authenticate
-    ]);
-})(angular);
+    angular.module('piwik-external-dashboard.auth').service('Authenticate', Authenticate);
+})();

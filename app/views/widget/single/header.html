@@ -1,0 +1,8 @@
+<div class="panel-heading">
+    <button type="button"
+            ng-click="dashboard.current.remove(report); dashboard.persist();"
+            class="pull-right btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
+
+    <h3 ng-bind="report.report.name"></h3>
+    <p ng-bind-html="report.report.metadata.documentation"></p>
+</div>

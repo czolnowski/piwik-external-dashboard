@@ -1,72 +1,127 @@
 (function (ng) {
     'use strict';
 
-    var DashboardCtrl = function ($scope, $routeParams, $window, $location)
-    {
-        var reports;
-        if ($routeParams.dashboard) {
-            reports = $routeParams.dashboard;
-        }
+    var $timeout,
+        $location,
+        State,
+        DashboardCtrl = function ($scope, _$location, _$timeout, _State, states, localState)
+        {
+            var vm = this;
 
-        if (!reports) {
-            reports = localStorage.getItem('reports');
-        }
+            $timeout = _$timeout;
+            $location = _$location;
+            State = _State;
 
-        if (reports) {
-            reports = JSON.parse(reports);
-        }
+            this.localState = localState;
+            this.dashboards = states;
+            this.initialize($scope);
 
-        $scope.reports = reports || [];
-
-        $scope.exportDashboard = function () {
-            var neededData = [];
-            ng.forEach($scope.reports, function (report) {
-                neededData.push({
-                    module: report.module,
-                    action: report.action,
-                    category: report.action,
-                    visualization: report.visualization,
-                    size: report.size
-                });
+            $scope.$on('$destroy', function () {
+                vm.dashboards.clear();
             });
-            $location.search('dashboard', JSON.stringify(neededData));
-            $window.alert($location.absUrl());
         };
 
-        $scope.$on('reportAdded', function (event, report, visualization, size) {
-            report = ng.copy(report);
-            report.visualization = visualization;
+    DashboardCtrl.prototype.initialize = function ($scope)
+    {
+        var vm = this;
 
-            var width = 12;
-            if ('small' == size) {
-                width = 3;
-            } else if ('medium' == size) {
-                width = 6;
+        this.localState.load().then(
+            function (dashboards)
+            {
+                vm.dashboards.add(dashboards);
+                vm.current = vm.dashboards.getActive();
+            },
+            function ()
+            {
+                var state = new State();
+                vm.current = state;
+                vm.current.active = true;
+
+                vm.dashboards.add(state);
             }
+        );
 
-            report.size = width;
-            $scope.reports.push(report);
+        this.sortableOptions = {
+            update: function ()
+            {
+                $timeout(function () {
+                    vm.persist();
+                });
+            },
+            cancel: '.add'
+        };
 
-            localStorage.setItem("reports", JSON.stringify($scope.reports));
-        });
-
-        $scope.$on('reportRemoved', function (event, report) {
-
-            var index = $scope.reports.indexOf(report);
-
-            if (index > -1) {
-                $scope.reports.splice(index, 1);
+        $scope.$on('sites.selectedSite', function (event, site) {
+            if (ng.isDefined(site.idsite)) {
+                $location.path('/' + site.idsite);
             }
-
-            localStorage.setItem("reports", JSON.stringify($scope.reports));
         });
     };
 
-    ng.module('piwikExtDash.dashboard').controller("DashboardCtrl", [
-        "$scope",
-        "$routeParams",
-        "$window",
-        "$location",
-        DashboardCtrl
-    ]);
-})(angular);
+    DashboardCtrl.prototype.persist = function ()
+    {
+        this.localState.persist(this.dashboards.states);
+    };
+
+    DashboardCtrl.prototype.add = function ()
+    {
+        this.dashboards.add(new State());
+    };
+
+    DashboardCtrl.prototype.change = function (current)
+    {
+        this.current.active = false;
+        this.current = current;
+        this.current.active = true;
+
+        this.persist();
+    };
+
+    DashboardCtrl.prototype.remove = function ()
+    {
+        if (!this.canRemove()) {
+            return;
+        }
+
+        var vm = this;
+
+        this.dashboards.remove(this.current).then(
+            function (current)
+            {
+                vm.current = current;
+                vm.current.active = true;
+
+                vm.persist();
+            }
+        );
+    };
+
+    DashboardCtrl.prototype.canRemove = function ()
+    {
+        return this.dashboards.getSize() > 1;
+    };
+
+    DashboardCtrl.$inject = [
+        '$scope', '$location', '$timeout',
+        'DashboardState', 'DashboardStates', 'DashboardLocalState'
+    ];
+
+    ng.module('piwik-external-dashboard.dashboard')
+    .controller('DashboardCtrl', DashboardCtrl)
+    .config(
+        [
+            '$routeProvider',
+            function ($routeProvider) {
+                $routeProvider.when(
+                    '/:idSite?',
+                    {
+                        templateUrl: 'views/dashboard/index.html',
+                        controller: 'DashboardCtrl',
+                        controllerAs: 'dashboard',
+                        auth: true
+                    }
+                );
+            }
+        ]
+    );
+})(window.angular);
