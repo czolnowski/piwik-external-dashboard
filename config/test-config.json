@@ -1,0 +1,17 @@
+{
+  "frontend": {
+    "persistenceLayer": {
+      "name": "firebase",
+      "configuration": {
+        "host": "piwik-ext-dashboard.firebaseio.com"
+      }
+    },
+    "reports": {
+      "source": "api"
+    }
+  },
+  "server": {
+    "port": 8080,
+    "static": "app"
+  }
+}

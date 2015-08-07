@@ -1,0 +1,16 @@
+<div class="btn-group navbar-btn" dropdown>
+    <button type="button"
+            class="btn btn-default"
+            ng-click="export.create()">
+        <i class="fa fa-share"></i> Save report
+    </button>
+    <button type="button" class="btn btn-default dropdown-toggle">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle dropdown</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="#"
+               ng-repeat="state in states"
+               ng-bind="state.name"></a></li>
+    </ul>
+</div>

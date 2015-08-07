@@ -1,28 +1,15 @@
-(function (ng) {
+(function () {
     'use strict';
 
-    ng.module('piwikExtDash.auth').service(
-        'TokenInterceptor',
-        [
-            "$injector",
-            function ($injector)
-            {
-                return {
-                    'request': function (config)
-                    {
-                        if (config.method === 'POST' && config.url.indexOf('/api') === 0) {
-                            $injector.invoke(['Token', function(Token) {
-                                if (Token.isValid()) {
-                                    config.data.host = Token.host;
-                                    config.data.token_auth = Token.token_auth;
-                                }
-                            }]);
-                        }
+    var module = angular.module('piwik-external-dashboard.auth');
 
-                        return config;
-                    }
-                };
+    module.service('TokenInterceptor', function (Token, $rootScope) {
+        return {
+            request: function (config) {
+                $rootScope.$emit('auth.token', config, Token);
+
+                return config;
             }
-        ]
-    );
-})(window.angular);
+        };
+    });
+})();
