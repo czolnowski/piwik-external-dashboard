@@ -37,14 +37,18 @@ module.exports = function (grunt) {
             },
             application: {
                 files: ['application/{,*/}*.js'],
-                tasks: ['foreverMulti:dev']
+                tasks: ['foreverMulti:dev'],
+                options: {
+                    interrupt: true,
+                    forever: false
+                }
             }
         },
 
         foreverMulti: {
             dev: {
                 file: 'dashboard.js',
-                options: ['--config=./config/dev-config.json']
+                options: ['--config=./config/dev-config.json', '--debug']
             },
             test: {
                 file: 'dashboard.js',

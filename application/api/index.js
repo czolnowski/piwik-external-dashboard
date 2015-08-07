@@ -8,7 +8,6 @@ var bodyRequests = ['post', 'delete', 'put', 'patch'],
     parser = require('./parser');
 
 var resolver = function (request, response) {
-
     if (isStreamableMethod(request.method.toLowerCase())) {
         parser.parseApiPostRequest(
             request,

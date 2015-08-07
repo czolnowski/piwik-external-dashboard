@@ -26,7 +26,7 @@
     "angular-morrisjs": "1.1.4",
     "font-awesome": "~4.1",
     "angular-ui-sortable": "0.12.10",
-    "angular-gravatar": "~0.2.1",
+    "angular-gravatar": "0.4.1",
     "angular-growl-v2": "~0.7.0",
     "angular-deferred-bootstrap": "~0.1.3"
   },

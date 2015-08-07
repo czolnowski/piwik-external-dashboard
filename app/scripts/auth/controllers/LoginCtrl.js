@@ -42,8 +42,10 @@
                 if (response.data.length > 0) {
                     $location.path('/' + response.data[0].idsite);
                 } else {
-                    this.noAccess = true;
+                    vm.noAccess = true;
                 }
+            } else {
+                vm.noAccess = true;
             }
         };
 

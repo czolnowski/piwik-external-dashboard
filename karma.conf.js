@@ -12,12 +12,14 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
+            'app/bower_components/jquery/jquery.js',
             'app/bower_components/angular/angular.js',
             'app/bower_components/angular-mocks/angular-mocks.js',
             'app/bower_components/angular-cookies/angular-cookies.js',
             'app/bower_components/angular-sanitize/angular-sanitize.js',
             'app/bower_components/angular-route/angular-route.js',
             'app/bower_components/angular-gravatar/build/md5.js',
+            'app/bower_components/angular-md5/angular-md5.js',
 
             'app/scripts/users/module.js',
             'app/scripts/users/entities/User.js',
@@ -27,17 +29,20 @@ module.exports = function (config) {
             'app/scripts/auth/services/Token.js',
             'app/scripts/auth/services/TokenInterceptor.js',
             'app/scripts/auth/controllers/LoginCtrl.js',
+            'app/scripts/auth/collections/AuthFetchers.js',
 
             //'app/scripts/api/module.js',
             //'app/scripts/api/fetchers/ApiReportFetcher.js',
             //
-            //'app/scripts/application/module.js',
-            //'app/scripts/application/directives/Sidebar.js',
-            //'app/scripts/application/directives/BrandLogo.js',
-            //'app/scripts/application/directives/Backdrop.js',
-            //'app/scripts/application/directives/UserBar.js',
-            //'app/scripts/application/directives/Container.js',
-            //
+            'app/scripts/application/module.js',
+            'app/scripts/application/directives/Sidebar.js',
+            'app/scripts/application/directives/BrandLogo.js',
+            'app/scripts/application/directives/Backdrop.js',
+            'app/scripts/application/directives/UserBar.js',
+            'app/scripts/application/directives/Container.js',
+            'app/scripts/application/collections/Fetchers.js',
+            'app/scripts/application/collections/ApplicationFetchers.js',
+
             //'app/scripts/dashboard/module.js',
             //'app/scripts/dashboard/controllers/DashboardCtrl.js',
             //'app/scripts/dashboard/controllers/nav/DateSelectorCtrl.js',
@@ -124,6 +129,22 @@ module.exports = function (config) {
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
-        singleRun: false
+        singleRun: false,
+
+        // coverage reporter generates the coverage
+        reporters: ['progress', 'coverage'],
+
+        preprocessors: {
+            // source files, that you wanna generate coverage for
+            // do not include tests or libraries
+            // (these files will be instrumented by Istanbul)
+            'app/scripts/**/*.js': ['coverage']
+        },
+
+        // optionally, configure the reporter
+        coverageReporter: {
+            type : 'html',
+            dir : 'coverage/'
+        }
     });
 };

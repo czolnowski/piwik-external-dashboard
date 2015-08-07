@@ -1,39 +1,33 @@
 /*jslint node: true */
-"use strict";
+'use strict';
 
-var httpRequest = require('request')
+var httpRequest = require('request');
 
 var parseApiRequest = function (body, request, response) {
-    var options = {
-        method: 'get'
-    },
+    var options = {method: 'get'},
         host = body.host,
-        urlParams = body,
-        url = request.url.match(/\/([a-zA-Z]+)\/([a-zA-Z]+)/);
+        urlParams = body;
 
     delete urlParams.host;
 
-    if (url === null) {
-        response.end(JSON.stringify(
-            {
-                'error': 'invalid_request',
-                'error_description': 'Invalid request to Piwik: ' + request.url
-            }
-        ));
-
-        return;
-    }
-
-    if (host.substr(0, 'http://'.length) !== 'http://' && host.substr(0, 'https://'.length) !== 'https://') {
+    if (host && host.substr(0, 'http://'.length) !== 'http://' && host.substr(0, 'https://'.length) !== 'https://') {
         host = 'http://' + host;
     }
 
+    /*jshint camelcase: false */
     if (typeof urlParams.token_auth !== 'string' || urlParams.token_auth.length !== 32) {
         urlParams.token_auth = 'anonymous';
     }
+    /*jshint camelcase: true */
 
-    urlParams.module = 'API';
-    urlParams.method = [url[1], url[2]].join('.');
+    if (typeof urlParams.module !== 'string') {
+        urlParams.module = 'API';
+    }
+
+    if (typeof urlParams.method !== 'string') {
+        urlParams.method = request.url.substr(1).split('/').join('.');
+    }
+
     urlParams.format = 'json';
 
     options.url = [];

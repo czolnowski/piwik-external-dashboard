@@ -6,13 +6,19 @@ describe('[Auth] Controller: LoginCtrl', function () {
     beforeEach(module('ngRoute'));
     beforeEach(module('md5'));
     beforeEach(module('ngCookies'));
+
+    beforeEach(function() {
+        module(function($provide) {
+            $provide.constant('REPORTS_SOURCE', {source: 'api'});
+        });
+    });
+
     beforeEach(module('piwik-external-dashboard.users'));
     beforeEach(module('piwik-external-dashboard.auth'));
 
-
     var LoginCtrl,
         authenticate,
-        site,
+        Site,
         $location;
 
     // Initialize the controller and a mock scope
@@ -22,7 +28,9 @@ describe('[Auth] Controller: LoginCtrl', function () {
             login: function () {}
         };
 
-        site = {};
+        Site = {
+            fetchAllWithAtLeastViewAccess: function () {}
+        };
 
         $location = {
             path: function () {}
@@ -30,7 +38,7 @@ describe('[Auth] Controller: LoginCtrl', function () {
 
         LoginCtrl = $controller('LoginCtrl', {
             Authenticate: authenticate,
-            Site: site,
+            Site: Site,
             $location: $location
         });
 
@@ -165,6 +173,59 @@ describe('[Auth] Controller: LoginCtrl', function () {
 
         callback();
         expect(LoginCtrl.loading).toBe(false);
+    });
+
+    it('should call Site.fetchAllWithAtLeastViewAccess on then', function () {
+        LoginCtrl.anonymous = true;
+
+        var callback = function () {},
+            request = {
+                then: function (_callback) {
+                    callback = _callback;
+                },
+                'finally': function () {
+                }
+            };
+
+        spyOn(authenticate, 'asAnonymous').and.returnValue(request);
+        spyOn(Site, 'fetchAllWithAtLeastViewAccess').and.returnValue({
+            then: function () {}
+        });
+        LoginCtrl.process();
+
+        callback();
+        expect(Site.fetchAllWithAtLeastViewAccess.calls.count()).toEqual(1);
+    });
+
+    it('should call Site.fetchAllWithAtLeastViewAccess on then and chain to redirectIfThereIsAnySiteOrMarkAsNoAccess', function () {
+        LoginCtrl.anonymous = true;
+
+        var callback = function () {},
+            internalCallback = function () {},
+            request = {
+                then: function (_callback) {
+                    callback = _callback;
+                },
+                'finally': function () {
+                }
+            };
+
+        spyOn(authenticate, 'asAnonymous').and.returnValue(request);
+        spyOn(Site, 'fetchAllWithAtLeastViewAccess').and.returnValue({
+            then: function (_internalCallback) {
+                internalCallback = _internalCallback;
+            }
+        });
+        LoginCtrl.process();
+
+        callback();
+        expect(internalCallback).toEqual(LoginCtrl.redirectIfThereIsAnySiteOrMarkAsNoAccess);
+    });
+
+    it('redirectIfThereIsAnySiteOrMarkAsNoAccess should set access flag to false if there is empty object as parameter', function () {
+        LoginCtrl.redirectIfThereIsAnySiteOrMarkAsNoAccess({});
+
+        expect(LoginCtrl.noAccess).toBe(true);
     });
 
     it('redirectIfThereIsAnySiteOrMarkAsNoAccess should set access flag to false if there is empty array as parameter', function () {

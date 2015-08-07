@@ -1,59 +1,20 @@
-(function (ng) {
+(function () {
     'use strict';
 
-    var Report = function (module, action, evolution, name)
-        {
-            this.module = module;
-            this.action = action;
-            this.evolution = evolution;
-            this.name = name;
-            this.loading = false;
-            this.limit = false;
-            this.metadata = {};
-            this.data = false;
-        },
-        $http = null,
-        $routeParams = null,
-        moment = null,
-        $q = null;
+    var Report = function (module, action, evolution, name) {
+        this.module = module;
+        this.action = action;
+        this.evolution = evolution;
+        this.name = name;
+        this.loading = false;
+        this.limit = false;
+        this.metadata = {};
+        this.data = false;
+    };
 
-    Report.prototype.fetch = function ()
-    {
+    Report.prototype.fetch = function () {
         var that = this,
-            parameters = {
-                apiModule: this.module,
-                apiAction: this.action,
-                idSite: $routeParams.idSite,
-                period: this.getPeriod(),
-                date: this.getDate()
-            },
-            request;
-
-        if (!ng.isDefined($routeParams.idSite)) {
-            var deferred = $q.defer();
-
-            deferred.resolve(
-                {
-                    data: {}
-                }
-            );
-
-            that.loading = false;
-            that.data = {};
-
-            return deferred.promise;
-        }
-
-        if (this.limit !== false) {
-            /*jshint camelcase: false */
-            parameters.filter_limit = this.limit;
-            /*jshint camelcase: true */
-        }
-
-        request = $http.post(
-            '/api/API/getProcessedReport',
-            parameters
-        );
+            request = Report.fetcher.fetch(this.getParameters());
 
         this.loading = true;
 
@@ -68,13 +29,39 @@
         return request;
     };
 
+    Report.prototype.getParameters = function () {
+        var parameters = {
+            apiModule: this.module,
+            apiAction: this.action,
+            idSite: Report.$routeParams.idSite,
+            period: this.getPeriod(),
+            date: this.getDate()
+        };
+
+        if (this.limit !== false) {
+            /*jshint camelcase: false */
+            parameters.filter_limit = this.limit;
+            /*jshint camelcase: true */
+        }
+
+        return parameters;
+    };
+
     Report.prototype.getDate = function ()
     {
-        var date = ng.isDefined($routeParams.date) ? $routeParams.date : moment().format('YYYY-MM-DD');
+        var date = Report.moment().format('YYYY-MM-DD');
+        if (angular.isDefined(Report.$routeParams.date)) {
+            date = Report.$routeParams.date;
+        }
 
         if (this.evolution) {
             if (date.indexOf(',') === -1) {
-                date = moment(date).subtract('days', this.getNumberOfDaysForEvolution() - 1).format('YYYY-MM-DD') + ','+ moment(date).format('YYYY-MM-DD');
+                date = [
+                    Report.moment(date)
+                        .subtract('days', this.getNumberOfDaysForEvolution() - 1)
+                        .format('YYYY-MM-DD'),
+                    Report.moment(date).format('YYYY-MM-DD')
+                ].join(',');
             }
         }
 
@@ -83,11 +70,11 @@
 
     Report.prototype.getPeriod = function ()
     {
-        if (!ng.isDefined($routeParams.date) || this.evolution) {
+        if (!angular.isDefined(Report.$routeParams.date) || this.evolution) {
             return 'day';
         }
 
-        return $routeParams.date.indexOf(',') === -1 ? 'day' : 'range';
+        return Report.$routeParams.date.indexOf(',') === -1 ? 'day' : 'range';
     };
 
     Report.prototype.getNumberOfDaysForEvolution = function ()
@@ -102,19 +89,16 @@
 
     Report.fetchMetaData = function ()
     {
-        return $http.post(
-            '/api/API/getReportMetadata',
-            {
-                idSite: $routeParams.idSite
-            }
-        );
+        return Report.fetcher.fetchMetaData({
+            idSite: Report.$routeParams.idSite
+        });
     };
 
     Report.groupMetaDataByColumn = function (metaData, column)
     {
         var result = {};
 
-        ng.forEach(metaData, function (value) {
+        angular.forEach(metaData, function (value) {
 
             if (!result[value[column]]) {
                 result[value[column]] = [];
@@ -130,7 +114,7 @@
     {
         var result = [];
 
-        ng.forEach(
+        angular.forEach(
             reports,
             function (report)
             {
@@ -148,12 +132,12 @@
             }
         );
 
-        return ng.toJson(result);
+        return angular.toJson(result);
     };
 
     Report.unserialize = function (reports)
     {
-        ng.forEach(
+        angular.forEach(
             reports,
             function (row)
             {
@@ -169,20 +153,13 @@
         return reports;
     };
 
-    ng.module('piwik-external-dashboard.reports').factory(
-        'Report',
-        [
-            '$http', '$routeParams', 'moment', '$q', 'REPORTS_SOURCE',
-            function (_$http, _$routeParams, _moment, _$q, REPORTS_SOURCE)
-            {
-                Report.source = REPORTS_SOURCE.source;
-                $http = _$http;
-                $routeParams = _$routeParams;
-                moment = _moment;
-                $q = _$q;
+    angular.module('piwik-external-dashboard.reports').factory('Report', function ($routeParams, moment,
+                                                                                   $q, ReportFetchers) {
+        Report.$routeParams = $routeParams;
+        Report.moment = moment;
+        Report.$q = $q;
+        Report.fetcher = ReportFetchers.get();
 
-                return Report;
-            }
-        ]
-    );
-})(window.angular);
+        return Report;
+    });
+})();
