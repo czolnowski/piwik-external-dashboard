@@ -7,6 +7,7 @@
         $rootScope.$emit('reports.fetcher', 'api', ApiReportFetcher);
         $rootScope.$emit('application.fetcher', 'api', ApiReportFetcher);
         $rootScope.$emit('auth.fetcher', 'api', UsersFetcher);
+        $rootScope.$emit('users.fetcher', 'api', UsersFetcher);
     });
 
     module.run(function ($rootScope, ApiTokenInterceptor) {

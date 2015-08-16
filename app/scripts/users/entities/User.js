@@ -1,8 +1,7 @@
-(function (ng) {
+(function () {
     'use strict';
 
-    var $http = null,
-        User = function ()
+    var User = function ()
         {
             this.login = null;
             this.alias = null;
@@ -12,21 +11,15 @@
 
     User.prototype.me = function ()
     {
+        var that = this;
+
         if (this.login === 'anonymous') {
             this.alias = 'anonymous';
 
             return;
         }
 
-        var request = $http.post(
-            '/api/UsersManager/getUser',
-            {
-                userLogin: this.login
-            }
-        ),
-            that = this;
-
-        request.then(function (response) {
+        User.fetcher.getUser(this.login).then(function (response) {
             if (response.data.length === 1) {
                 that.alias = response.data[0].alias;
                 that.email = response.data[0].email;
@@ -42,13 +35,13 @@
         return this.login !== null || this.alias !== null || this.email !== null;
     };
 
-    ng.module('piwik-external-dashboard.users').factory('User', [
-        '$http',
-        function (_$http)
+    angular.module('piwik-external-dashboard.users').factory('User', [
+        'UserFetchers',
+        function (UserFetchers)
         {
-            $http = _$http;
+            User.fetcher = UserFetchers.get();
 
             return User;
         }
     ]);
-})(angular);
+})();

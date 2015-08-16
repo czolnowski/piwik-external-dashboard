@@ -107,6 +107,7 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/users/module.js"></script>
     <script src="scripts/users/entities/User.js"></script>
+    <script src="scripts/users/collections/UserFetchers.js"></script>
 
     <script src="scripts/auth/module.js"></script>
     <script src="scripts/auth/services/Authenticate.js"></script>
@@ -196,9 +197,21 @@
                     {
                         module: 'piwik-external-dashboard.application',
                         resolve: {
-                            REPORTS_SOURCE: ['$http', function ($http) {
-                              return $http.get('/config/reports.json');
-                            }]
+                            REPORTS_SOURCE: [
+                                '$http', function ($http) {
+                                    return $http.get('/config/reports.json');
+                                }
+                            ],
+                            AUTH_SOURCE: [
+                                '$http', function ($http) {
+                                    return $http.get('/config/auth.json');
+                                }
+                            ],
+                            USERS_SOURCE: [
+                                '$http', function ($http) {
+                                    return $http.get('/config/users.json');
+                                }
+                            ]
                         }
                     }
                 ],

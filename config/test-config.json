@@ -1,17 +1,23 @@
 {
-  "frontend": {
-    "persistenceLayer": {
-      "name": "firebase",
-      "configuration": {
-        "host": "piwik-ext-dashboard.firebaseio.com"
-      }
+    "frontend": {
+        "persistenceLayer": {
+            "name": "firebase",
+            "configuration": {
+                "host": "piwik-ext-dashboard.firebaseio.com"
+            }
+        },
+        "reports": {
+            "source": "api"
+        },
+        "auth": {
+            "source": "api"
+        },
+        "users": {
+            "source": "api"
+        }
     },
-    "reports": {
-      "source": "api"
+    "server": {
+        "port": 8080,
+        "static": "app"
     }
-  },
-  "server": {
-    "port": 8080,
-    "static": "app"
-  }
 }

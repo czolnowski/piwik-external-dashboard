@@ -20,8 +20,6 @@
             'angular-growl',
 
             'piwik-external-dashboard.application',
-            'piwik-external-dashboard.auth',
-            'piwik-external-dashboard.dashboard',
             'piwik-external-dashboard.users',
             'piwik-external-dashboard.widget',
             'piwik-external-dashboard.reports',
@@ -30,7 +28,9 @@
             'piwik-external-dashboard.tables',
             'piwik-external-dashboard.whiteLabel',
             'piwik-external-dashboard.firebase',
-            'piwik-external-dashboard.api'
+            'piwik-external-dashboard.api',
+            'piwik-external-dashboard.auth',
+            'piwik-external-dashboard.dashboard'
         ]
     )
     .config(

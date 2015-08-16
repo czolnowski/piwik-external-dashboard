@@ -7,5 +7,15 @@
 
             return $http.post('/api', parameters);
         };
+
+        this.getUser = function (login) {
+            return $http.post(
+                '/api',
+                {
+                    method: 'UsersManager.getUser',
+                    userLogin: login
+                }
+            );
+        };
     });
 })();
