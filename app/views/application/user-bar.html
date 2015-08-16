@@ -5,7 +5,12 @@
              class="img-circle">
 
         <span class="hidden-sm">Welcome,</span>
-        <strong class="hidden-sm" ng-bind="user.alias"></strong>
+        <strong ng-if="user.alias"
+                class="hidden-sm"
+                ng-bind="user.alias"></strong>
+        <strong ng-if="!user.alias && user.login"
+                class="hidden-sm"
+                ng-bind="user.login"></strong>
     </div>
 
     <div class="clearfix"></div>

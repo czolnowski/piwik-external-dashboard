@@ -2,17 +2,16 @@
     'use strict';
 
     var Token = function (AuthFetchers, md5, $cookieStore) {
-        var fetcher = AuthFetchers.get();
         this.login = null;
         this.tokenAuth = null;
         this.host = null;
 
         this.get = function (host, login, password)
         {
-            return fetcher.getTokenAuth({
+            return AuthFetchers.get().getTokenAuth({
                 host: host,
                 userLogin: login,
-                md5Password: md5.createHash(password)
+                md5Password: md5(password)
             });
         };
 

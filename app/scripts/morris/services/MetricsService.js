@@ -41,7 +41,14 @@
             {
                 ykeys.push(key);
                 labels.push(name);
-                metrics.push(new that.Metric(name, key, metadata.metricsDocumentation[key]));
+                metrics.push(
+                    new that.Metric(
+                        name,
+                        key,
+                        angular.isDefined(metadata.metricsDocumentation) && angular.isDefined(metadata.metricsDocumentation[key]) ?
+                            metadata.metricsDocumentation[key] : ''
+                    )
+                );
             }
         );
     };

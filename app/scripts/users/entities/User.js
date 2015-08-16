@@ -37,6 +37,11 @@
         });
     };
 
+    User.prototype.isValid = function ()
+    {
+        return this.login !== null || this.alias !== null || this.email !== null;
+    };
+
     ng.module('piwik-external-dashboard.users').factory('User', [
         '$http',
         function (_$http)
