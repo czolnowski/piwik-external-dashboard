@@ -4,10 +4,11 @@
     ng.module('piwik-external-dashboard.application').directive(
         'applicationSidebar',
         [
-            function ()
+            'ASSETS_BASE_PATH',
+            function (ASSETS_BASE_PATH)
             {
                 return {
-                    templateUrl: 'views/application/sidebar.html',
+                    templateUrl: ASSETS_BASE_PATH + 'views/application/sidebar.html',
                     link: function (scope, element, attrs)
                     {
                         scope.menu = {

@@ -5,12 +5,13 @@
         'morrisBarVisualization',
         [
             'MetricsService',
-            function (MetricsService)
+            'ASSETS_BASE_PATH',
+            function (MetricsService, ASSETS_BASE_PATH)
             {
                 return {
                     require: '^singleWidget',
                     restrict: 'AE',
-                    templateUrl: 'views/morris/bar/index.html',
+                    templateUrl: ASSETS_BASE_PATH + 'views/morris/bar/index.html',
                     controller: 'MorrisVisualizationCtrl',
                     link: function($scope, elem, attrs, ctrl) {
                         ctrl.report.evolution = false;

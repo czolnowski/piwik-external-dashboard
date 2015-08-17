@@ -3,16 +3,18 @@
 
     var module = angular.module('piwik-external-dashboard.application');
 
-    module.directive('applicationBrandLogo', function (ApplicationFetchers, PIWIK_CHANGELOG_URL) {
+    module.directive('applicationBrandLogo', function (ApplicationFetchers, PIWIK_CHANGELOG_URL, ASSETS_BASE_PATH, LOGO_BACK_URL) {
         return {
             replace: true,
-            templateUrl: 'views/application/brand-logo.html',
+            templateUrl: ASSETS_BASE_PATH + 'views/application/brand-logo.html',
             link: function ($scope) {
                 var fetcher = ApplicationFetchers.get(),
                     requests = {
                         version: fetcher.getVersion(),
                         logo: fetcher.getLogo()
                     };
+
+                $scope.backUrl = LOGO_BACK_URL;
 
                 requests.logo.then(
                     function (response) {

@@ -14,6 +14,9 @@
         },
         "users": {
             "source": "api"
+        },
+        "sites": {
+            "source": "api"
         }
     },
     "server": {

@@ -4,12 +4,12 @@
     ng.module('piwik-external-dashboard.application').directive(
         'applicationUserBar',
         [
-            '$cookieStore', 'Authenticate',
-            function ($cookieStore, Authenticate)
+            '$cookieStore', 'Authenticate', 'ASSETS_BASE_PATH',
+            function ($cookieStore, Authenticate, ASSETS_BASE_PATH)
             {
                 return {
                     replace: true,
-                    templateUrl: 'views/application/user-bar.html',
+                    templateUrl: ASSETS_BASE_PATH + 'views/application/user-bar.html',
                     link: function ($scope)
                     {
                         $scope.user = Authenticate.me;

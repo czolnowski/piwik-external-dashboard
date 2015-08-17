@@ -111,11 +111,12 @@
     .config(
         [
             '$routeProvider',
-            function ($routeProvider) {
+            'ASSETS_BASE_PATH',
+            function ($routeProvider, ASSETS_BASE_PATH) {
                 $routeProvider.when(
                     '/:idSite?',
                     {
-                        templateUrl: 'views/dashboard/index.html',
+                        templateUrl: ASSETS_BASE_PATH + 'views/dashboard/index.html',
                         controller: 'DashboardCtrl',
                         controllerAs: 'dashboard',
                         auth: true

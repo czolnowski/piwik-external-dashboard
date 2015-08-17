@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var Token = function (AuthFetchers, md5, $cookieStore) {
+    var Token = function (AuthFetchers, md5, $cookieStore, LOGGED_IN_USER) {
         this.login = null;
         this.tokenAuth = null;
         this.host = null;
@@ -31,11 +31,19 @@
 
         this.restore = function ()
         {
-            var token = $cookieStore.get('token');
-            if (angular.isDefined(token)) {
-                this.tokenAuth = token.tokenAuth;
-                this.login = token.login;
-                this.host = token.host;
+            var token;
+
+            if (LOGGED_IN_USER !== null) {
+                this.tokenAuth = LOGGED_IN_USER.tokenAuth;
+                this.login = LOGGED_IN_USER.login;
+                this.host = LOGGED_IN_USER.host;
+            } else {
+                token = $cookieStore.get('token');
+                if (angular.isDefined(token)) {
+                    this.tokenAuth = token.tokenAuth;
+                    this.login = token.login;
+                    this.host = token.host;
+                }
             }
         };
     };

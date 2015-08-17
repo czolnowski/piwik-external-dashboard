@@ -4,11 +4,12 @@
     ng.module('piwik-external-dashboard.sites').directive(
         'sitesSelector',
         [
-            function ()
+            'ASSETS_BASE_PATH',
+            function (ASSETS_BASE_PATH)
             {
                 return {
                     controller: 'SitesSelectorCtrl',
-                    templateUrl: 'views/sites/selector.html',
+                    templateUrl: ASSETS_BASE_PATH + 'views/sites/selector.html',
                     replace: true
                 };
             }

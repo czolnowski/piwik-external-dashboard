@@ -4,10 +4,11 @@
     ng.module('piwik-external-dashboard.morris').directive(
         'morrisMetricsSelector',
         [
-            function ()
+            'ASSETS_BASE_PATH',
+            function (ASSETS_BASE_PATH)
             {
                 return {
-                    templateUrl: 'views/morris/metricsSelector.html'
+                    templateUrl: ASSETS_BASE_PATH + 'views/morris/metricsSelector.html'
                 };
             }
         ]

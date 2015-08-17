@@ -29,6 +29,7 @@
             'piwik-external-dashboard.whiteLabel',
             'piwik-external-dashboard.firebase',
             'piwik-external-dashboard.api',
+            'piwik-external-dashboard.piwik-api',
             'piwik-external-dashboard.auth',
             'piwik-external-dashboard.dashboard'
         ]
@@ -37,9 +38,10 @@
         [
             '$locationProvider',
             '$routeProvider',
-            function ($locationProvider, $routeProvider)
+            'USE_HTML5_MODE',
+            function ($locationProvider, $routeProvider, USE_HTML5_MODE)
             {
-                $locationProvider.html5Mode(true);
+                $locationProvider.html5Mode(USE_HTML5_MODE === true);
                 $routeProvider.otherwise('/');
             }
         ]
