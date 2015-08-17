@@ -4,12 +4,13 @@
     ng.module('piwik-external-dashboard.tables').directive(
         'tableVisualization',
         [
-            function ()
+            'ASSETS_BASE_PATH',
+            function (ASSETS_BASE_PATH)
             {
                 return {
                     require: '^singleWidget',
                     restrict: 'AE',
-                    templateUrl: 'views/tables/visualization.html',
+                    templateUrl: ASSETS_BASE_PATH + 'views/tables/visualization.html',
                     controller: 'TableVisualizationCtrl',
                     controllerAs: 'visualization',
                     replace: true,

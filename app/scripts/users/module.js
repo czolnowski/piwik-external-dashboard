@@ -1,5 +1,13 @@
-(function (ng) {
+(function () {
     'use strict';
 
-    ng.module('piwik-external-dashboard.users', []);
-})(angular);
+    var module = angular.module('piwik-external-dashboard.users', []);
+
+    module.run(function ($rootScope, UserFetchers) {
+        $rootScope.$on('users.fetcher', function ($event, name, fetcher) {
+            if (typeof name === 'string' && typeof fetcher !== 'undefined') {
+                UserFetchers.add(name, fetcher);
+            }
+        });
+    });
+})();

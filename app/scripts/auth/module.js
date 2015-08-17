@@ -7,7 +7,7 @@
         Token.restore();
 
         if (Authenticate.isAuthenticated()) {
-            if (!ng.isDefined(Authenticate.me)) {
+            if (!ng.isDefined(Authenticate.me) || !Authenticate.me.isValid()) {
                 Authenticate.getUserInformation(Token.login);
             }
         }

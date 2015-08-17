@@ -1,13 +1,13 @@
 (function (ng) {
     'use strict';
 
-    var AddReportCtrl = function ($modal, dashboards, localState)
+    var AddReportCtrl = function ($modal, dashboards, localState, ASSETS_BASE_PATH)
     {
         this.openModal = function ()
         {
             $modal.open(
                 {
-                    templateUrl: 'views/reports/add-modal.html',
+                    templateUrl: ASSETS_BASE_PATH + 'views/reports/add-modal.html',
                     controller: 'AddReportModalCtrl',
                     resolve: {
                         reports: [
@@ -32,7 +32,8 @@
     AddReportCtrl.$inject = [
         '$modal',
         'DashboardStates',
-        'DashboardLocalState'
+        'DashboardLocalState',
+        'ASSETS_BASE_PATH'
     ];
 
     ng.module('piwik-external-dashboard.dashboard').controller(

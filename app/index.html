@@ -107,6 +107,7 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/users/module.js"></script>
     <script src="scripts/users/entities/User.js"></script>
+    <script src="scripts/users/collections/UserFetchers.js"></script>
 
     <script src="scripts/auth/module.js"></script>
     <script src="scripts/auth/services/Authenticate.js"></script>
@@ -119,6 +120,10 @@
     <script src="scripts/api/fetchers/ApiReportFetcher.js"></script>
     <script src="scripts/api/fetchers/UsersFetcher.js"></script>
     <script src="scripts/api/interceptors/ApiTokenInterceptor.js"></script>
+
+    <script src="scripts/piwik-api/module.js"></script>
+    <script src="scripts/piwik-api/fetchers/ApiReportFetcher.js"></script>
+    <script src="scripts/piwik-api/interceptors/ApiTokenInterceptor.js"></script>
 
     <script src="scripts/application/module.js"></script>
     <script src="scripts/application/directives/Sidebar.js"></script>
@@ -156,9 +161,10 @@
     <script src="scripts/reports/collections/ReportFetchers.js"></script>
 
     <script src="scripts/sites/module.js"></script>
-    <script src="scripts/sites/entities/Site.js"></script>
     <script src="scripts/sites/controllers/SitesSelectorCtrl.js"></script>
     <script src="scripts/sites/directives/SitesSelector.js"></script>
+    <script src="scripts/sites/collections/SitesFetchers.js"></script>
+    <script src="scripts/sites/services/Site.js"></script>
 
     <script src="scripts/morris/module.js"></script>
     <script src="scripts/morris/controllers/VisualizationCtrl.js"></script>
@@ -189,6 +195,16 @@
         (function (db, document) {
             'use strict';
 
+            var deferValue = function (value) {
+                return function ($q) {
+                    var defer = $q.defer();
+
+                    defer.resolve(value);
+
+                    return defer.promise;
+                }
+            };
+
             db.bootstrap({
                 element: document   ,
                 module: 'piwik-external-dashboard',
@@ -196,9 +212,30 @@
                     {
                         module: 'piwik-external-dashboard.application',
                         resolve: {
-                            REPORTS_SOURCE: ['$http', function ($http) {
-                              return $http.get('/config/reports.json');
-                            }]
+                            ASSETS_BASE_PATH: ['$q', deferValue('')],
+                            LOGGED_IN_USER: ['$q', deferValue(null)],
+                            USE_HTML5_MODE: ['$q', deferValue(true)],
+                            LOGO_BACK_URL: ['$q', deferValue('/')],
+                            REPORTS_SOURCE: [
+                                '$http', function ($http) {
+                                    return $http.get('/config/reports.json');
+                                }
+                            ],
+                            AUTH_SOURCE: [
+                                '$http', function ($http) {
+                                    return $http.get('/config/auth.json');
+                                }
+                            ],
+                            USERS_SOURCE: [
+                                '$http', function ($http) {
+                                    return $http.get('/config/users.json');
+                                }
+                            ],
+                            SITES_SOURCE: [
+                                '$http', function ($http) {
+                                    return $http.get('/config/sites.json');
+                                }
+                            ]
                         }
                     }
                 ],

@@ -23,5 +23,14 @@
         this.getLogo = function () {
             return $http.post('/api', {method: 'API.getLogoUrl'});
         };
+
+        this.getSitesWithViewAccess = function () {
+            return $http.post(
+                '/api',
+                {
+                    method: 'SitesManager.getSitesWithAtLeastViewAccess'
+                }
+            );
+        };
     });
 })();

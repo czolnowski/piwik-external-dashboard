@@ -72,11 +72,11 @@
 
     angular.module('piwik-external-dashboard.auth')
     .controller('LoginCtrl', LoginCtrl)
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, ASSETS_BASE_PATH) {
         $routeProvider.when(
             '/login',
             {
-                templateUrl: 'views/login/index.html',
+                templateUrl: ASSETS_BASE_PATH + 'views/login/index.html',
                 controller: 'LoginCtrl',
                 controllerAs: 'login'
             }

@@ -4,7 +4,8 @@
     ng.module('piwik-external-dashboard.widget').directive(
         'singleWidget',
         [
-            function ()
+            'ASSETS_BASE_PATH',
+            function (ASSETS_BASE_PATH)
             {
                 return {
                     restrict: 'AC',
@@ -13,7 +14,7 @@
                         report: '=',
                         dashboard: '='
                     },
-                    templateUrl: 'views/widget/single.html',
+                    templateUrl: ASSETS_BASE_PATH + 'views/widget/single.html',
                     controller: [
                         '$scope', '$routeParams',
                         function ($scope, $routeParams)

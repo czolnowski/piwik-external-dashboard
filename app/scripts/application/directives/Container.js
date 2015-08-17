@@ -4,10 +4,11 @@
     ng.module('piwik-external-dashboard.application').directive(
         'applicationContainer',
         [
-            function ()
+            'ASSETS_BASE_PATH',
+            function (ASSETS_BASE_PATH)
             {
                 return {
-                    templateUrl: 'views/application/container.html',
+                    templateUrl: ASSETS_BASE_PATH + 'views/application/container.html',
                     transclude: true,
                     replace: true,
                     link: function (scope)

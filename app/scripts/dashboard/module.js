@@ -1,7 +1,7 @@
-(function (ng) {
+(function () {
     'use strict';
 
-    ng.module(
+    angular.module(
         'piwik-external-dashboard.dashboard',
         [],
         function ($provide)
@@ -9,4 +9,4 @@
             $provide.constant('dashboardStateKey', 'dashboard');
         }
     );
-})(angular);
+})();

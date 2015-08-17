@@ -1,7 +1,7 @@
-(function (ng) {
+(function () {
     'use strict';
 
-    ng.module('piwik-external-dashboard.widget', [], function ($provide) {
+    angular.module('piwik-external-dashboard.widget', [], function ($provide) {
         $provide.value(
             'chartsColors', [
                 {
@@ -91,4 +91,4 @@
             ]
         );
     });
-})(angular);
+})();
